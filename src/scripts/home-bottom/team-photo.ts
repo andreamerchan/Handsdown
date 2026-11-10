@@ -135,11 +135,16 @@ function setUp(section: HTMLElement, photo: HTMLElement, card: HTMLElement) {
     const rect = section.getBoundingClientRect();
     // 0 when the section's top touches the bottom of the screen, 1 when its
     // bottom leaves through the top.
-    const passed = clamp01((window.innerHeight - rect.top) / (window.innerHeight + rect.height));
-    const scale = 1 + PHOTO_EXTRA_ZOOM * (1 - Math.min(1, passed / PHOTO_ZOOM_SETTLES_AT));
+    const passed = clamp01(
+      (window.innerHeight - rect.top) / (window.innerHeight + rect.height),
+    );
+    const scale =
+      1 + PHOTO_EXTRA_ZOOM * (1 - Math.min(1, passed / PHOTO_ZOOM_SETTLES_AT));
     const shiftPercent = ((scale - 1) / 2) * 80;
     photo.style.transform =
-      scale === 1 ? "" : `translateY(${shiftPercent.toFixed(2)}%) scale(${scale.toFixed(4)})`;
+      scale === 1
+        ? ""
+        : `translateY(${shiftPercent.toFixed(2)}%) scale(${scale.toFixed(4)})`;
   };
   const schedulePhotoZoom = () => {
     if (!zoomFrame) zoomFrame = requestAnimationFrame(updatePhotoZoom);
@@ -200,7 +205,9 @@ function setUp(section: HTMLElement, photo: HTMLElement, card: HTMLElement) {
     });
     after(RELEASE_AT_MS, () => delete section.dataset.pressed);
     after(CURSOR_IDLE_AT_MS, () => (section.dataset.cursor = "idle"));
-    after(NEXT_STOP_AT_MS, () => visit((index + 1) % SPECIALISTS.length, false));
+    after(NEXT_STOP_AT_MS, () =>
+      visit((index + 1) % SPECIALISTS.length, false),
+    );
   };
 
   // Start the tour when the section is well in view; rewind once it is gone.
@@ -214,7 +221,9 @@ function setUp(section: HTMLElement, photo: HTMLElement, card: HTMLElement) {
         touring = true;
         resetTour();
         // Two frames, so the "away" state is painted before the cursor moves in.
-        requestAnimationFrame(() => requestAnimationFrame(() => visit(0, true)));
+        requestAnimationFrame(() =>
+          requestAnimationFrame(() => visit(0, true)),
+        );
       } else if (!entry.isIntersecting && touring) {
         touring = false;
         resetTour();

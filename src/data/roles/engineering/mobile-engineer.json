@@ -23,12 +23,7 @@
       "Android developer"
     ],
     "promptPlaceholder": "e.g. a senior mobile engineer, US-hours overlap",
-    "skillGroups": [
-      "All",
-      "Cross-platform",
-      "Native",
-      "Releases"
-    ],
+    "skillGroups": ["All", "Cross-platform", "Native", "Releases"],
     "skills": [
       {
         "name": "React Native",

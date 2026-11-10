@@ -19,12 +19,7 @@
     "skillsLabel": "Technologies",
     "exampleRoles": [],
     "promptPlaceholder": "Pick technologies below, or type what you need",
-    "skillGroups": [
-      "All",
-      "Frameworks",
-      "Languages",
-      "Styling"
-    ],
+    "skillGroups": ["All", "Frameworks", "Languages", "Styling"],
     "skills": [
       {
         "name": "React",

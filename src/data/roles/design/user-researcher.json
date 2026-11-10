@@ -23,11 +23,7 @@
       "Usability specialist"
     ],
     "promptPlaceholder": "e.g. a senior ux researcher, US-hours overlap",
-    "skillGroups": [
-      "All",
-      "Methods",
-      "Tools"
-    ],
+    "skillGroups": ["All", "Methods", "Tools"],
     "skills": [
       {
         "name": "User interviews",

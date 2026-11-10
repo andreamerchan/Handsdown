@@ -3,5 +3,7 @@
 import { openBooking } from "./open-booking";
 
 document
-  .querySelector<HTMLButtonElement>('section[aria-labelledby="what-shapes-your-rate"] button[type="button"]')
+  .querySelector<HTMLButtonElement>(
+    'section[aria-labelledby="what-shapes-your-rate"] button[type="button"]',
+  )
   ?.addEventListener("click", openBooking);

@@ -34,13 +34,14 @@ const view = describeEstimate(DEFAULT_DISCIPLINE, DEFAULT_SENIORITY);
           </span>
           <span class="relative block">
             <select class="h-[46px] w-full appearance-none rounded-full border border-border-default bg-background-neutral-faint pr-11 pl-4 text-[14px] font-medium text-text-primary focus-visible:shadow-ring focus-visible:outline-none">
-              {
-                DISCIPLINES.map((discipline) => (
-                  <option value={discipline.id} selected={discipline.id === DEFAULT_DISCIPLINE}>
-                    {discipline.label}
-                  </option>
-                ))
-              }
+              {DISCIPLINES.map((discipline) => (
+                <option
+                  value={discipline.id}
+                  selected={discipline.id === DEFAULT_DISCIPLINE}
+                >
+                  {discipline.label}
+                </option>
+              ))}
             </select>
             <svg
               aria-hidden="true"
@@ -63,22 +64,20 @@ const view = describeEstimate(DEFAULT_DISCIPLINE, DEFAULT_SENIORITY);
             Seniority
           </legend>
           <div class="flex gap-0.5 rounded-full bg-background-neutral-faint p-1">
-            {
-              SENIORITIES.map((seniority) => (
-                <label class="flex-1 cursor-pointer">
-                  <input
-                    type="radio"
-                    class="peer sr-only"
-                    name="estimate-seniority"
-                    checked={seniority.id === DEFAULT_SENIORITY}
-                    value={seniority.id}
-                  />
-                  <span class="flex min-h-11 items-center justify-center rounded-full px-3.5 text-[13px] font-medium text-text-tertiary transition-colors duration-120 peer-checked:bg-background-inverted peer-checked:text-text-inverse-primary peer-focus-visible:shadow-ring">
-                    {seniority.label}
-                  </span>
-                </label>
-              ))
-            }
+            {SENIORITIES.map((seniority) => (
+              <label class="flex-1 cursor-pointer">
+                <input
+                  type="radio"
+                  class="peer sr-only"
+                  name="estimate-seniority"
+                  checked={seniority.id === DEFAULT_SENIORITY}
+                  value={seniority.id}
+                />
+                <span class="flex min-h-11 items-center justify-center rounded-full px-3.5 text-[13px] font-medium text-text-tertiary transition-colors duration-120 peer-checked:bg-background-inverted peer-checked:text-text-inverse-primary peer-focus-visible:shadow-ring">
+                  {seniority.label}
+                </span>
+              </label>
+            ))}
           </div>
         </fieldset>
         <p class="text-[12px] leading-5 text-text-tertiary">
@@ -150,12 +149,16 @@ const view = describeEstimate(DEFAULT_DISCIPLINE, DEFAULT_SENIORITY);
               </p>
               <p class="mt-1 text-[13px] text-text-primary">
                 <span class="font-semibold">{view.keepShare}</span>
-                <span class="text-[12px] text-text-secondary">{view.keepYearly}</span>
+                <span class="text-[12px] text-text-secondary">
+                  {view.keepYearly}
+                </span>
               </p>
             </div>
           </div>
         </div>
-        <p aria-live="polite" class="sr-only">{view.announcement}</p>
+        <p aria-live="polite" class="sr-only">
+          {view.announcement}
+        </p>
         <div class="flex flex-col-reverse items-stretch gap-3 border-t border-border-default pt-6 sm:flex-row sm:items-center sm:justify-end sm:gap-5">
           <a
             href="/book"

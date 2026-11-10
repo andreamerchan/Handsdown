@@ -79,7 +79,7 @@ The site is static. Three things are stubbed and say so on screen instead of pre
 
 | Feature | Now | To connect |
 | --- | --- | --- |
-| "Describe your role" prompts and the header button | Go to `/book` with the text prefilled | Change `promptDestination` in `src/data/site.ts` |
+| "Describe your role" prompts and call-to-action buttons | Go to `/book` with the text prefilled | Change `promptDestination` in `src/data/site.ts` |
 | Request form on `/book` | Validates, then reports it is not connected | Set `bookFormEndpoint` in `src/data/site.ts` to a URL that accepts a form POST |
 | "Start application" on `/apply` | Reports it is not connected | Set `applyDestination` in `src/data/site.ts` |
 

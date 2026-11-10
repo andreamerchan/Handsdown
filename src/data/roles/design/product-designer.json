@@ -23,12 +23,7 @@
       "Product design lead"
     ],
     "promptPlaceholder": "e.g. a senior product designer, US-hours overlap",
-    "skillGroups": [
-      "All",
-      "Tools",
-      "Design",
-      "Research"
-    ],
+    "skillGroups": ["All", "Tools", "Design", "Research"],
     "skills": [
       {
         "name": "Figma",

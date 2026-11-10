@@ -62,7 +62,9 @@ function setUp(section: HTMLElement, track: HTMLElement, stage: HTMLElement) {
   const steps = [...section.querySelectorAll<HTMLElement>(".www-hwws-step")];
   // The illustration is the last child of each step's row.
   const scenes: Scene[] = steps.flatMap((step) => {
-    const picture = step.querySelector<HTMLElement>(".www-hwws-row > :last-child");
+    const picture = step.querySelector<HTMLElement>(
+      ".www-hwws-row > :last-child",
+    );
     return picture ? [{ picture, playing: false, frame: 0 }] : [];
   });
   if (scenes.length !== steps.length) return;
@@ -85,7 +87,8 @@ function setUp(section: HTMLElement, track: HTMLElement, stage: HTMLElement) {
         : "flow";
     leaveLayout();
     section.dataset.layout = layout;
-    if (layout === "pinned") leaveLayout = enterPinned(track, stage, steps, scenes);
+    if (layout === "pinned")
+      leaveLayout = enterPinned(track, stage, steps, scenes);
     else if (layout === "flow") leaveLayout = enterFlow(scenes);
     else leaveLayout = enterStill(scenes);
   };
@@ -198,13 +201,18 @@ function enterPinned(
 ) {
   const lastStep = steps.length - 1;
   /** How far the page scrolls while the stage stays pinned. */
-  const scrollRange = () => Math.max(1, track.offsetHeight - stage.offsetHeight);
+  const scrollRange = () =>
+    Math.max(1, track.offsetHeight - stage.offsetHeight);
 
   const bar = buildStepBar((step) => {
     // Jump to the middle of the chosen step's part of the scroll range.
-    const trackTop = track.getBoundingClientRect().top + window.scrollY - HEADER_HEIGHT;
+    const trackTop =
+      track.getBoundingClientRect().top + window.scrollY - HEADER_HEIGHT;
     const stepMiddle = STEP_SPAN * step + STEP_SPAN / 2;
-    window.scrollTo({ top: trackTop + stepMiddle * scrollRange(), behavior: "smooth" });
+    window.scrollTo({
+      top: trackTop + stepMiddle * scrollRange(),
+      behavior: "smooth",
+    });
   });
   stage.append(bar.element);
 
@@ -212,7 +220,9 @@ function enterPinned(
   let stageReached: boolean | null = null;
 
   const showStep = (step: number) => {
-    steps.forEach((el, index) => el.toggleAttribute("data-shown", index === step));
+    steps.forEach((el, index) =>
+      el.toggleAttribute("data-shown", index === step),
+    );
     bar.setActive(step, lastStep);
   };
 
@@ -221,9 +231,11 @@ function enterPinned(
     scenes.forEach((scene, index) => {
       // Step 1 waits until the stage is actually pinned, so the visitor sees
       // it play; later steps can only be active once it is.
-      const shouldPlay = index === activeStep && (index > 0 || stageReached === true);
+      const shouldPlay =
+        index === activeStep && (index > 0 || stageReached === true);
       if (shouldPlay) playScene(scene);
-      else if (scene.playing || scene.picture.hasAttribute("data-played")) resetScene(scene);
+      else if (scene.playing || scene.picture.hasAttribute("data-played"))
+        resetScene(scene);
     });
   };
 
@@ -303,7 +315,11 @@ function buildStepBar(onSelect: (step: number) => void) {
       element.style.setProperty("--hwws-at", String(active / lastStep));
       nodes.forEach(({ node, button }, step) => {
         const done = step < active || active === lastStep;
-        node.dataset.state = done ? "done" : step === active ? "current" : "next";
+        node.dataset.state = done
+          ? "done"
+          : step === active
+            ? "current"
+            : "next";
         if (step === active) button.setAttribute("aria-current", "step");
         else button.removeAttribute("aria-current");
       });

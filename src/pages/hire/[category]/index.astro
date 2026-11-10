@@ -8,6 +8,7 @@ import RoleDetail from "../../../components/hire/RoleDetail.astro";
 import RolePlate from "../../../components/hire/RolePlate.astro";
 import HireCta from "../../../components/hire/HireCta.astro";
 import { categories } from "../../../data";
+import { hireMenu } from "../../../data/site";
 
 export function getStaticPaths() {
   return categories.map((category) => ({
@@ -16,12 +17,19 @@ export function getStaticPaths() {
   }));
 }
 const { category } = Astro.props;
+const categoryName =
+  hireMenu.find((group) => group.href === `/hire/${category.slug}`)?.name ??
+  category.seo.title;
 ---
 
 <Site
   title={category.seo.title}
   description={category.seo.description}
   active="hire"
+  breadcrumbs={[
+    { name: "Hire Talent", path: "/hire" },
+    { name: categoryName, path: `/hire/${category.slug}` },
+  ]}
 >
   <CategoryHero data={category.hero} />
   <Specializations data={category.specializations} />

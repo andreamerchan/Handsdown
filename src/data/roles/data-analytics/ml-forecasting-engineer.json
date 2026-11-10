@@ -19,13 +19,7 @@
     "skillsLabel": "Technologies",
     "exampleRoles": [],
     "promptPlaceholder": "Pick technologies below, or type what you need",
-    "skillGroups": [
-      "All",
-      "Languages",
-      "Methods",
-      "Libraries",
-      "Operations"
-    ],
+    "skillGroups": ["All", "Languages", "Methods", "Libraries", "Operations"],
     "skills": [
       {
         "name": "Python",

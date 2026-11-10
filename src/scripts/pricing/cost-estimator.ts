@@ -12,9 +12,13 @@ import {
 } from "../../data/pricing";
 import { openBooking } from "./open-booking";
 
-const section = document.querySelector<HTMLElement>('section[aria-labelledby="cost-estimator"]');
+const section = document.querySelector<HTMLElement>(
+  'section[aria-labelledby="cost-estimator"]',
+);
 const disciplineSelect = section?.querySelector<HTMLSelectElement>("select");
-const seniorityRadios = section?.querySelectorAll<HTMLInputElement>('input[name="estimate-seniority"]');
+const seniorityRadios = section?.querySelectorAll<HTMLInputElement>(
+  'input[name="estimate-seniority"]',
+);
 
 if (section && disciplineSelect && seniorityRadios?.length) {
   // The card shows two rows, ours first and the US in-house hire second.
@@ -24,15 +28,20 @@ if (section && disciplineSelect && seniorityRadios?.length) {
   const tracks = section.querySelectorAll<HTMLElement>(".h-10.overflow-hidden");
   const keepNote = section.querySelector<HTMLElement>('[style*="--keep-at"]');
   const keepShare = keepNote?.querySelector<HTMLElement>(".font-semibold");
-  const keepYearly = keepNote?.querySelector<HTMLElement>(".text-text-secondary");
-  const announcement = section.querySelector<HTMLElement>('[aria-live="polite"]');
+  const keepYearly = keepNote?.querySelector<HTMLElement>(
+    ".text-text-secondary",
+  );
+  const announcement = section.querySelector<HTMLElement>(
+    '[aria-live="polite"]',
+  );
 
   const renderRow = (index: number, bar: BarView) => {
     // The amount is the first text node; the "/ mo*" suffix after it stays as is.
     const amountText = amounts[index]?.firstChild;
     if (amountText) amountText.textContent = bar.amount;
 
-    const [solid, faded] = tracks[index]?.querySelectorAll<HTMLElement>("span") ?? [];
+    const [solid, faded] =
+      tracks[index]?.querySelectorAll<HTMLElement>("span") ?? [];
     if (solid) solid.style.width = `${bar.lowPercent}%`;
     if (faded) {
       faded.style.left = `${bar.lowPercent}%`;
@@ -42,11 +51,14 @@ if (section && disciplineSelect && seniorityRadios?.length) {
 
   // The page is rendered with the default selection; the bars are only
   // redrawn when the newly selected combination has different amounts.
-  let shownAmounts = JSON.stringify(estimateFor(DEFAULT_DISCIPLINE, DEFAULT_SENIORITY));
+  let shownAmounts = JSON.stringify(
+    estimateFor(DEFAULT_DISCIPLINE, DEFAULT_SENIORITY),
+  );
 
   const render = () => {
     const discipline = disciplineSelect.value;
-    const seniority = [...seniorityRadios].find((radio) => radio.checked)?.value ?? "";
+    const seniority =
+      [...seniorityRadios].find((radio) => radio.checked)?.value ?? "";
     const view = describeEstimate(discipline, seniority);
 
     // The announcement names the selection, so it changes every time.

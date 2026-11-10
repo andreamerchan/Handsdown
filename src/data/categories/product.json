@@ -26,11 +26,7 @@
     "skillsLabel": "Technologies",
     "exampleRoles": [],
     "promptPlaceholder": "Pick technologies below, or type what you need",
-    "skillGroups": [
-      "All",
-      "Practices",
-      "Tools"
-    ],
+    "skillGroups": ["All", "Practices", "Tools"],
     "skills": [
       {
         "name": "Product discovery",

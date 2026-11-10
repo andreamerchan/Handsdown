@@ -19,12 +19,7 @@
     "skillsLabel": "Technologies",
     "exampleRoles": [],
     "promptPlaceholder": "Pick technologies below, or type what you need",
-    "skillGroups": [
-      "All",
-      "Tools",
-      "Languages",
-      "Methods"
-    ],
+    "skillGroups": ["All", "Tools", "Languages", "Methods"],
     "skills": [
       {
         "name": "Power BI",

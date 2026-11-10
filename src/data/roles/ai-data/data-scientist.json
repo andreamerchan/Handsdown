@@ -24,12 +24,7 @@
       "Forecasting specialist"
     ],
     "promptPlaceholder": "e.g. a senior data scientist, US-hours overlap",
-    "skillGroups": [
-      "All",
-      "Languages",
-      "Libraries",
-      "Methods"
-    ],
+    "skillGroups": ["All", "Languages", "Libraries", "Methods"],
     "skills": [
       {
         "name": "Python",

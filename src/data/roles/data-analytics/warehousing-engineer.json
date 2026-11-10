@@ -18,13 +18,7 @@
     "skillsLabel": "Technologies",
     "exampleRoles": [],
     "promptPlaceholder": "Pick technologies below, or type what you need",
-    "skillGroups": [
-      "All",
-      "Warehouses",
-      "Languages",
-      "Methods",
-      "Operations"
-    ],
+    "skillGroups": ["All", "Warehouses", "Languages", "Methods", "Operations"],
     "skills": [
       {
         "name": "Snowflake",

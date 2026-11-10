@@ -45,7 +45,9 @@ export const BASE_ESTIMATE: Estimate = {
  * The site currently shows the same range for every combination, so this is empty.
  * Example: "ai:staff": { ours: { low: 9000, high: 12000 }, usInHouse: { low: 19000, high: 23000 } }
  */
-export const ESTIMATE_OVERRIDES: Partial<Record<`${DisciplineId}:${SeniorityId}`, Estimate>> = {};
+export const ESTIMATE_OVERRIDES: Partial<
+  Record<`${DisciplineId}:${SeniorityId}`, Estimate>
+> = {};
 
 export function estimateFor(discipline: string, seniority: string): Estimate {
   const key = `${discipline}:${seniority}` as keyof typeof ESTIMATE_OVERRIDES;
@@ -101,7 +103,10 @@ function spokenRange(range: Range): string {
   return `${dollars.format(range.low)} to ${dollars.format(range.high)}`;
 }
 
-export function describeEstimate(discipline: string, seniority: string): EstimateView {
+export function describeEstimate(
+  discipline: string,
+  seniority: string,
+): EstimateView {
   const { ours, usInHouse } = estimateFor(discipline, seniority);
   const scale = Math.max(usInHouse.high, ours.high) / BAR_FILL_AT_TOP_AMOUNT;
   const midpoint = (range: Range) => (range.low + range.high) / 2;
@@ -110,15 +115,21 @@ export function describeEstimate(discipline: string, seniority: string): Estimat
   const lowShare = Math.round((1 - ours.high / usInHouse.low) * 100);
   const highShare = Math.round((1 - ours.low / usInHouse.high) * 100);
   // Yearly saving between the two midpoints, rounded to the nearest $1,000.
-  const yearly = 1000 * Math.round(((midpoint(usInHouse) - midpoint(ours)) * 12) / 1000);
+  const yearly =
+    1000 * Math.round(((midpoint(usInHouse) - midpoint(ours)) * 12) / 1000);
 
-  const disciplineLabel = DISCIPLINES.find((d) => d.id === discipline)?.label ?? "";
-  const seniorityLabel = SENIORITIES.find((s) => s.id === seniority)?.label ?? "";
+  const disciplineLabel =
+    DISCIPLINES.find((d) => d.id === discipline)?.label ?? "";
+  const seniorityLabel =
+    SENIORITIES.find((s) => s.id === seniority)?.label ?? "";
 
   return {
     ours: barView(ours, scale),
     usInHouse: barView(usInHouse, scale),
-    keepOffsetPercent: Math.min((ours.high / scale) * 100, KEEP_NOTE_MAX_OFFSET_PERCENT),
+    keepOffsetPercent: Math.min(
+      (ours.high / scale) * 100,
+      KEEP_NOTE_MAX_OFFSET_PERCENT,
+    ),
     keepShare: `${lowShare}–${highShare}% `,
     keepYearly: `· about ${dollars.format(yearly)} a year`,
     announcement:

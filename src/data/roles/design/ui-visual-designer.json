@@ -23,12 +23,7 @@
       "Interface designer"
     ],
     "promptPlaceholder": "e.g. a senior ui & visual designer, US-hours overlap",
-    "skillGroups": [
-      "All",
-      "Tools",
-      "Design",
-      "Platforms"
-    ],
+    "skillGroups": ["All", "Tools", "Design", "Platforms"],
     "skills": [
       {
         "name": "Figma",

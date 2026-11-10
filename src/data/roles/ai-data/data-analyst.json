@@ -19,12 +19,7 @@
     "skillsLabel": "Technologies",
     "exampleRoles": [],
     "promptPlaceholder": "Pick technologies below, or type what you need",
-    "skillGroups": [
-      "All",
-      "Languages",
-      "Tools",
-      "Methods"
-    ],
+    "skillGroups": ["All", "Languages", "Tools", "Methods"],
     "skills": [
       {
         "name": "SQL",

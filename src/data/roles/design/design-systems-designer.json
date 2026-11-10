@@ -23,12 +23,7 @@
       "Design system lead"
     ],
     "promptPlaceholder": "e.g. a senior design systems designer, US-hours overlap",
-    "skillGroups": [
-      "All",
-      "Tools",
-      "Systems",
-      "Standards"
-    ],
+    "skillGroups": ["All", "Tools", "Systems", "Standards"],
     "skills": [
       {
         "name": "Figma components & variables",

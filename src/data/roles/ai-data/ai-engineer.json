@@ -23,13 +23,7 @@
       "NLP engineer"
     ],
     "promptPlaceholder": "e.g. a senior ml engineer, US-hours overlap",
-    "skillGroups": [
-      "All",
-      "Techniques",
-      "Tooling",
-      "Languages",
-      "Operations"
-    ],
+    "skillGroups": ["All", "Techniques", "Tooling", "Languages", "Operations"],
     "skills": [
       {
         "name": "LLM integration",

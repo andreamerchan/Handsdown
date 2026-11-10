@@ -23,13 +23,7 @@
       "Kubernetes specialist"
     ],
     "promptPlaceholder": "e.g. a senior devops engineer, US-hours overlap",
-    "skillGroups": [
-      "All",
-      "Cloud",
-      "Infrastructure",
-      "Delivery",
-      "Monitoring"
-    ],
+    "skillGroups": ["All", "Cloud", "Infrastructure", "Delivery", "Monitoring"],
     "skills": [
       {
         "name": "AWS",

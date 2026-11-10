@@ -6,7 +6,9 @@
 //  2. on scroll, the rings are "lifted" (undrawn) one after another, the ambient
 //     glow fades out and the whole backdrop lags slightly behind the page.
 
-const backdrop = document.querySelector<HTMLElement>('[data-testid="contour-backdrop"]');
+const backdrop = document.querySelector<HTMLElement>(
+  '[data-testid="contour-backdrop"]',
+);
 
 if (backdrop) {
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -27,7 +29,10 @@ if (backdrop) {
     if (!lastPointer) return;
     const box = backdrop.getBoundingClientRect();
     const y = lastPointer.clientY - box.top;
-    backdrop.style.setProperty("--www-mx", `${lastPointer.clientX - box.left}px`);
+    backdrop.style.setProperty(
+      "--www-mx",
+      `${lastPointer.clientX - box.left}px`,
+    );
     backdrop.style.setProperty("--www-my", `${y}px`);
     const overBackdrop = y >= 0 && y <= box.height;
     const visible = overBackdrop && performance.now() >= introEndsAt;
@@ -44,7 +49,8 @@ if (backdrop) {
     (event) => {
       if (reducedMotion.matches || event.pointerType !== "mouse") return;
       lastPointer = event;
-      if (!spotlightFrame) spotlightFrame = requestAnimationFrame(moveSpotlight);
+      if (!spotlightFrame)
+        spotlightFrame = requestAnimationFrame(moveSpotlight);
     },
     { passive: true },
   );
@@ -94,22 +100,40 @@ if (backdrop) {
 
     RING_LIFT_WINDOWS.forEach(({ start, end }, ring) => {
       const lift = clamp01((progress - start) / (end - start));
-      const ink = lift <= 0 ? RING_INK_REST : RING_INK_REST + RING_INK_BOOST * clamp01(lift / RING_INK_RAMP);
+      const ink =
+        lift <= 0
+          ? RING_INK_REST
+          : RING_INK_REST + RING_INK_BOOST * clamp01(lift / RING_INK_RAMP);
       backdrop.style.setProperty(`--ring-lift-${ring}`, lift.toFixed(4));
       backdrop.style.setProperty(`--ring-ink-${ring}`, ink.toFixed(3));
     });
-    backdrop.style.setProperty("--ambient-exit", clamp01(progress / AMBIENT_EXIT_END).toFixed(3));
+    backdrop.style.setProperty(
+      "--ambient-exit",
+      clamp01(progress / AMBIENT_EXIT_END).toFixed(3),
+    );
 
     const scrolledPx = progress * rangeLength;
     const root = document.documentElement;
-    root.style.setProperty("--www-exit-lag-y", `${(LAG_FACTOR * scrolledPx).toFixed(1)}px`);
-    root.style.setProperty("--www-exit-lead-y", `${(LEAD_FACTOR * scrolledPx).toFixed(1)}px`);
+    root.style.setProperty(
+      "--www-exit-lag-y",
+      `${(LAG_FACTOR * scrolledPx).toFixed(1)}px`,
+    );
+    root.style.setProperty(
+      "--www-exit-lead-y",
+      `${(LEAD_FACTOR * scrolledPx).toFixed(1)}px`,
+    );
   };
 
   const update = () => {
     scrollFrame = 0;
-    const progress = rangeLength <= 0 ? Number(window.scrollY > rangeStart) : clamp01((window.scrollY - rangeStart) / rangeLength);
-    backdrop.style.setProperty("--scroll-p", (reducedMotion.matches ? 0 : progress).toFixed(4));
+    const progress =
+      rangeLength <= 0
+        ? Number(window.scrollY > rangeStart)
+        : clamp01((window.scrollY - rangeStart) / rangeLength);
+    backdrop.style.setProperty(
+      "--scroll-p",
+      (reducedMotion.matches ? 0 : progress).toFixed(4),
+    );
     backdrop.dataset.scrollDone = progress >= DONE_AT ? "true" : "false";
     applyExit(progress);
   };

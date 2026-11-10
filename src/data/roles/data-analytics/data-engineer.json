@@ -23,12 +23,7 @@
       "Data platform engineer"
     ],
     "promptPlaceholder": "e.g. a senior data engineer, US-hours overlap",
-    "skillGroups": [
-      "All",
-      "Languages",
-      "Pipelines",
-      "Warehouses"
-    ],
+    "skillGroups": ["All", "Languages", "Pipelines", "Warehouses"],
     "skills": [
       {
         "name": "SQL",

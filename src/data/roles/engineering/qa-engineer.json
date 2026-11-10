@@ -19,11 +19,7 @@
     "skillsLabel": "Technologies",
     "exampleRoles": [],
     "promptPlaceholder": "Pick technologies below, or type what you need",
-    "skillGroups": [
-      "All",
-      "Frameworks",
-      "Practices"
-    ],
+    "skillGroups": ["All", "Frameworks", "Practices"],
     "skills": [
       {
         "name": "Playwright",

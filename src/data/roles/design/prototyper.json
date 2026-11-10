@@ -19,13 +19,7 @@
     "skillsLabel": "Skills & tools",
     "exampleRoles": [],
     "promptPlaceholder": "Pick technologies below, or type what you need",
-    "skillGroups": [
-      "All",
-      "Tools",
-      "Code",
-      "Design",
-      "Research"
-    ],
+    "skillGroups": ["All", "Tools", "Code", "Design", "Research"],
     "skills": [
       {
         "name": "Figma prototyping",

@@ -22,13 +22,7 @@
       "Product engineer"
     ],
     "promptPlaceholder": "e.g. a senior full-stack engineer, US-hours overlap",
-    "skillGroups": [
-      "All",
-      "Stacks",
-      "Frameworks",
-      "Languages",
-      "Databases"
-    ],
+    "skillGroups": ["All", "Stacks", "Frameworks", "Languages", "Databases"],
     "skills": [
       {
         "name": "React + Node.js",
