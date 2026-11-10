@@ -4,71 +4,33 @@
     "description": "Models that keep working after they ship. Hire one when models work in a notebook and break, drift or stall on the way to production."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/ai-data",
-        "label": "AI & Data"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "MLOps Engineer"
-      }
-    ],
+    "category": {
+      "label": "AI & Data",
+      "href": "/hire/ai-data"
+    },
+    "name": "MLOps Engineer",
     "titleAccent": "An MLOps engineer",
     "titleRest": " who keeps models working live.",
     "lede": "Repeatable releases, observable models, and infrastructure built for the entire ML lifecycle."
   },
   "detail": {
     "roleName": "MLOps Engineer",
+    "askedAs": "MLOps engineer",
     "skillsLabel": "Technologies",
     "exampleRoles": [
-      {
-        "removeLabel": "Remove Senior MLOps engineer",
-        "label": "Senior MLOps engineer"
-      },
-      {
-        "removeLabel": "Remove ML platform engineer",
-        "label": "ML platform engineer"
-      },
-      {
-        "removeLabel": "Remove Model serving specialist",
-        "label": "Model serving specialist"
-      }
+      "Senior MLOps engineer",
+      "ML platform engineer",
+      "Model serving specialist"
     ],
     "promptPlaceholder": "e.g. a senior mlops engineer, US-hours overlap",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Orchestration"
-      },
-      {
-        "label": "Registry"
-      },
-      {
-        "label": "Serving"
-      },
-      {
-        "label": "Monitoring"
-      },
-      {
-        "label": "Infrastructure"
-      },
-      {
-        "label": "CI/CD"
-      }
+      "All",
+      "Orchestration",
+      "Registry",
+      "Serving",
+      "Monitoring",
+      "Infrastructure",
+      "CI/CD"
     ],
     "skills": [
       {

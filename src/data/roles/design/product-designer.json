@@ -4,62 +4,30 @@
     "description": "End-to-end, from the problem to the shipped flow. Hire one when you need someone to shape features and flows from problem to release."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/design",
-        "label": "Design"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "Product Designer"
-      }
-    ],
+    "category": {
+      "label": "Design",
+      "href": "/hire/design"
+    },
+    "name": "Product Designer",
     "titleAccent": "A product designer",
     "titleRest": " who owns the flow from problem to release.",
     "lede": "Research, interaction, and interfaces your engineers can build."
   },
   "detail": {
     "roleName": "Product Designer",
+    "askedAs": "product designer",
     "skillsLabel": "Skills & tools",
     "exampleRoles": [
-      {
-        "removeLabel": "Remove Senior product designer",
-        "label": "Senior product designer"
-      },
-      {
-        "removeLabel": "Remove UX / UI designer",
-        "label": "UX / UI designer"
-      },
-      {
-        "removeLabel": "Remove Product design lead",
-        "label": "Product design lead"
-      }
+      "Senior product designer",
+      "UX / UI designer",
+      "Product design lead"
     ],
     "promptPlaceholder": "e.g. a senior product designer, US-hours overlap",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Tools"
-      },
-      {
-        "label": "Design"
-      },
-      {
-        "label": "Research"
-      }
+      "All",
+      "Tools",
+      "Design",
+      "Research"
     ],
     "skills": [
       {

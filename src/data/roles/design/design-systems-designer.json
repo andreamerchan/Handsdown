@@ -4,62 +4,30 @@
     "description": "Components your engineers will reuse. Hire one when your product has grown and needs one consistent set of components."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/design",
-        "label": "Design"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "Design Systems Designer"
-      }
-    ],
+    "category": {
+      "label": "Design",
+      "href": "/hire/design"
+    },
+    "name": "Design Systems Designer",
     "titleAccent": "A design systems designer",
     "titleRest": " who gives your product one language.",
     "lede": "Components, tokens, and guidelines your whole team reuses."
   },
   "detail": {
     "roleName": "Design Systems Designer",
+    "askedAs": "design systems designer",
     "skillsLabel": "Skills & tools",
     "exampleRoles": [
-      {
-        "removeLabel": "Remove Design systems designer",
-        "label": "Design systems designer"
-      },
-      {
-        "removeLabel": "Remove Component specialist",
-        "label": "Component specialist"
-      },
-      {
-        "removeLabel": "Remove Design system lead",
-        "label": "Design system lead"
-      }
+      "Design systems designer",
+      "Component specialist",
+      "Design system lead"
     ],
     "promptPlaceholder": "e.g. a senior design systems designer, US-hours overlap",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Tools"
-      },
-      {
-        "label": "Systems"
-      },
-      {
-        "label": "Standards"
-      }
+      "All",
+      "Tools",
+      "Systems",
+      "Standards"
     ],
     "skills": [
       {

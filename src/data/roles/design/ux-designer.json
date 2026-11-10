@@ -4,71 +4,33 @@
     "description": "Journeys and flows people finish. Hire one when users get lost in flows that already exist."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/design",
-        "label": "Design"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "UX Designer"
-      }
-    ],
+    "category": {
+      "label": "Design",
+      "href": "/hire/design"
+    },
+    "name": "UX Designer",
     "titleAccent": "A UX designer",
     "titleRest": " who makes complexity feel simple.",
     "lede": "Clear journeys and intuitive flows that help people finish what they came to do."
   },
   "detail": {
     "roleName": "UX Designer",
+    "askedAs": "UX designer",
     "skillsLabel": "Skills & tools",
     "exampleRoles": [
-      {
-        "removeLabel": "Remove Senior UX designer",
-        "label": "Senior UX designer"
-      },
-      {
-        "removeLabel": "Remove UX architect",
-        "label": "UX architect"
-      },
-      {
-        "removeLabel": "Remove Experience designer",
-        "label": "Experience designer"
-      }
+      "Senior UX designer",
+      "UX architect",
+      "Experience designer"
     ],
     "promptPlaceholder": "e.g. a senior ux designer, US-hours overlap",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Research"
-      },
-      {
-        "label": "Architecture"
-      },
-      {
-        "label": "Flows"
-      },
-      {
-        "label": "Prototyping"
-      },
-      {
-        "label": "Validation"
-      },
-      {
-        "label": "Tools"
-      }
+      "All",
+      "Research",
+      "Architecture",
+      "Flows",
+      "Prototyping",
+      "Validation",
+      "Tools"
     ],
     "skills": [
       {

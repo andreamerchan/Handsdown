@@ -4,49 +4,26 @@
     "description": "Dashboards and reports that stay fast and correct. Hire one when you need a reporting layer built and maintained, not one-off analysis."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/data-analytics",
-        "label": "Data & Analytics"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "BI & Visualization Developer"
-      }
-    ],
+    "category": {
+      "label": "Data & Analytics",
+      "href": "/hire/data-analytics"
+    },
+    "name": "BI & Visualization Developer",
     "titleAccent": "A BI developer",
     "titleRest": " who builds the dashboards people open every morning.",
     "lede": "Reports, semantic layers, and visualizations that hold up as the questions change."
   },
   "detail": {
     "roleName": "BI & Visualization Developer",
+    "askedAs": "BI developer",
     "skillsLabel": "Technologies",
     "exampleRoles": [],
     "promptPlaceholder": "Pick technologies below, or type what you need",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Tools"
-      },
-      {
-        "label": "Languages"
-      },
-      {
-        "label": "Methods"
-      }
+      "All",
+      "Tools",
+      "Languages",
+      "Methods"
     ],
     "skills": [
       {

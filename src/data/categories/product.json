@@ -14,35 +14,22 @@
     "roles": [
       {
         "name": "Product Manager",
+        "askedAs": "product manager",
         "summary": "Scope, sequencing, and the calls that unblock a team.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "noPage": true
+        "cta": "Find a product manager"
       }
-    ],
-    "briefEyebrow": "Role brief · Product Manager",
-    "briefTitle": "Product manager",
-    "briefNoPage": true
+    ]
   },
   "detail": {
     "roleName": "Product Manager",
+    "askedAs": "product manager",
     "skillsLabel": "Technologies",
     "exampleRoles": [],
     "promptPlaceholder": "Pick technologies below, or type what you need",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Practices"
-      },
-      {
-        "label": "Tools"
-      }
+      "All",
+      "Practices",
+      "Tools"
     ],
     "skills": [
       {

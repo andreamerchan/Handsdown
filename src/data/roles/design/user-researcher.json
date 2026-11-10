@@ -4,59 +4,29 @@
     "description": "Research that tells you what to build next. Hire one when you’re about to build on assumptions nobody has tested."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/design",
-        "label": "Design"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "User Researcher"
-      }
-    ],
+    "category": {
+      "label": "Design",
+      "href": "/hire/design"
+    },
+    "name": "User Researcher",
     "titleAccent": "A user researcher",
     "titleRest": " who replaces guesses with evidence.",
     "lede": "Interviews, usability studies, and findings your team can act on."
   },
   "detail": {
     "roleName": "User Researcher",
+    "askedAs": "user researcher",
     "skillsLabel": "Skills & tools",
     "exampleRoles": [
-      {
-        "removeLabel": "Remove Senior UX researcher",
-        "label": "Senior UX researcher"
-      },
-      {
-        "removeLabel": "Remove Mixed-methods researcher",
-        "label": "Mixed-methods researcher"
-      },
-      {
-        "removeLabel": "Remove Usability specialist",
-        "label": "Usability specialist"
-      }
+      "Senior UX researcher",
+      "Mixed-methods researcher",
+      "Usability specialist"
     ],
     "promptPlaceholder": "e.g. a senior ux researcher, US-hours overlap",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Methods"
-      },
-      {
-        "label": "Tools"
-      }
+      "All",
+      "Methods",
+      "Tools"
     ],
     "skills": [
       {

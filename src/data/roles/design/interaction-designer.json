@@ -4,71 +4,33 @@
     "description": "Behaviors, states and motion that make each action clear. Hire one when the flows are right and the product still feels clumsy to use."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/design",
-        "label": "Design"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "Interaction Designer"
-      }
-    ],
+    "category": {
+      "label": "Design",
+      "href": "/hire/design"
+    },
+    "name": "Interaction Designer",
     "titleAccent": "An interaction designer",
     "titleRest": " who makes every action clear.",
     "lede": "Thoughtful behaviors, responsive states, and prototypes that make the experience tangible."
   },
   "detail": {
     "roleName": "Interaction Designer",
+    "askedAs": "interaction designer",
     "skillsLabel": "Skills & tools",
     "exampleRoles": [
-      {
-        "removeLabel": "Remove Interaction designer",
-        "label": "Interaction designer"
-      },
-      {
-        "removeLabel": "Remove Senior prototyper",
-        "label": "Senior prototyper"
-      },
-      {
-        "removeLabel": "Remove Motion designer",
-        "label": "Motion designer"
-      }
+      "Interaction designer",
+      "Senior prototyper",
+      "Motion designer"
     ],
     "promptPlaceholder": "e.g. a senior interaction designer, US-hours overlap",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Flows"
-      },
-      {
-        "label": "Prototyping"
-      },
-      {
-        "label": "Motion"
-      },
-      {
-        "label": "Patterns"
-      },
-      {
-        "label": "Validation"
-      },
-      {
-        "label": "Tools"
-      }
+      "All",
+      "Flows",
+      "Prototyping",
+      "Motion",
+      "Patterns",
+      "Validation",
+      "Tools"
     ],
     "skills": [
       {

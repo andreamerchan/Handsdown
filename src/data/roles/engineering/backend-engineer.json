@@ -4,65 +4,31 @@
     "description": "Services, data, and the things that break under load. Hire one when the systems behind your product need to scale and hold up."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/engineering",
-        "label": "Engineering"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "Backend Engineer"
-      }
-    ],
+    "category": {
+      "label": "Engineering",
+      "href": "/hire/engineering"
+    },
+    "name": "Backend Engineer",
     "titleAccent": "A backend engineer",
     "titleRest": " for the part that has to hold.",
     "lede": "Services, data, and the systems that get loud under load."
   },
   "detail": {
     "roleName": "Backend Engineer",
+    "askedAs": "backend engineer",
     "skillsLabel": "Technologies",
     "exampleRoles": [
-      {
-        "removeLabel": "Remove Senior backend engineer",
-        "label": "Senior backend engineer"
-      },
-      {
-        "removeLabel": "Remove API specialist",
-        "label": "API specialist"
-      },
-      {
-        "removeLabel": "Remove Platform engineer",
-        "label": "Platform engineer"
-      }
+      "Senior backend engineer",
+      "API specialist",
+      "Platform engineer"
     ],
     "promptPlaceholder": "e.g. a senior backend engineer, US-hours overlap",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Languages"
-      },
-      {
-        "label": "Frameworks"
-      },
-      {
-        "label": "Databases"
-      },
-      {
-        "label": "Architecture"
-      }
+      "All",
+      "Languages",
+      "Frameworks",
+      "Databases",
+      "Architecture"
     ],
     "skills": [
       {

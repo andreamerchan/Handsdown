@@ -18,12 +18,26 @@ function chipsFor(form: HTMLFormElement): HTMLButtonElement[] {
     if (!list) continue;
     const items = [...list.children];
     const buttons = items.map((li) =>
-      li.querySelector<HTMLButtonElement>(':scope > button[type="button"]'),
+      li.querySelector<HTMLButtonElement>(
+        ':scope > button[type="button"]:not([data-book-role])',
+      ),
     );
     if (items.length > 0 && buttons.every(Boolean))
       return buttons as HTMLButtonElement[];
   }
   return [];
+}
+
+function showEmptyError(form: HTMLFormElement, input: HTMLInputElement) {
+  const id = `${input.id}-error`;
+  if (document.getElementById(id)) return;
+  const message = document.createElement("p");
+  message.id = id;
+  message.setAttribute("role", "alert");
+  message.className = "mt-2.5 text-[13px] leading-5 text-text-error";
+  message.textContent =
+    "Describe the role in a sentence first. Even a rough one is enough to start.";
+  form.after(message);
 }
 
 for (const form of document.querySelectorAll("form")) {
@@ -34,10 +48,15 @@ for (const form of document.querySelectorAll("form")) {
     if (event.defaultPrevented) return;
     event.preventDefault();
     const text = input.value.trim();
+    // Search-style prompts (the ones with an id) ask for some text first.
+    if (!text && input.id) return showEmptyError(form, input);
     location.href = text
       ? `${promptDestination}?role=${encodeURIComponent(text)}`
       : promptDestination;
   });
+  input.addEventListener("input", () =>
+    document.getElementById(`${input.id}-error`)?.remove(),
+  );
 
   for (const chip of chipsFor(form)) {
     chip.addEventListener("click", () => {

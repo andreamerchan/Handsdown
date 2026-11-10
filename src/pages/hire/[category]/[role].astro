@@ -17,7 +17,16 @@ export function getStaticPaths() {
 const { role } = Astro.props;
 ---
 
-<Site title={role.seo.title} description={role.seo.description} active="hire">
+<Site
+  title={role.seo.title}
+  description={role.seo.description}
+  active="hire"
+  breadcrumbs={[
+    { name: "Hire Talent", path: "/hire" },
+    { name: role.hero.category.label, path: role.hero.category.href },
+    { name: role.hero.name, path: `/hire/${role.category}/${role.slug}` },
+  ]}
+>
   <RoleHero data={role.hero} />
   <RoleDetail data={role.detail} />
   {role.talentProfiles && <TalentProfiles data={role.talentProfiles} />}

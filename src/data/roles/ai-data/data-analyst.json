@@ -4,49 +4,26 @@
     "description": "Reporting people actually act on. Hire one when your team keeps asking questions the dashboards don’t answer."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/ai-data",
-        "label": "AI & Data"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "Data Analyst"
-      }
-    ],
+    "category": {
+      "label": "AI & Data",
+      "href": "/hire/ai-data"
+    },
+    "name": "Data Analyst",
     "titleAccent": "A data analyst",
     "titleRest": " who turns questions into answers.",
     "lede": "Reporting people actually act on."
   },
   "detail": {
     "roleName": "Data Analyst",
+    "askedAs": "data analyst",
     "skillsLabel": "Technologies",
     "exampleRoles": [],
     "promptPlaceholder": "Pick technologies below, or type what you need",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Languages"
-      },
-      {
-        "label": "Tools"
-      },
-      {
-        "label": "Methods"
-      }
+      "All",
+      "Languages",
+      "Tools",
+      "Methods"
     ],
     "skills": [
       {

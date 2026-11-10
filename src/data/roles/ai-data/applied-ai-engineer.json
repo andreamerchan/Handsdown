@@ -4,71 +4,33 @@
     "description": "LLM features that stay grounded past the demo. Hire one when you are building on language models and they have to hold up with real users."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/ai-data",
-        "label": "AI & Data"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "Applied AI & LLM Engineer"
-      }
-    ],
+    "category": {
+      "label": "AI & Data",
+      "href": "/hire/ai-data"
+    },
+    "name": "Applied AI & LLM Engineer",
     "titleAccent": "An applied AI engineer",
     "titleRest": " who takes models into production.",
     "lede": "LLM-powered features that stay useful, grounded, and measurable beyond the demo."
   },
   "detail": {
     "roleName": "Applied AI & LLM Engineer",
+    "askedAs": "applied AI engineer",
     "skillsLabel": "Technologies",
     "exampleRoles": [
-      {
-        "removeLabel": "Remove Senior LLM engineer",
-        "label": "Senior LLM engineer"
-      },
-      {
-        "removeLabel": "Remove RAG engineer",
-        "label": "RAG engineer"
-      },
-      {
-        "removeLabel": "Remove AI agents engineer",
-        "label": "AI agents engineer"
-      }
+      "Senior LLM engineer",
+      "RAG engineer",
+      "AI agents engineer"
     ],
     "promptPlaceholder": "e.g. a senior applied ai engineer, US-hours overlap",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Models"
-      },
-      {
-        "label": "Retrieval"
-      },
-      {
-        "label": "Orchestration"
-      },
-      {
-        "label": "Evaluation"
-      },
-      {
-        "label": "Serving"
-      },
-      {
-        "label": "Languages"
-      }
+      "All",
+      "Models",
+      "Retrieval",
+      "Orchestration",
+      "Evaluation",
+      "Serving",
+      "Languages"
     ],
     "skills": [
       {

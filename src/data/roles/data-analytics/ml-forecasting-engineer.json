@@ -4,52 +4,27 @@
     "description": "Forecasts that run every day, not once in a notebook. Hire one when your forecasts need to run in production and feed planning."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/data-analytics",
-        "label": "Data & Analytics"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "ML / Forecasting Engineer"
-      }
-    ],
+    "category": {
+      "label": "Data & Analytics",
+      "href": "/hire/data-analytics"
+    },
+    "name": "ML / Forecasting Engineer",
     "titleAccent": "A forecasting engineer",
     "titleRest": " who puts the forecast into the plan.",
     "lede": "Demand, revenue and capacity forecasts, built to run on schedule and checked against what happened."
   },
   "detail": {
     "roleName": "ML / Forecasting Engineer",
+    "askedAs": "forecasting engineer",
     "skillsLabel": "Technologies",
     "exampleRoles": [],
     "promptPlaceholder": "Pick technologies below, or type what you need",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Languages"
-      },
-      {
-        "label": "Methods"
-      },
-      {
-        "label": "Libraries"
-      },
-      {
-        "label": "Operations"
-      }
+      "All",
+      "Languages",
+      "Methods",
+      "Libraries",
+      "Operations"
     ],
     "skills": [
       {

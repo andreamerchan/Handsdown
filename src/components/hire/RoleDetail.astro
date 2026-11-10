@@ -1,11 +1,25 @@
 ---
 // Role prompt builder plus the skills grid with group tabs.
+// Behaviour (removing chips, picking skills, filtering by group, sending the prompt) lives in
+// src/scripts/hire/role-builder.ts, which finds its elements through the data-* attributes here.
 const { data } = Astro.props;
+
+const chip =
+  "flex h-9 items-center gap-2 rounded-full bg-background-neutral-subtle px-3.5 text-[14px] text-text-primary transition-colors duration-120 hover:bg-background-neutral focus-visible:shadow-ring focus-visible:outline-none";
+const tab =
+  "h-9 rounded-full px-4 text-[13px] font-medium transition-colors duration-120 focus-visible:shadow-ring focus-visible:outline-none any-pointer-coarse:h-11";
+const tabOn = "bg-background-inverted text-text-inverse-primary";
+const tabOff =
+  "text-text-secondary hover:bg-background-neutral-subtle hover:text-text-primary";
 ---
 
 <section class="px-6 pb-20 max-lg:bg-background-neutral-subtle max-lg:pt-12 md:pb-24">
   <div class="mx-auto max-w-[1128px]">
-    <section aria-labelledby="role-technologies">
+    <section
+      aria-labelledby="role-technologies"
+      data-role-builder
+      data-asked-as={data.askedAs}
+    >
       <h2
         id="role-technologies"
         class="text-[28px] leading-tight font-medium text-balance tracking-[-0.02em] text-text-primary md:text-[34px]"
@@ -19,14 +33,10 @@ const { data } = Astro.props;
       </h2>
       <form class="mt-8 flex min-h-[60px] flex-wrap items-center gap-2 rounded-[30px] border-[0.75px] border-indigo-500/[0.32] bg-background-raised py-2 pr-2 pl-3 focus-within:border-border-focus focus-within:shadow-ring">
         <ul aria-label="Role titles" class="contents">
-          {data.exampleRoles.map((item, i0) => (
+          {data.exampleRoles.map((title) => (
             <li>
-              <button
-                type="button"
-                aria-label={item.removeLabel}
-                class="flex h-9 items-center gap-2 rounded-full bg-background-neutral-subtle px-3.5 text-[14px] text-text-primary transition-colors duration-120 hover:bg-background-neutral focus-visible:shadow-ring focus-visible:outline-none"
-              >
-                {item.label}
+              <button type="button" aria-label={`Remove ${title}`} class={chip}>
+                {title}
                 <span aria-hidden="true" class="text-text-tertiary">
                   ×
                 </span>
@@ -68,20 +78,16 @@ const { data } = Astro.props;
         aria-label="Filter technologies by type"
         class="mt-6 flex flex-wrap gap-2 max-sm:hidden"
       >
-        {data.skillGroups.map((item, i0) => (
+        {data.skillGroups.map((group, index) => (
           <button
             type="button"
             role="tab"
-            aria-selected={i0 === 0 ? "true" : "false"}
+            aria-selected={index === 0 ? "true" : "false"}
             aria-controls="hd-2"
-            tabindex={i0 === 0 ? "0" : "-1"}
-            class={
-              i0 === 0
-                ? "h-9 rounded-full px-4 text-[13px] font-medium transition-colors duration-120 focus-visible:shadow-ring focus-visible:outline-none any-pointer-coarse:h-11 bg-background-inverted text-text-inverse-primary"
-                : "h-9 rounded-full px-4 text-[13px] font-medium transition-colors duration-120 focus-visible:shadow-ring focus-visible:outline-none any-pointer-coarse:h-11 text-text-secondary hover:bg-background-neutral-subtle hover:text-text-primary"
-            }
+            tabindex={index === 0 ? "0" : "-1"}
+            class={`${tab} ${index === 0 ? tabOn : tabOff}`}
           >
-            {item.label}
+            {group}
           </button>
         ))}
       </div>
@@ -94,8 +100,8 @@ const { data } = Astro.props;
           aria-label="Technologies"
           class="grid grid-cols-2 gap-3 md:grid-cols-4"
         >
-          {data.skills.map((item, i0) => (
-            <li>
+          {data.skills.map((item) => (
+            <li data-skill={item.name} data-group={item.group}>
               <button
                 type="button"
                 aria-pressed="false"
@@ -117,6 +123,38 @@ const { data } = Astro.props;
       <p class="mt-5 text-[15px] text-text-secondary">
         Working with something else? Tell us in the chat.
       </p>
+
+      {/* Cloned by the script: the chip added to the prompt for each picked skill ... */}
+      <template data-skill-chip>
+        <li>
+          <button type="button" aria-label="" class={chip}>
+            <span aria-hidden="true" class="text-text-tertiary">
+              ×
+            </span>
+          </button>
+        </li>
+      </template>
+      {/* ... and the check badge shown on a picked skill card. */}
+      <template data-skill-check>
+        <span
+          aria-hidden="true"
+          class="grid size-5 shrink-0 place-items-center rounded-full bg-background-inverted text-text-inverse-primary"
+        >
+          <svg width="10" height="10" viewBox="0 0 16 16" fill="none">
+            <path
+              d="m3 8.5 3.25 3.25L13 5"
+              stroke="currentColor"
+              stroke-width="2.25"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+      </template>
     </section>
   </div>
 </section>
+
+<script>
+  import "../../scripts/hire/role-builder.ts";
+</script>

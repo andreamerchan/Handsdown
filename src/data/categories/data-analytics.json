@@ -14,68 +14,39 @@
     "roles": [
       {
         "name": "Data Engineer",
+        "askedAs": "data engineer",
         "summary": "Pipelines and warehouses your team can trust.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/data-analytics/data-engineer",
-        "cta": "Find a data engineer "
+        "cta": "Find a data engineer",
+        "href": "/hire/data-analytics/data-engineer"
       },
       {
         "name": "Analytics Engineer",
+        "askedAs": "analytics engineer",
         "summary": "Clean, tested models between the warehouse and the dashboards.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/data-analytics/analytics-engineer",
-        "cta": "Find an analytics engineer "
+        "cta": "Find an analytics engineer",
+        "href": "/hire/data-analytics/analytics-engineer"
       },
       {
         "name": "BI & Visualization Developer",
+        "askedAs": "BI developer",
         "summary": "Dashboards and reports that stay fast and correct.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/data-analytics/bi-visualization-developer",
-        "cta": "Find a BI developer "
+        "cta": "Find a BI developer",
+        "href": "/hire/data-analytics/bi-visualization-developer"
       },
       {
         "name": "Warehousing Engineer",
+        "askedAs": "data warehouse engineer",
         "summary": "The warehouse itself: storage, speed, cost and access.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/data-analytics/warehousing-engineer",
-        "cta": "Find a data warehouse engineer "
+        "cta": "Find a data warehouse engineer",
+        "href": "/hire/data-analytics/warehousing-engineer"
       },
       {
         "name": "ML / Forecasting Engineer",
+        "askedAs": "forecasting engineer",
         "summary": "Forecasts that run every day, not once in a notebook.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/data-analytics/ml-forecasting-engineer",
-        "cta": "Find a forecasting engineer "
+        "cta": "Find a forecasting engineer",
+        "href": "/hire/data-analytics/ml-forecasting-engineer"
       }
-    ],
-    "briefEyebrow": "Role brief · Data Engineer",
-    "briefTitle": "Data engineer",
-    "briefHref": "/hire/data-analytics/data-engineer",
-    "briefCta": "Find a data engineer "
+    ]
   }
 }

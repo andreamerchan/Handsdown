@@ -1,6 +1,9 @@
 ---
 // Top of a role page: breadcrumb, headline, prompt and photo.
 const { data } = Astro.props;
+
+// Breadcrumb links leading to this page: Hire / <category> / <this role>
+const trail = [{ label: "Hire", href: "/hire" }, data.category];
 ---
 
 <section class="pb-0 lg:pb-20">
@@ -8,31 +11,31 @@ const { data } = Astro.props;
     <div class="order-1 flex flex-col justify-center px-6 pt-12 max-sm:items-center max-sm:text-center md:pt-16 lg:py-20 lg:pr-12 lg:pl-[max(1.5rem,calc((100vw-1128px)/2))]">
       <nav aria-label="Breadcrumb" class="mb-6 max-lg:mb-3">
         <ol class="flex flex-wrap items-center gap-2 font-mono text-[11px] tracking-[0.14em] text-text-tertiary uppercase max-sm:justify-center">
-          {data.breadcrumbs.map((item, i0) => (
-            <li aria-hidden={item.ariaHidden}>
-              {item.label != null && (
+          {trail.map((step) => (
+            <Fragment>
+              <li>
                 <a
                   class="inline-flex items-center max-lg:min-h-11 rounded-sm underline-offset-4 transition-colors duration-120 hover:text-text-primary hover:underline focus-visible:shadow-ring focus-visible:outline-none"
-                  href={item.href}
+                  href={step.href}
                 >
-                  {item.label}
+                  {step.label}
                 </a>
-              )}
-              {item.separator != null && <Fragment>/</Fragment>}
-              {item.current != null && (
-                <span aria-current="page" class="text-text-primary">
-                  {item.current}
-                </span>
-              )}
-            </li>
+              </li>
+              <li aria-hidden="true">/</li>
+            </Fragment>
           ))}
+          <li>
+            <span aria-current="page" class="text-text-primary">
+              {data.name}
+            </span>
+          </li>
         </ol>
       </nav>
       <span class="eyebrow block text-[13px] font-bold text-text-accent">
         Hire talent
       </span>
       <h1 class="mt-5 max-w-[560px] text-[44px] leading-[1.05] font-medium text-balance tracking-[-0.03em] text-text-primary md:text-[60px]">
-        {data.titleAccent != null && (
+        {data.titleAccent && (
           <span class="text-gradient-heading">{data.titleAccent}</span>
         )}
         {data.titleRest}
@@ -89,7 +92,7 @@ const { data } = Astro.props;
         decoding="async"
         class="size-full object-cover object-top"
       />
-      {data.showSampleProfile != null && (
+      {data.sampleProfile && (
         <div class="rounded-[16px] bg-background-raised px-5 py-4 text-left shadow-pill absolute inset-x-4 bottom-4 sm:inset-x-auto sm:left-6 sm:w-[min(527px,calc(100%-3rem))] lg:bottom-[12%] lg:left-[12%] lg:w-[min(527px,76%)]">
           <p class="mb-1.5 font-mono text-[11px] tracking-[0.12em] lg:text-[10px] text-text-tertiary uppercase">
             Sample profile

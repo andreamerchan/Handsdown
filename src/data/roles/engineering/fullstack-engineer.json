@@ -4,64 +4,30 @@
     "description": "One engineer across the whole feature. Hire one when a small team needs one person to ship features end to end."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/engineering",
-        "label": "Engineering"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "Full-Stack Engineer"
-      }
-    ],
+    "category": {
+      "label": "Engineering",
+      "href": "/hire/engineering"
+    },
+    "name": "Full-Stack Engineer",
     "titleRest": "One engineer, the whole feature.",
     "lede": "For teams small enough that one engineer across the whole feature moves faster."
   },
   "detail": {
     "roleName": "Full-Stack Engineer",
+    "askedAs": "full-stack engineer",
     "skillsLabel": "Technologies",
     "exampleRoles": [
-      {
-        "removeLabel": "Remove Senior full-stack engineer",
-        "label": "Senior full-stack engineer"
-      },
-      {
-        "removeLabel": "Remove React & Node.js",
-        "label": "React & Node.js"
-      },
-      {
-        "removeLabel": "Remove Product engineer",
-        "label": "Product engineer"
-      }
+      "Senior full-stack engineer",
+      "React & Node.js",
+      "Product engineer"
     ],
     "promptPlaceholder": "e.g. a senior full-stack engineer, US-hours overlap",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Stacks"
-      },
-      {
-        "label": "Frameworks"
-      },
-      {
-        "label": "Languages"
-      },
-      {
-        "label": "Databases"
-      }
+      "All",
+      "Stacks",
+      "Frameworks",
+      "Languages",
+      "Databases"
     ],
     "skills": [
       {

@@ -14,111 +14,60 @@
     "roles": [
       {
         "name": "Frontend Engineer",
+        "askedAs": "frontend engineer",
         "summary": "Interfaces that stay fast as the product grows.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          },
-          {
-            "label": "Avg. price",
-            "value": "Approx. $65–$140/hr"
-          }
-        ],
+        "cta": "Find a frontend engineer",
         "href": "/hire/engineering/frontend-engineer",
-        "cta": "Find a frontend engineer "
+        "profiles": [
+          "Frontend Developer",
+          "Senior Frontend Developer",
+          "Frontend Specialist",
+          "Frontend + Full-Stack"
+        ],
+        "priceRange": "Approx. $65–$140/hr"
       },
       {
         "name": "Backend Engineer",
+        "askedAs": "backend engineer",
         "summary": "Services, data, and the things that break under load.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/engineering/backend-engineer",
-        "cta": "Find a backend engineer "
+        "cta": "Find a backend engineer",
+        "href": "/hire/engineering/backend-engineer"
       },
       {
         "name": "Full-Stack Engineer",
+        "askedAs": "full-stack engineer",
         "summary": "One engineer across the whole feature.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/engineering/fullstack-engineer",
-        "cta": "Find a full-stack engineer "
+        "cta": "Find a full-stack engineer",
+        "href": "/hire/engineering/fullstack-engineer"
       },
       {
         "name": "Mobile Engineer",
+        "askedAs": "mobile engineer",
         "summary": "iOS and Android, shipped and maintained.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/engineering/mobile-engineer",
-        "cta": "Find a mobile engineer "
+        "cta": "Find a mobile engineer",
+        "href": "/hire/engineering/mobile-engineer"
       },
       {
         "name": "QA Automation Engineer",
+        "askedAs": "QA engineer",
         "summary": "Tests that run on every change.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/engineering/qa-engineer",
-        "cta": "Find a QA engineer "
+        "cta": "Find a QA engineer",
+        "href": "/hire/engineering/qa-engineer"
       },
       {
         "name": "DevOps & Cloud Engineer",
+        "askedAs": "DevOps engineer",
         "summary": "Deploys, cloud infrastructure, and the on-call rota.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/engineering/devops-engineer",
-        "cta": "Find a DevOps engineer "
+        "cta": "Find a DevOps engineer",
+        "href": "/hire/engineering/devops-engineer"
       },
       {
         "name": "AI & Data Engineer",
+        "askedAs": "AI & data engineer",
         "summary": "Data platforms, models and AI features that work as one.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/engineering/ai-data-engineer",
-        "cta": "Find an AI & data engineer "
+        "cta": "Find an AI & data engineer",
+        "href": "/hire/engineering/ai-data-engineer"
       }
-    ],
-    "briefEyebrow": "Role brief · Frontend Engineer",
-    "briefTitle": "Frontend engineer",
-    "briefProfiles": [
-      {
-        "label": "Frontend Developer"
-      },
-      {
-        "label": "Senior Frontend Developer"
-      },
-      {
-        "label": "Frontend Specialist"
-      },
-      {
-        "label": "Frontend + Full-Stack"
-      }
-    ],
-    "briefShowPrice": true,
-    "briefHref": "/hire/engineering/frontend-engineer",
-    "briefCta": "Find a frontend engineer "
+    ]
   }
 }

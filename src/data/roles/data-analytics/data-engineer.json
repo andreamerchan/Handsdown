@@ -4,62 +4,30 @@
     "description": "Pipelines and warehouses your team can trust. Hire one when your data is scattered or unreliable, and everything else depends on it."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/data-analytics",
-        "label": "Data & Analytics"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "Data Engineer"
-      }
-    ],
+    "category": {
+      "label": "Data & Analytics",
+      "href": "/hire/data-analytics"
+    },
+    "name": "Data Engineer",
     "titleAccent": "A data engineer",
     "titleRest": " who builds what everything else runs on.",
     "lede": "Pipelines, warehouses, and data your team can trust."
   },
   "detail": {
     "roleName": "Data Engineer",
+    "askedAs": "data engineer",
     "skillsLabel": "Technologies",
     "exampleRoles": [
-      {
-        "removeLabel": "Remove Senior data engineer",
-        "label": "Senior data engineer"
-      },
-      {
-        "removeLabel": "Remove Pipeline specialist",
-        "label": "Pipeline specialist"
-      },
-      {
-        "removeLabel": "Remove Data platform engineer",
-        "label": "Data platform engineer"
-      }
+      "Senior data engineer",
+      "Pipeline specialist",
+      "Data platform engineer"
     ],
     "promptPlaceholder": "e.g. a senior data engineer, US-hours overlap",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Languages"
-      },
-      {
-        "label": "Pipelines"
-      },
-      {
-        "label": "Warehouses"
-      }
+      "All",
+      "Languages",
+      "Pipelines",
+      "Warehouses"
     ],
     "skills": [
       {

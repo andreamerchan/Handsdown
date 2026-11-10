@@ -134,6 +134,7 @@ const { data } = Astro.props;
           </ul>
           <button
             type="button"
+            data-book-role="Data scientist"
             class="mt-5 flex h-11 w-full items-center justify-center gap-2 rounded-full bg-background-inverted text-[14px] font-semibold text-text-inverse-primary shadow-dark-btn transition duration-120 hover:-translate-y-px focus-visible:shadow-ring focus-visible:outline-none motion-reduce:transition-none"
           >
             Hire Camila or similar experts <span aria-hidden="true">→</span>
@@ -143,3 +144,7 @@ const { data } = Astro.props;
     </ul>
   </div>
 </section>
+
+<script>
+  import "../../scripts/hire/booking.ts";
+</script>

@@ -8,76 +8,47 @@
     "titleRest": " who put your data to work.",
     "lede": "Tell us what you need to build or answer, and we’ll define who can do it.",
     "promptPlaceholder": "e.g. a senior AI engineer, US-hours overlap",
-    "showSampleProfile": true
+    "sampleProfile": true
   },
   "specializations": {
     "promptPlaceholder": "e.g. a senior AI engineer, US-hours overlap",
     "roles": [
       {
         "name": "AI/ML Engineer",
+        "askedAs": "AI engineer",
         "summary": "AI features that hold up in production.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/ai-data/ai-engineer",
-        "cta": "Find an AI engineer "
+        "cta": "Find an AI engineer",
+        "href": "/hire/ai-data/ai-engineer"
       },
       {
         "name": "Applied AI & LLM Engineer",
+        "askedAs": "applied AI engineer",
         "summary": "LLM features that stay grounded past the demo.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/ai-data/applied-ai-engineer",
-        "cta": "Find an applied AI engineer "
+        "cta": "Find an applied AI engineer",
+        "href": "/hire/ai-data/applied-ai-engineer"
       },
       {
         "name": "Data Scientist",
+        "askedAs": "data scientist",
         "summary": "Models, experiments, and the analysis behind them.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/ai-data/data-scientist",
-        "cta": "Find a data scientist "
+        "cta": "Find a data scientist",
+        "href": "/hire/ai-data/data-scientist"
       },
       {
         "name": "MLOps Engineer",
+        "askedAs": "MLOps engineer",
         "summary": "Models that keep working after they ship.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/ai-data/mlops-engineer",
-        "cta": "Find an MLOps engineer "
+        "cta": "Find an MLOps engineer",
+        "href": "/hire/ai-data/mlops-engineer"
       },
       {
         "name": "Data Analyst",
+        "askedAs": "data analyst",
         "summary": "Reporting people actually act on.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/ai-data/data-analyst",
-        "cta": "Find a data analyst "
+        "cta": "Find a data analyst",
+        "href": "/hire/ai-data/data-analyst"
       }
-    ],
-    "briefEyebrow": "Role brief · AI/ML Engineer",
-    "briefTitle": "AI engineer",
-    "briefHref": "/hire/ai-data/ai-engineer",
-    "briefCta": "Find an AI engineer "
+    ]
   },
   "talentProfiles": {
     "titleLead": "Talented ",

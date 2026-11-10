@@ -4,62 +4,30 @@
     "description": "iOS and Android, shipped and maintained. Hire one when your app needs to ship and stay stable on iOS, Android or both."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/engineering",
-        "label": "Engineering"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "Mobile Engineer"
-      }
-    ],
+    "category": {
+      "label": "Engineering",
+      "href": "/hire/engineering"
+    },
+    "name": "Mobile Engineer",
     "titleAccent": "A mobile engineer",
     "titleRest": " who ships and then keeps shipping.",
     "lede": "iOS, Android, or both — built to survive the next OS release."
   },
   "detail": {
     "roleName": "Mobile Engineer",
+    "askedAs": "mobile engineer",
     "skillsLabel": "Technologies",
     "exampleRoles": [
-      {
-        "removeLabel": "Remove Senior mobile engineer",
-        "label": "Senior mobile engineer"
-      },
-      {
-        "removeLabel": "Remove iOS developer",
-        "label": "iOS developer"
-      },
-      {
-        "removeLabel": "Remove Android developer",
-        "label": "Android developer"
-      }
+      "Senior mobile engineer",
+      "iOS developer",
+      "Android developer"
     ],
     "promptPlaceholder": "e.g. a senior mobile engineer, US-hours overlap",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Cross-platform"
-      },
-      {
-        "label": "Native"
-      },
-      {
-        "label": "Releases"
-      }
+      "All",
+      "Cross-platform",
+      "Native",
+      "Releases"
     ],
     "skills": [
       {

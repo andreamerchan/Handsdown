@@ -65,7 +65,7 @@ const { data } = Astro.props;
         decoding="async"
         class="size-full object-cover object-top"
       />
-      {data.showSampleProfile != null && (
+      {data.sampleProfile && (
         <div class="rounded-[16px] bg-background-raised px-5 py-4 text-left shadow-pill absolute inset-x-4 bottom-4 sm:inset-x-auto sm:left-6 sm:w-[min(527px,calc(100%-3rem))] lg:bottom-[12%] lg:left-[12%] lg:w-[min(527px,76%)]">
           <p class="mb-1.5 font-mono text-[11px] tracking-[0.12em] lg:text-[10px] text-text-tertiary uppercase">
             Sample profile

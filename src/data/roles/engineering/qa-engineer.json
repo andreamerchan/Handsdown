@@ -4,46 +4,25 @@
     "description": "Tests that run on every change. Hire one when releases need to feel safe without manual testing."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/engineering",
-        "label": "Engineering"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "QA Automation Engineer"
-      }
-    ],
+    "category": {
+      "label": "Engineering",
+      "href": "/hire/engineering"
+    },
+    "name": "QA Automation Engineer",
     "titleAccent": "A QA engineer",
     "titleRest": " who makes release day boring.",
     "lede": "Automated tests your team trusts, running on every change."
   },
   "detail": {
     "roleName": "QA Automation Engineer",
+    "askedAs": "QA engineer",
     "skillsLabel": "Technologies",
     "exampleRoles": [],
     "promptPlaceholder": "Pick technologies below, or type what you need",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Frameworks"
-      },
-      {
-        "label": "Practices"
-      }
+      "All",
+      "Frameworks",
+      "Practices"
     ],
     "skills": [
       {

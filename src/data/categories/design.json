@@ -14,92 +14,53 @@
     "roles": [
       {
         "name": "Product Designer",
+        "askedAs": "product designer",
         "summary": "End-to-end, from the problem to the shipped flow.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/design/product-designer",
-        "cta": "Find a product designer "
+        "cta": "Find a product designer",
+        "href": "/hire/design/product-designer"
       },
       {
         "name": "Design Systems Designer",
+        "askedAs": "design systems designer",
         "summary": "Components your engineers will reuse.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/design/design-systems-designer",
-        "cta": "Find a design systems designer "
+        "cta": "Find a design systems designer",
+        "href": "/hire/design/design-systems-designer"
       },
       {
         "name": "UX Designer",
+        "askedAs": "UX designer",
         "summary": "Journeys and flows people finish.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/design/ux-designer",
-        "cta": "Find a UX designer "
+        "cta": "Find a UX designer",
+        "href": "/hire/design/ux-designer"
       },
       {
         "name": "Interaction Designer",
+        "askedAs": "interaction designer",
         "summary": "Behaviors, states and motion that make each action clear.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/design/interaction-designer",
-        "cta": "Find an interaction designer "
+        "cta": "Find an interaction designer",
+        "href": "/hire/design/interaction-designer"
       },
       {
         "name": "UI & Visual Designer",
+        "askedAs": "UI designer",
         "summary": "Interfaces that look finished and stay consistent.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/design/ui-visual-designer",
-        "cta": "Find a UI designer "
+        "cta": "Find a UI designer",
+        "href": "/hire/design/ui-visual-designer"
       },
       {
         "name": "User Researcher",
+        "askedAs": "user researcher",
         "summary": "Research that tells you what to build next.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/design/user-researcher",
-        "cta": "Find a user researcher "
+        "cta": "Find a user researcher",
+        "href": "/hire/design/user-researcher"
       },
       {
         "name": "Prototyper",
+        "askedAs": "prototyper",
         "summary": "Clickable prototypes to test before you build.",
-        "facts": [
-          {
-            "label": "Working hours",
-            "value": "US overlap, from Latin America"
-          }
-        ],
-        "href": "/hire/design/prototyper",
-        "cta": "Find a prototyper "
+        "cta": "Find a prototyper",
+        "href": "/hire/design/prototyper"
       }
-    ],
-    "briefEyebrow": "Role brief · Product Designer",
-    "briefTitle": "Product designer",
-    "briefHref": "/hire/design/product-designer",
-    "briefCta": "Find a product designer "
+    ]
   }
 }

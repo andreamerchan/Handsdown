@@ -4,71 +4,33 @@
     "description": "Data platforms, models and AI features that work as one. Hire one when your data, your models and your product features are built by people who never meet."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/engineering",
-        "label": "Engineering"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "AI & Data Engineer"
-      }
-    ],
+    "category": {
+      "label": "Engineering",
+      "href": "/hire/engineering"
+    },
+    "name": "AI & Data Engineer",
     "titleAccent": "An AI & data engineer",
     "titleRest": " who connects the whole pipeline.",
     "lede": "Data platforms, models, and intelligent features built to work together in your product."
   },
   "detail": {
     "roleName": "AI & Data Engineer",
+    "askedAs": "AI & data engineer",
     "skillsLabel": "Technologies",
     "exampleRoles": [
-      {
-        "removeLabel": "Remove AI & data engineer",
-        "label": "AI & data engineer"
-      },
-      {
-        "removeLabel": "Remove AI platform engineer",
-        "label": "AI platform engineer"
-      },
-      {
-        "removeLabel": "Remove Data platform engineer",
-        "label": "Data platform engineer"
-      }
+      "AI & data engineer",
+      "AI platform engineer",
+      "Data platform engineer"
     ],
     "promptPlaceholder": "e.g. a senior ai & data engineer, US-hours overlap",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Languages"
-      },
-      {
-        "label": "Data platforms"
-      },
-      {
-        "label": "AI & ML"
-      },
-      {
-        "label": "Pipelines"
-      },
-      {
-        "label": "Serving"
-      },
-      {
-        "label": "Tooling"
-      }
+      "All",
+      "Languages",
+      "Data platforms",
+      "AI & ML",
+      "Pipelines",
+      "Serving",
+      "Tooling"
     ],
     "skills": [
       {

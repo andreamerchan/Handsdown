@@ -4,52 +4,27 @@
     "description": "Clickable prototypes to test before you build. Hire one when you need to test an idea with users or investors before engineering commits to it."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/design",
-        "label": "Design"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "Prototyper"
-      }
-    ],
+    "category": {
+      "label": "Design",
+      "href": "/hire/design"
+    },
+    "name": "Prototyper",
     "titleAccent": "A prototyper",
     "titleRest": " who lets you test the idea before you build it.",
     "lede": "Interactive prototypes, real enough to put in front of users this week."
   },
   "detail": {
     "roleName": "Prototyper",
+    "askedAs": "prototyper",
     "skillsLabel": "Skills & tools",
     "exampleRoles": [],
     "promptPlaceholder": "Pick technologies below, or type what you need",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Tools"
-      },
-      {
-        "label": "Code"
-      },
-      {
-        "label": "Design"
-      },
-      {
-        "label": "Research"
-      }
+      "All",
+      "Tools",
+      "Code",
+      "Design",
+      "Research"
     ],
     "skills": [
       {

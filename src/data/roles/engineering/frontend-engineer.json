@@ -4,49 +4,26 @@
     "description": "Interfaces that stay fast as the product grows. Hire one when the interface is where your product feels slow or inconsistent."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/engineering",
-        "label": "Engineering"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "Frontend Engineer"
-      }
-    ],
+    "category": {
+      "label": "Engineering",
+      "href": "/hire/engineering"
+    },
+    "name": "Frontend Engineer",
     "titleAccent": "A frontend engineer",
     "titleRest": " who owns the whole surface.",
     "lede": "Interfaces that stay fast and readable after the third person touches them."
   },
   "detail": {
     "roleName": "Frontend Engineer",
+    "askedAs": "frontend engineer",
     "skillsLabel": "Technologies",
     "exampleRoles": [],
     "promptPlaceholder": "Pick technologies below, or type what you need",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Frameworks"
-      },
-      {
-        "label": "Languages"
-      },
-      {
-        "label": "Styling"
-      }
+      "All",
+      "Frameworks",
+      "Languages",
+      "Styling"
     ],
     "skills": [
       {

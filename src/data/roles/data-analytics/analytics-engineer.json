@@ -4,55 +4,28 @@
     "description": "Clean, tested models between the warehouse and the dashboards. Hire one when your analysts spend more time fixing tables than answering questions."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/data-analytics",
-        "label": "Data & Analytics"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "Analytics Engineer"
-      }
-    ],
+    "category": {
+      "label": "Data & Analytics",
+      "href": "/hire/data-analytics"
+    },
+    "name": "Analytics Engineer",
     "titleAccent": "An analytics engineer",
     "titleRest": " who makes every metric mean one thing.",
     "lede": "Tested data models in the warehouse, so every dashboard starts from the same numbers."
   },
   "detail": {
     "roleName": "Analytics Engineer",
+    "askedAs": "analytics engineer",
     "skillsLabel": "Technologies",
     "exampleRoles": [],
     "promptPlaceholder": "Pick technologies below, or type what you need",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Languages"
-      },
-      {
-        "label": "Modeling"
-      },
-      {
-        "label": "Warehouses"
-      },
-      {
-        "label": "BI"
-      },
-      {
-        "label": "Tooling"
-      }
+      "All",
+      "Languages",
+      "Modeling",
+      "Warehouses",
+      "BI",
+      "Tooling"
     ],
     "skills": [
       {

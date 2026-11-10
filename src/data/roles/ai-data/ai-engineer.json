@@ -4,65 +4,31 @@
     "description": "AI features that hold up in production. Hire one when you want AI features working inside your product, not just a demo."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/ai-data",
-        "label": "AI & Data"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "AI/ML Engineer"
-      }
-    ],
+    "category": {
+      "label": "AI & Data",
+      "href": "/hire/ai-data"
+    },
+    "name": "AI/ML Engineer",
     "titleAccent": "An AI engineer",
     "titleRest": " who takes features from demo to production.",
     "lede": "Models, LLM integrations, and the evaluation that keeps them reliable."
   },
   "detail": {
     "roleName": "AI/ML Engineer",
+    "askedAs": "AI engineer",
     "skillsLabel": "Technologies",
     "exampleRoles": [
-      {
-        "removeLabel": "Remove Senior ML engineer",
-        "label": "Senior ML engineer"
-      },
-      {
-        "removeLabel": "Remove Computer vision engineer",
-        "label": "Computer vision engineer"
-      },
-      {
-        "removeLabel": "Remove NLP engineer",
-        "label": "NLP engineer"
-      }
+      "Senior ML engineer",
+      "Computer vision engineer",
+      "NLP engineer"
     ],
     "promptPlaceholder": "e.g. a senior ml engineer, US-hours overlap",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Techniques"
-      },
-      {
-        "label": "Tooling"
-      },
-      {
-        "label": "Languages"
-      },
-      {
-        "label": "Operations"
-      }
+      "All",
+      "Techniques",
+      "Tooling",
+      "Languages",
+      "Operations"
     ],
     "skills": [
       {

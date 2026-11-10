@@ -4,65 +4,31 @@
     "description": "Deploys, cloud infrastructure, and the on-call rota. Hire one when deploys, infrastructure or cloud costs need an owner."
   },
   "hero": {
-    "breadcrumbs": [
-      {
-        "href": "/hire",
-        "label": "Hire"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "href": "/hire/engineering",
-        "label": "Engineering"
-      },
-      {
-        "ariaHidden": "true",
-        "separator": true
-      },
-      {
-        "current": "DevOps & Cloud Engineer"
-      }
-    ],
+    "category": {
+      "label": "Engineering",
+      "href": "/hire/engineering"
+    },
+    "name": "DevOps & Cloud Engineer",
     "titleAccent": "A DevOps engineer",
     "titleRest": " so your team can deploy on a Friday.",
     "lede": "Cloud infrastructure, pipelines, and the pager that stops going off."
   },
   "detail": {
     "roleName": "DevOps & Cloud Engineer",
+    "askedAs": "DevOps engineer",
     "skillsLabel": "Technologies",
     "exampleRoles": [
-      {
-        "removeLabel": "Remove Senior DevOps engineer",
-        "label": "Senior DevOps engineer"
-      },
-      {
-        "removeLabel": "Remove Cloud engineer",
-        "label": "Cloud engineer"
-      },
-      {
-        "removeLabel": "Remove Kubernetes specialist",
-        "label": "Kubernetes specialist"
-      }
+      "Senior DevOps engineer",
+      "Cloud engineer",
+      "Kubernetes specialist"
     ],
     "promptPlaceholder": "e.g. a senior devops engineer, US-hours overlap",
     "skillGroups": [
-      {
-        "label": "All"
-      },
-      {
-        "label": "Cloud"
-      },
-      {
-        "label": "Infrastructure"
-      },
-      {
-        "label": "Delivery"
-      },
-      {
-        "label": "Monitoring"
-      }
+      "All",
+      "Cloud",
+      "Infrastructure",
+      "Delivery",
+      "Monitoring"
     ],
     "skills": [
       {
