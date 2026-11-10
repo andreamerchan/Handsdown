@@ -1,4 +1,15 @@
 ---
+// The numbers, labels and formula live in src/data/pricing.ts.
+// This renders the default selection; src/scripts/pricing/cost-estimator.ts updates it.
+import {
+  DISCIPLINES,
+  SENIORITIES,
+  DEFAULT_DISCIPLINE,
+  DEFAULT_SENIORITY,
+  describeEstimate,
+} from "../../data/pricing";
+
+const view = describeEstimate(DEFAULT_DISCIPLINE, DEFAULT_SENIORITY);
 ---
 
 <section aria-labelledby="cost-estimator" class="px-6 py-20 md:py-[109px]">
@@ -23,13 +34,13 @@
           </span>
           <span class="relative block">
             <select class="h-[46px] w-full appearance-none rounded-full border border-border-default bg-background-neutral-faint pr-11 pl-4 text-[14px] font-medium text-text-primary focus-visible:shadow-ring focus-visible:outline-none">
-              <option value="eng" selected="">
-                Engineering
-              </option>
-              <option value="ai">AI &amp; Data</option>
-              <option value="data">Data &amp; Analytics</option>
-              <option value="design">Design</option>
-              <option value="product">Product</option>
+              {
+                DISCIPLINES.map((discipline) => (
+                  <option value={discipline.id} selected={discipline.id === DEFAULT_DISCIPLINE}>
+                    {discipline.label}
+                  </option>
+                ))
+              }
             </select>
             <svg
               aria-hidden="true"
@@ -52,29 +63,22 @@
             Seniority
           </legend>
           <div class="flex gap-0.5 rounded-full bg-background-neutral-faint p-1">
-            <label class="flex-1 cursor-pointer">
-              <input
-                type="radio"
-                class="peer sr-only"
-                name="estimate-seniority"
-                value="senior"
-              />
-              <span class="flex min-h-11 items-center justify-center rounded-full px-3.5 text-[13px] font-medium text-text-tertiary transition-colors duration-120 peer-checked:bg-background-inverted peer-checked:text-text-inverse-primary peer-focus-visible:shadow-ring">
-                Senior
-              </span>
-            </label>
-            <label class="flex-1 cursor-pointer">
-              <input
-                type="radio"
-                class="peer sr-only"
-                name="estimate-seniority"
-                checked=""
-                value="staff"
-              />
-              <span class="flex min-h-11 items-center justify-center rounded-full px-3.5 text-[13px] font-medium text-text-tertiary transition-colors duration-120 peer-checked:bg-background-inverted peer-checked:text-text-inverse-primary peer-focus-visible:shadow-ring">
-                Staff
-              </span>
-            </label>
+            {
+              SENIORITIES.map((seniority) => (
+                <label class="flex-1 cursor-pointer">
+                  <input
+                    type="radio"
+                    class="peer sr-only"
+                    name="estimate-seniority"
+                    checked={seniority.id === DEFAULT_SENIORITY}
+                    value={seniority.id}
+                  />
+                  <span class="flex min-h-11 items-center justify-center rounded-full px-3.5 text-[13px] font-medium text-text-tertiary transition-colors duration-120 peer-checked:bg-background-inverted peer-checked:text-text-inverse-primary peer-focus-visible:shadow-ring">
+                    {seniority.label}
+                  </span>
+                </label>
+              ))
+            }
           </div>
         </fieldset>
         <p class="text-[12px] leading-5 text-text-tertiary">
@@ -93,7 +97,7 @@
                 Handsdown specialist, full-time
               </span>
               <span class="text-[14px] font-semibold text-text-primary tabular-nums">
-                $7,500 – $10,000
+                {view.ours.amount}
                 <span class="text-[12px] font-normal text-text-tertiary">
                   {" "}
                   / mo*
@@ -103,11 +107,11 @@
             <div class="relative mt-2.5 h-10 overflow-hidden rounded-xl bg-background-neutral-faint">
               <span
                 class="absolute inset-y-0 left-0 rounded-l-xl bg-gradient-hero"
-                style="width:32.926829268292686%"
+                style={`width:${view.ours.lowPercent}%`}
               ></span>
               <span
                 class="absolute inset-y-0 rounded-r-xl bg-gradient-hero opacity-45"
-                style="left:32.926829268292686%;width:10.975609756097562%"
+                style={`left:${view.ours.lowPercent}%;width:${view.ours.spreadPercent}%`}
               ></span>
             </div>
           </div>
@@ -118,7 +122,7 @@
                   Same hire in-house in the US, fully loaded
                 </span>
                 <span class="text-[14px] font-semibold text-text-primary tabular-nums">
-                  $17,000 – $20,500
+                  {view.usInHouse.amount}
                   <span class="text-[12px] font-normal text-text-tertiary">
                     {" "}
                     / mo*
@@ -128,35 +132,30 @@
               <div class="relative mt-2.5 h-10 overflow-hidden rounded-xl bg-background-neutral-faint">
                 <span
                   class="absolute inset-y-0 left-0 rounded-l-xl bg-indigo-500/25"
-                  style="width:74.63414634146342%"
+                  style={`width:${view.usInHouse.lowPercent}%`}
                 ></span>
                 <span
                   class="absolute inset-y-0 rounded-r-xl bg-gradient-hero opacity-50"
-                  style="left:74.63414634146342%;width:15.36585365853658%"
+                  style={`left:${view.usInHouse.lowPercent}%;width:${view.usInHouse.spreadPercent}%`}
                 ></span>
               </div>
             </div>
             <div
               class="mt-3 sm:pl-[var(--keep-at)]"
-              style="--keep-at:43.90243902439025%"
+              style={`--keep-at:${view.keepOffsetPercent}%`}
             >
               <p class="flex items-center gap-1.5 font-mono text-[11px] leading-[13.5px] lg:text-[9px] font-medium tracking-[0.17em] text-text-accent uppercase">
                 <span class="size-1.5 rounded-full bg-gradient-hero"></span>What
                 you keep
               </p>
               <p class="mt-1 text-[13px] text-text-primary">
-                <span class="font-semibold">41–63% </span>
-                <span class="text-[12px] text-text-secondary">
-                  · about $120,000 a year
-                </span>
+                <span class="font-semibold">{view.keepShare}</span>
+                <span class="text-[12px] text-text-secondary">{view.keepYearly}</span>
               </p>
             </div>
           </div>
         </div>
-        <p aria-live="polite" class="sr-only">
-          Staff Engineering: $7,500 to $10,000 a month with Handsdown, against
-          $17,000 to $20,500 for a US in-house hire.
-        </p>
+        <p aria-live="polite" class="sr-only">{view.announcement}</p>
         <div class="flex flex-col-reverse items-stretch gap-3 border-t border-border-default pt-6 sm:flex-row sm:items-center sm:justify-end sm:gap-5">
           <a
             href="/book"
@@ -175,3 +174,7 @@
     </div>
   </div>
 </section>
+
+<script>
+  import "../../scripts/pricing/cost-estimator.ts";
+</script>
