@@ -1,0 +1,110 @@
+/* Custom utilities. They work with Tailwind variants (hover:, md:, ...) like built-in ones. */
+
+/* Small uppercase label above headings. */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--font-lineheight-xs);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+}
+
+/* Gradient-filled text. */
+@utility text-gradient-heading {
+  background-image: var(--gradient-heading);
+  color: #0000;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+@utility text-gradient-conversation {
+  background-image: var(--gradient-conversation);
+  color: #0000;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+@utility bg-gradient-hero {
+  background-image: var(--gradient-hero);
+}
+
+/* Corner brackets that appear on hover/focus (used by the role prompt inputs). */
+@utility reticle {
+  transition:
+    translate 0.2s var(--ease-standard),
+    box-shadow 0.36s var(--ease-brand-out);
+  position: relative;
+  &:before,
+  &:after {
+    content: "";
+    opacity: 0;
+    pointer-events: none;
+    border: 0 solid var(--color-indigo-400);
+    width: 10px;
+    height: 10px;
+    transition:
+      opacity 0.2s var(--ease-standard),
+      transform 0.2s var(--ease-brand-out);
+    position: absolute;
+  }
+  &:before {
+    border-top-width: 1.5px;
+    border-left-width: 1.5px;
+    border-top-left-radius: 4px;
+    top: -5px;
+    left: 2px;
+    transform: translate(3px, 3px);
+  }
+  &:after {
+    border-bottom-width: 1.5px;
+    border-right-width: 1.5px;
+    border-bottom-right-radius: 4px;
+    bottom: -5px;
+    right: -3px;
+    transform: translate(-3px, -3px);
+  }
+  &:hover,
+  &:focus-within {
+    box-shadow:
+      var(--shadow-pill),
+      0 0 0 1px color-mix(in srgb, var(--color-indigo-300) 65%, transparent),
+      0 8px 24px -12px color-mix(in srgb, var(--color-indigo-500) 45%, transparent);
+    translate: 0 -1px;
+  }
+  &:hover:before,
+  &:hover:after,
+  &:focus-within:before,
+  &:focus-within:after {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+@utility text-gradient-hero {
+  background-image: var(--gradient-hero);
+  color: #0000;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+@utility bg-gradient-heading {
+  background-image: var(--gradient-heading);
+}
+@utility bg-gradient-dark {
+  background-image: var(--gradient-dark);
+}
+@utility bg-gradient-brief {
+  background-image: var(--gradient-brief);
+}
+
+/* Frosted-glass surface. */
+@utility glass {
+  background-color: var(--color-glass-fill);
+  -webkit-backdrop-filter: blur(var(--blur-glass-blur));
+  backdrop-filter: blur(var(--blur-glass-blur));
+  border: 1px solid var(--color-glass-border);
+}
+
+/* Green "live" status dot. */
+@utility status-dot-live {
+  background-color: var(--color-background-success);
+  box-shadow: 0 0 6px
+    color-mix(in srgb, var(--color-background-success) 70%, transparent);
+}

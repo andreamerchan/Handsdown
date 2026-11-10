@@ -1,0 +1,138 @@
+{
+  "seo": {
+    "title": "Hire a Data Engineer",
+    "description": "Pipelines and warehouses your team can trust. Hire one when your data is scattered or unreliable, and everything else depends on it."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/data-analytics",
+        "label": "Data & Analytics"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "Data Engineer"
+      }
+    ],
+    "titleAccent": "A data engineer",
+    "titleRest": " who builds what everything else runs on.",
+    "lede": "Pipelines, warehouses, and data your team can trust."
+  },
+  "detail": {
+    "roleName": "Data Engineer",
+    "skillsLabel": "Technologies",
+    "exampleRoles": [
+      {
+        "removeLabel": "Remove Senior data engineer",
+        "label": "Senior data engineer"
+      },
+      {
+        "removeLabel": "Remove Pipeline specialist",
+        "label": "Pipeline specialist"
+      },
+      {
+        "removeLabel": "Remove Data platform engineer",
+        "label": "Data platform engineer"
+      }
+    ],
+    "promptPlaceholder": "e.g. a senior data engineer, US-hours overlap",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Languages"
+      },
+      {
+        "label": "Pipelines"
+      },
+      {
+        "label": "Warehouses"
+      }
+    ],
+    "skills": [
+      {
+        "name": "SQL",
+        "group": "Languages"
+      },
+      {
+        "name": "Python",
+        "group": "Languages"
+      },
+      {
+        "name": "Spark",
+        "group": "Pipelines"
+      },
+      {
+        "name": "Airflow",
+        "group": "Pipelines"
+      },
+      {
+        "name": "dbt",
+        "group": "Pipelines"
+      },
+      {
+        "name": "Snowflake",
+        "group": "Warehouses"
+      },
+      {
+        "name": "BigQuery",
+        "group": "Warehouses"
+      },
+      {
+        "name": "Databricks",
+        "group": "Warehouses"
+      },
+      {
+        "name": "Kafka",
+        "group": "Pipelines"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "Pipelines",
+    "titleRest": " that move data reliably from source to warehouse:",
+    "points": [
+      {
+        "text": "Models and schemas your analysts can build on"
+      },
+      {
+        "text": "Data quality checks that flag issues early"
+      },
+      {
+        "text": "The foundation your AI and reporting work depends on"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior data engineer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior data engineer"
+      },
+      {
+        "label": "Pipeline specialist"
+      },
+      {
+        "label": "Data platform engineer"
+      },
+      {
+        "label": "Streaming engineer"
+      },
+      {
+        "label": "Data engineering lead"
+      }
+    ]
+  }
+}

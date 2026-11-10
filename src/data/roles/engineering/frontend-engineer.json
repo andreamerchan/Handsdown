@@ -1,0 +1,121 @@
+{
+  "seo": {
+    "title": "Hire a Frontend Engineer",
+    "description": "Interfaces that stay fast as the product grows. Hire one when the interface is where your product feels slow or inconsistent."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/engineering",
+        "label": "Engineering"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "Frontend Engineer"
+      }
+    ],
+    "titleAccent": "A frontend engineer",
+    "titleRest": " who owns the whole surface.",
+    "lede": "Interfaces that stay fast and readable after the third person touches them."
+  },
+  "detail": {
+    "roleName": "Frontend Engineer",
+    "skillsLabel": "Technologies",
+    "exampleRoles": [],
+    "promptPlaceholder": "Pick technologies below, or type what you need",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Frameworks"
+      },
+      {
+        "label": "Languages"
+      },
+      {
+        "label": "Styling"
+      }
+    ],
+    "skills": [
+      {
+        "name": "React",
+        "group": "Frameworks"
+      },
+      {
+        "name": "Next.js",
+        "group": "Frameworks"
+      },
+      {
+        "name": "TypeScript",
+        "group": "Languages"
+      },
+      {
+        "name": "JavaScript",
+        "group": "Languages"
+      },
+      {
+        "name": "Vue",
+        "group": "Frameworks"
+      },
+      {
+        "name": "Angular",
+        "group": "Frameworks"
+      },
+      {
+        "name": "HTML/CSS",
+        "group": "Styling"
+      },
+      {
+        "name": "Tailwind CSS",
+        "group": "Styling"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "Building the features",
+    "titleRest": " your users actually see:",
+    "points": [
+      {
+        "text": "Performance, accessibility, and the browser problems nobody wants"
+      },
+      {
+        "text": "A component library your team stops rewriting"
+      },
+      {
+        "text": "Reviewing the frontend work of everyone around them"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior RAG engineer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior backend engineer"
+      },
+      {
+        "label": "DevOps & cloud"
+      },
+      {
+        "label": "Product designer"
+      },
+      {
+        "label": "Data engineer"
+      },
+      {
+        "label": "Full-stack squad"
+      }
+    ]
+  }
+}

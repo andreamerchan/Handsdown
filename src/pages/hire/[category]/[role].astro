@@ -1,0 +1,26 @@
+---
+// One page per file in src/data/roles/<category>/<role>.json
+import Site from "../../../layouts/Site.astro";
+import RoleHero from "../../../components/hire/RoleHero.astro";
+import RoleDetail from "../../../components/hire/RoleDetail.astro";
+import TalentProfiles from "../../../components/hire/TalentProfiles.astro";
+import RolePlate from "../../../components/hire/RolePlate.astro";
+import RoleCta from "../../../components/hire/RoleCta.astro";
+import { roles } from "../../../data";
+
+export function getStaticPaths() {
+  return roles.map((role) => ({
+    params: { category: role.category, role: role.slug },
+    props: { role },
+  }));
+}
+const { role } = Astro.props;
+---
+
+<Site title={role.seo.title} description={role.seo.description} active="hire">
+  <RoleHero data={role.hero} />
+  <RoleDetail data={role.detail} />
+  {role.talentProfiles && <TalentProfiles data={role.talentProfiles} />}
+  <RolePlate data={role.plate} />
+  <RoleCta data={role.cta} />
+</Site>

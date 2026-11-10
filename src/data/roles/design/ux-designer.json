@@ -1,0 +1,159 @@
+{
+  "seo": {
+    "title": "Hire a UX Designer",
+    "description": "Journeys and flows people finish. Hire one when users get lost in flows that already exist."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/design",
+        "label": "Design"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "UX Designer"
+      }
+    ],
+    "titleAccent": "A UX designer",
+    "titleRest": " who makes complexity feel simple.",
+    "lede": "Clear journeys and intuitive flows that help people finish what they came to do."
+  },
+  "detail": {
+    "roleName": "UX Designer",
+    "skillsLabel": "Skills & tools",
+    "exampleRoles": [
+      {
+        "removeLabel": "Remove Senior UX designer",
+        "label": "Senior UX designer"
+      },
+      {
+        "removeLabel": "Remove UX architect",
+        "label": "UX architect"
+      },
+      {
+        "removeLabel": "Remove Experience designer",
+        "label": "Experience designer"
+      }
+    ],
+    "promptPlaceholder": "e.g. a senior ux designer, US-hours overlap",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Research"
+      },
+      {
+        "label": "Architecture"
+      },
+      {
+        "label": "Flows"
+      },
+      {
+        "label": "Prototyping"
+      },
+      {
+        "label": "Validation"
+      },
+      {
+        "label": "Tools"
+      }
+    ],
+    "skills": [
+      {
+        "name": "User interviews",
+        "group": "Research"
+      },
+      {
+        "name": "Journey mapping",
+        "group": "Flows"
+      },
+      {
+        "name": "User flows",
+        "group": "Flows"
+      },
+      {
+        "name": "Information design",
+        "group": "Architecture"
+      },
+      {
+        "name": "Wireframing",
+        "group": "Prototyping"
+      },
+      {
+        "name": "Figma",
+        "group": "Tools"
+      },
+      {
+        "name": "FigJam",
+        "group": "Tools"
+      },
+      {
+        "name": "Card sorting",
+        "group": "Architecture"
+      },
+      {
+        "name": "Usability testing",
+        "group": "Validation"
+      },
+      {
+        "name": "Task analysis",
+        "group": "Research"
+      },
+      {
+        "name": "Accessibility",
+        "group": "Validation"
+      },
+      {
+        "name": "Service blueprints",
+        "group": "Flows"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "Untangling the journeys",
+    "titleRest": " your users move through:",
+    "points": [
+      {
+        "text": "Complex workflows, confusing navigation, and the friction nobody sees"
+      },
+      {
+        "text": "A clear experience architecture your team can extend"
+      },
+      {
+        "text": "Testing the important assumptions before the build begins"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior ux designer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior UX designer"
+      },
+      {
+        "label": "UX architect"
+      },
+      {
+        "label": "Experience designer"
+      },
+      {
+        "label": "Service designer"
+      },
+      {
+        "label": "UX design lead"
+      }
+    ]
+  }
+}

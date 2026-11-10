@@ -1,0 +1,118 @@
+{
+  "seo": {
+    "title": "Hire a QA Automation Engineer",
+    "description": "Tests that run on every change. Hire one when releases need to feel safe without manual testing."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/engineering",
+        "label": "Engineering"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "QA Automation Engineer"
+      }
+    ],
+    "titleAccent": "A QA engineer",
+    "titleRest": " who makes release day boring.",
+    "lede": "Automated tests your team trusts, running on every change."
+  },
+  "detail": {
+    "roleName": "QA Automation Engineer",
+    "skillsLabel": "Technologies",
+    "exampleRoles": [],
+    "promptPlaceholder": "Pick technologies below, or type what you need",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Frameworks"
+      },
+      {
+        "label": "Practices"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Playwright",
+        "group": "Frameworks"
+      },
+      {
+        "name": "Cypress",
+        "group": "Frameworks"
+      },
+      {
+        "name": "Selenium",
+        "group": "Frameworks"
+      },
+      {
+        "name": "Appium",
+        "group": "Frameworks"
+      },
+      {
+        "name": "Jest",
+        "group": "Frameworks"
+      },
+      {
+        "name": "API testing",
+        "group": "Practices"
+      },
+      {
+        "name": "Performance testing",
+        "group": "Practices"
+      },
+      {
+        "name": "CI test pipelines",
+        "group": "Practices"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "Test suites",
+    "titleRest": " that run on every pull request:",
+    "points": [
+      {
+        "text": "End-to-end coverage of the flows your revenue depends on"
+      },
+      {
+        "text": "Regression checks before anything reaches your users"
+      },
+      {
+        "text": "Quality standards the whole team can follow"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior RAG engineer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior backend engineer"
+      },
+      {
+        "label": "DevOps & cloud"
+      },
+      {
+        "label": "Product designer"
+      },
+      {
+        "label": "Data engineer"
+      },
+      {
+        "label": "Full-stack squad"
+      }
+    ]
+  }
+}

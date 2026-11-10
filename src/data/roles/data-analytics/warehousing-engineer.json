@@ -1,0 +1,123 @@
+{
+  "seo": {
+    "title": "Hire a Warehousing Engineer",
+    "description": "The warehouse itself: storage, speed, cost and access. Hire one when your warehouse is slow, expensive, or open to everyone."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/data-analytics",
+        "label": "Data & Analytics"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "Warehousing Engineer"
+      }
+    ],
+    "titleRest": "A warehousing engineer who keeps the warehouse fast and the bill flat.",
+    "lede": "Storage design, performance, cost, and who can see what."
+  },
+  "detail": {
+    "roleName": "Warehousing Engineer",
+    "skillsLabel": "Technologies",
+    "exampleRoles": [],
+    "promptPlaceholder": "Pick technologies below, or type what you need",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Warehouses"
+      },
+      {
+        "label": "Languages"
+      },
+      {
+        "label": "Methods"
+      },
+      {
+        "label": "Operations"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Snowflake",
+        "group": "Warehouses"
+      },
+      {
+        "name": "BigQuery",
+        "group": "Warehouses"
+      },
+      {
+        "name": "Redshift",
+        "group": "Warehouses"
+      },
+      {
+        "name": "Databricks",
+        "group": "Warehouses"
+      },
+      {
+        "name": "SQL",
+        "group": "Languages"
+      },
+      {
+        "name": "Data modeling",
+        "group": "Methods"
+      },
+      {
+        "name": "Cost optimization",
+        "group": "Operations"
+      },
+      {
+        "name": "Data governance",
+        "group": "Operations"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "A warehouse designed",
+    "titleRest": " for the questions you ask:",
+    "points": [
+      {
+        "text": "Query performance that holds as data grows"
+      },
+      {
+        "text": "Costs you can predict before the invoice arrives"
+      },
+      {
+        "text": "Access rules your security team signs off"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior RAG engineer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior backend engineer"
+      },
+      {
+        "label": "DevOps & cloud"
+      },
+      {
+        "label": "Product designer"
+      },
+      {
+        "label": "Data engineer"
+      },
+      {
+        "label": "Full-stack squad"
+      }
+    ]
+  }
+}

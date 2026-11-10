@@ -1,0 +1,149 @@
+---
+// Sticky site header. `active` highlights the current section in the nav.
+// Scroll behaviour, the Hire Talent menu and the mobile menu live in src/scripts/header.ts.
+import Logo from "./Logo.astro";
+import type { NavId } from "../../data/site";
+
+interface Props {
+  active?: NavId;
+}
+const { active } = Astro.props;
+
+const linkOn =
+  "flex items-center self-stretch px-[18px] text-[14px] tracking-[-0.02em] transition-colors duration-120 font-[700] text-text-primary group-data-[tone=dark]/header:text-text-inverse-primary";
+const linkOff =
+  "flex items-center self-stretch px-[18px] text-[14px] tracking-[-0.02em] transition-colors duration-120 font-normal text-slate-700 hover:text-text-brand group-data-[tone=dark]/header:text-text-inverse-secondary group-data-[tone=dark]/header:hover:text-text-inverse-primary";
+const hireOn =
+  "text-[14px] tracking-[-0.02em] transition-colors duration-120 font-[700] text-text-primary hover:text-text-brand group-data-[tone=dark]/header:text-text-inverse-primary";
+const hireOff =
+  "text-[14px] tracking-[-0.02em] transition-colors duration-120 font-normal text-text-primary hover:text-text-brand group-data-[tone=dark]/header:text-text-inverse-secondary group-data-[tone=dark]/header:hover:text-text-inverse-primary";
+const chevronOn =
+  "flex items-center self-stretch pl-1.5 transition-colors duration-120 any-pointer-coarse:min-h-11 any-pointer-coarse:min-w-11 any-pointer-coarse:justify-center any-pointer-coarse:px-3 text-text-primary hover:text-text-brand group-data-[tone=dark]/header:text-text-inverse-primary";
+const chevronOff =
+  "flex items-center self-stretch pl-1.5 transition-colors duration-120 any-pointer-coarse:min-h-11 any-pointer-coarse:min-w-11 any-pointer-coarse:justify-center any-pointer-coarse:px-3 text-text-primary hover:text-text-brand group-data-[tone=dark]/header:text-text-inverse-secondary group-data-[tone=dark]/header:hover:text-text-inverse-primary";
+
+const navLink = (id: NavId) => (active === id ? linkOn : linkOff);
+const current = (id: NavId) => (active === id ? "page" : undefined);
+---
+
+<header
+  data-site-header="true"
+  data-settled="true"
+  data-hidden="false"
+  data-tone="light"
+  class="group/header sticky top-0 z-50 transition-[background-color,opacity,translate] duration-360 ease-brand-out motion-reduce:transition-none opacity-100 translate-y-0 bg-transparent"
+>
+  <nav class="mx-auto flex h-[74px] w-full max-w-[1440px] items-center justify-between gap-6 px-4 sm:px-6 xl:px-[60px]">
+    <div class="flex items-center self-stretch justify-between xl:max-w-[760px] xl:flex-1">
+      <a
+        aria-label="Handsdown"
+        class="text-text-primary max-lg:inline-flex max-lg:min-h-11 max-lg:items-center transition-colors duration-120 group-data-[tone=dark]/header:text-text-inverse-primary"
+        href="/"
+      >
+        <Logo class="h-[18px] w-auto sm:h-5" />
+      </a>
+      <div
+        data-site-nav="links"
+        class="hidden self-stretch gap-5 lg:ml-10 lg:flex xl:ml-6"
+      >
+        <a href="/" class={navLink("home")} aria-current={current("home")}>
+          Home
+        </a>
+        <div class="flex self-stretch">
+          <div class="flex items-center self-stretch px-[18px]">
+            <a href="/hire" class={active === "hire" ? hireOn : hireOff}>
+              Hire Talent
+            </a>
+            <button
+              type="button"
+              id="hire-menu-trigger"
+              aria-label="Hire Talent roles"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="hire-menu-panel"
+              class={active === "hire" ? chevronOn : chevronOff}
+            >
+              <svg
+                viewBox="0 0 10 6"
+                aria-hidden="true"
+                class="h-1.5 w-2.5 transition-transform duration-150 ease-standard motion-reduce:transition-none"
+              >
+                <path
+                  d="M1 1l4 4 4-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <a
+          href="/how-it-works"
+          class={navLink("how-it-works")}
+          aria-current={current("how-it-works")}
+        >
+          How it Works
+        </a>
+        <a
+          href="/pricing"
+          class={navLink("pricing")}
+          aria-current={current("pricing")}
+        >
+          Pricing
+        </a>
+      </div>
+    </div>
+    <div
+      data-site-nav="actions"
+      class="flex items-center gap-3 xl:gap-[13.5px]"
+    >
+      <span data-site-nav="apply" class="hidden md:inline-flex">
+        <a
+          class="inline-flex items-center justify-center gap-2 rounded-full transition duration-120 ease-standard hover:-translate-y-px active:translate-y-px focus-visible:shadow-ring focus-visible:outline-none disabled:pointer-events-none disabled:bg-background-disabled disabled:text-text-disabled disabled:shadow-none motion-reduce:transition-none motion-reduce:hover:translate-y-0 bg-transparent text-text-primary hover:bg-background-neutral h-11 px-6 text-[14px] font-medium tracking-[-0.04em] whitespace-nowrap px-[15px] group-data-[tone=dark]/header:text-text-inverse-primary group-data-[tone=dark]/header:hover:bg-background-raised/10"
+          aria-label="Apply as Talent"
+          href="/apply"
+        >
+          <span data-site-nav="apply-full" class="lg:max-xl:hidden">
+            Apply as Talent
+          </span>
+          <span data-site-nav="apply-short" class="hidden lg:max-xl:inline">
+            Apply
+          </span>
+        </a>
+      </span>
+      <a
+        class="inline-flex items-center justify-center gap-2 rounded-full transition duration-120 ease-standard hover:-translate-y-px active:translate-y-px focus-visible:shadow-ring focus-visible:outline-none disabled:pointer-events-none disabled:bg-background-disabled disabled:text-text-disabled disabled:shadow-none motion-reduce:transition-none motion-reduce:hover:translate-y-0 border border-slate-800 bg-background-inverted text-text-inverse-primary shadow-dark-btn hover:bg-background-inverted-hover h-11 px-6 text-[14px] font-medium tracking-[-0.04em] whitespace-nowrap px-5 sm:px-9 group-data-[tone=dark]/header:border-transparent group-data-[tone=dark]/header:bg-background-raised group-data-[tone=dark]/header:text-text-primary group-data-[tone=dark]/header:hover:bg-background-neutral-hover"
+        href="/match"
+      >
+        Describe your role
+      </a>
+      <div data-site-nav="menu" class="lg:hidden">
+        <button
+          type="button"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="hd-1"
+          class="inline-flex size-11 items-center justify-center rounded-full text-text-primary transition-colors duration-120 hover:text-text-brand focus-visible:shadow-ring focus-visible:outline-none group-data-[tone=dark]/header:text-text-inverse-primary group-data-[tone=dark]/header:hover:text-text-inverse-accent"
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M4 7h16M4 12h16M4 17h16"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+</header>

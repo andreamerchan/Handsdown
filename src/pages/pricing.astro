@@ -1,0 +1,24 @@
+---
+import Site from "../layouts/Site.astro";
+import Hero from "../components/pricing/Hero.astro";
+import CostEstimator from "../components/pricing/CostEstimator.astro";
+import Value from "../components/pricing/Value.astro";
+import RateFactors from "../components/pricing/RateFactors.astro";
+import Faq from "../components/pricing/Faq.astro";
+import ClosingCta from "../components/pricing/ClosingCta.astro";
+import ContourBackdrop from "../components/pricing/ContourBackdrop.astro";
+---
+
+<Site
+  title="Pricing"
+  description="You pay for the specialist on your team. Starting is free, and you see the terms in writing before anything begins."
+  active="pricing"
+>
+  <ContourBackdrop slot="backdrop" />
+  <Hero />
+  <CostEstimator />
+  <Value />
+  <RateFactors />
+  <Faq />
+  <ClosingCta />
+</Site>

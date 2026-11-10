@@ -1,0 +1,171 @@
+---
+// Top of a role page: breadcrumb, headline, prompt and photo.
+const { data } = Astro.props;
+---
+
+<section class="pb-0 lg:pb-20">
+  <div class="relative z-10 grid lg:grid-cols-2">
+    <div class="order-1 flex flex-col justify-center px-6 pt-12 max-sm:items-center max-sm:text-center md:pt-16 lg:py-20 lg:pr-12 lg:pl-[max(1.5rem,calc((100vw-1128px)/2))]">
+      <nav aria-label="Breadcrumb" class="mb-6 max-lg:mb-3">
+        <ol class="flex flex-wrap items-center gap-2 font-mono text-[11px] tracking-[0.14em] text-text-tertiary uppercase max-sm:justify-center">
+          {data.breadcrumbs.map((item, i0) => (
+            <li aria-hidden={item.ariaHidden}>
+              {item.label != null && (
+                <a
+                  class="inline-flex items-center max-lg:min-h-11 rounded-sm underline-offset-4 transition-colors duration-120 hover:text-text-primary hover:underline focus-visible:shadow-ring focus-visible:outline-none"
+                  href={item.href}
+                >
+                  {item.label}
+                </a>
+              )}
+              {item.separator != null && <Fragment>/</Fragment>}
+              {item.current != null && (
+                <span aria-current="page" class="text-text-primary">
+                  {item.current}
+                </span>
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
+      <span class="eyebrow block text-[13px] font-bold text-text-accent">
+        Hire talent
+      </span>
+      <h1 class="mt-5 max-w-[560px] text-[44px] leading-[1.05] font-medium text-balance tracking-[-0.03em] text-text-primary md:text-[60px]">
+        {data.titleAccent != null && (
+          <span class="text-gradient-heading">{data.titleAccent}</span>
+        )}
+        {data.titleRest}
+      </h1>
+      <p class="mt-5 max-w-[480px] text-[17px] leading-7 text-text-secondary">
+        {data.lede}
+      </p>
+      <div class="mt-8 w-full max-w-[480px] lg:hidden">
+        <div class="">
+          <form class="relative block w-full">
+            <label class="block">
+              <span class="sr-only">
+                Describe the engineer or team you need
+              </span>
+              <input
+                id="specialist-hero-search"
+                type="text"
+                placeholder="e.g. a senior RAG engineer, US-hours overlap"
+                class="h-[52px] w-full rounded-full border-[0.75px] border-indigo-500/[0.32] bg-background-raised pr-[60px] pl-6 text-sm text-ellipsis text-text-primary shadow-[0_0_0_0.75px_rgb(110_123_255/0.06)] placeholder:text-text-tertiary focus-visible:border-border-focus focus-visible:shadow-ring focus-visible:outline-none"
+                value=""
+              />
+            </label>
+            <button
+              type="submit"
+              aria-label="Describe your role"
+              class="absolute top-1 right-1 grid size-11 place-items-center rounded-full bg-background-inverted text-text-inverse-primary shadow-dark-btn transition duration-120 hover:-translate-y-px focus-visible:shadow-ring focus-visible:outline-none motion-reduce:transition-none"
+            >
+              <svg
+                aria-hidden="true"
+                width="12"
+                height="10"
+                viewBox="0 0 10 8"
+                fill="none"
+              >
+                <path
+                  d="M6 0 5.3.7l2.8 2.8H0v1h8.1L5.3 7.3l.7.7L10 4 6 0Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="order-2 relative mt-10 aspect-[4/5] max-h-[620px] w-full overflow-hidden lg:order-2 lg:mt-0 lg:aspect-auto lg:h-[min(840px,calc(100svh-74px))] lg:max-h-none">
+      <img
+        src="/brand/talent/data-scientist-750.jpg"
+        srcset="/brand/talent/data-scientist-750.jpg 750w, /brand/talent/data-scientist-1500.jpg 1500w"
+        sizes="(min-width: 1024px) 50vw, 100vw"
+        alt="A smiling specialist at her desk, arms folded, with charts on the wall behind her."
+        width="750"
+        height="790"
+        fetchpriority="high"
+        decoding="async"
+        class="size-full object-cover object-top"
+      />
+      {data.showSampleProfile != null && (
+        <div class="rounded-[16px] bg-background-raised px-5 py-4 text-left shadow-pill absolute inset-x-4 bottom-4 sm:inset-x-auto sm:left-6 sm:w-[min(527px,calc(100%-3rem))] lg:bottom-[12%] lg:left-[12%] lg:w-[min(527px,76%)]">
+          <p class="mb-1.5 font-mono text-[11px] tracking-[0.12em] lg:text-[10px] text-text-tertiary uppercase">
+            Sample profile
+          </p>
+          <div class="flex items-baseline justify-between gap-4">
+            <p class="text-[17px] leading-6 font-semibold text-text-primary">
+              Camila
+            </p>
+            <p class="text-[12px] leading-5 text-text-secondary">
+              São Paulo, Brazil
+            </p>
+          </div>
+          <div class="mt-1 flex flex-wrap items-center justify-between gap-x-4 gap-y-1 text-[12px] leading-5 text-text-secondary">
+            <p>Senior Data Scientist</p>
+            <p class="flex items-center gap-1.5">
+              <svg
+                aria-hidden="true"
+                width="12"
+                height="12"
+                viewBox="0 0 16 16"
+                fill="none"
+                class="shrink-0"
+              >
+                <rect
+                  x="1.75"
+                  y="4.75"
+                  width="12.5"
+                  height="9"
+                  rx="1.5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+                <path
+                  d="M5.75 4.75v-1.5a1 1 0 0 1 1-1h2.5a1 1 0 0 1 1 1v1.5"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                />
+              </svg>
+              12 years of expertise
+            </p>
+          </div>
+          <ul aria-label="Skills" class="mt-3 flex flex-wrap gap-2">
+            <li class="flex items-center gap-1 rounded-full bg-background-accent-subtle px-3 py-1 text-[12px] font-medium text-text-accent">
+              <svg
+                aria-hidden="true"
+                width="10"
+                height="10"
+                viewBox="0 0 16 16"
+                fill="none"
+                class="shrink-0"
+              >
+                <path
+                  d="m3 8.5 3.25 3.25L13 5"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              Tableau
+            </li>
+            <li class="rounded-full bg-background-neutral-faint px-3 py-1 text-[12px] text-text-secondary">
+              Python
+            </li>
+            <li class="rounded-full bg-background-neutral-faint px-3 py-1 text-[12px] text-text-secondary">
+              Machine Learning
+            </li>
+            <li class="rounded-full bg-background-neutral-faint px-3 py-1 text-[12px] text-text-secondary">
+              Java
+            </li>
+            <li class="rounded-full bg-background-neutral-faint px-3 py-1 text-[12px] text-text-secondary">
+              NoSQL
+            </li>
+          </ul>
+        </div>
+      )}
+    </div>
+  </div>
+</section>

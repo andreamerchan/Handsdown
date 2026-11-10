@@ -1,0 +1,127 @@
+{
+  "seo": {
+    "title": "Hire a User Researcher",
+    "description": "Research that tells you what to build next. Hire one when you’re about to build on assumptions nobody has tested."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/design",
+        "label": "Design"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "User Researcher"
+      }
+    ],
+    "titleAccent": "A user researcher",
+    "titleRest": " who replaces guesses with evidence.",
+    "lede": "Interviews, usability studies, and findings your team can act on."
+  },
+  "detail": {
+    "roleName": "User Researcher",
+    "skillsLabel": "Skills & tools",
+    "exampleRoles": [
+      {
+        "removeLabel": "Remove Senior UX researcher",
+        "label": "Senior UX researcher"
+      },
+      {
+        "removeLabel": "Remove Mixed-methods researcher",
+        "label": "Mixed-methods researcher"
+      },
+      {
+        "removeLabel": "Remove Usability specialist",
+        "label": "Usability specialist"
+      }
+    ],
+    "promptPlaceholder": "e.g. a senior ux researcher, US-hours overlap",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Methods"
+      },
+      {
+        "label": "Tools"
+      }
+    ],
+    "skills": [
+      {
+        "name": "User interviews",
+        "group": "Methods"
+      },
+      {
+        "name": "Usability testing",
+        "group": "Methods"
+      },
+      {
+        "name": "Surveys",
+        "group": "Methods"
+      },
+      {
+        "name": "Journey mapping",
+        "group": "Methods"
+      },
+      {
+        "name": "Research synthesis",
+        "group": "Methods"
+      },
+      {
+        "name": "Dovetail",
+        "group": "Tools"
+      },
+      {
+        "name": "Maze",
+        "group": "Tools"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "Interviews and studies",
+    "titleRest": " with the users you actually have:",
+    "points": [
+      {
+        "text": "Usability tests before a release, not after"
+      },
+      {
+        "text": "Findings written so product and design act on them"
+      },
+      {
+        "text": "A research practice your team can keep running"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior ux researcher with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior UX researcher"
+      },
+      {
+        "label": "Mixed-methods researcher"
+      },
+      {
+        "label": "Usability specialist"
+      },
+      {
+        "label": "Research lead"
+      },
+      {
+        "label": "Research operations"
+      }
+    ]
+  }
+}

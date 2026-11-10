@@ -1,0 +1,87 @@
+@layer base {
+  body {
+    background-color: var(--color-background-base);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizelegibility;
+    margin: 0;
+  }
+  ::selection {
+    background-color: var(--color-indigo-100);
+    color: var(--color-slate-900);
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [role="tab"]:not([aria-disabled="true"]),
+  [role="radio"]:not([aria-disabled="true"]),
+  [role="option"]:not([aria-disabled="true"]),
+  [role="switch"]:not([aria-disabled="true"]),
+  [role="menuitem"]:not([aria-disabled="true"]),
+  [role="menuitemcheckbox"]:not([aria-disabled="true"]),
+  summary {
+    cursor: pointer;
+  }
+  label:has(> input[type="checkbox"]:not(:disabled)) {
+    cursor: pointer;
+  }
+  label:has(> input[type="radio"]:not(:disabled)) {
+    cursor: pointer;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-slate-200) transparent;
+  }
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-slate-200);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: #0000;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    :before,
+    :after {
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+    }
+  }
+  :root {
+    --site-header-offset: 74px;
+  }
+  body:before {
+    content: "";
+    z-index: 0;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    background-repeat: repeat;
+    position: fixed;
+    inset: 0;
+  }
+  :root {
+    --font-site-sans: "Plus Jakarta Sans", "Plus Jakarta Sans Fallback";
+  }
+  .www-site-type {
+    --font-sans:
+      var(--font-site-sans), ui-sans-serif, system-ui, -apple-system,
+      "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-mono: var(--font-sans);
+    font-family: var(--font-sans);
+    word-spacing: 0.08rem;
+  }
+  :root {
+    scrollbar-width: none;
+  }
+  :root::-webkit-scrollbar {
+    display: none;
+  }
+}

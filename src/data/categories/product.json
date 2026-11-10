@@ -1,0 +1,93 @@
+{
+  "seo": {
+    "title": "Hire Product Managers",
+    "description": "Senior product managers and technical product managers from Latin America who own priorities and decisions so engineering and design can move."
+  },
+  "hero": {
+    "titleAccent": "Product managers",
+    "titleRest": " who own the outcome.",
+    "lede": "Tell us what needs to ship and what’s in the way.",
+    "promptPlaceholder": "e.g. a senior product manager, US-hours overlap"
+  },
+  "specializations": {
+    "promptPlaceholder": "e.g. a senior product manager, US-hours overlap",
+    "roles": [
+      {
+        "name": "Product Manager",
+        "summary": "Scope, sequencing, and the calls that unblock a team.",
+        "facts": [
+          {
+            "label": "Working hours",
+            "value": "US overlap, from Latin America"
+          }
+        ],
+        "noPage": true
+      }
+    ],
+    "briefEyebrow": "Role brief · Product Manager",
+    "briefTitle": "Product manager",
+    "briefNoPage": true
+  },
+  "detail": {
+    "roleName": "Product Manager",
+    "skillsLabel": "Technologies",
+    "exampleRoles": [],
+    "promptPlaceholder": "Pick technologies below, or type what you need",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Practices"
+      },
+      {
+        "label": "Tools"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Product discovery",
+        "group": "Practices"
+      },
+      {
+        "name": "Roadmapping",
+        "group": "Practices"
+      },
+      {
+        "name": "Agile / Scrum",
+        "group": "Practices"
+      },
+      {
+        "name": "Jira & Linear",
+        "group": "Tools"
+      },
+      {
+        "name": "Product analytics (Amplitude, Mixpanel)",
+        "group": "Tools"
+      },
+      {
+        "name": "Specs & PRDs",
+        "group": "Practices"
+      },
+      {
+        "name": "Technical PM",
+        "group": "Practices"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "Scope, sequencing,",
+    "titleRest": " and the calls that unblock a team:",
+    "points": [
+      {
+        "text": "A roadmap engineering and design both believe in"
+      },
+      {
+        "text": "Priorities tied to what the business needs this quarter"
+      },
+      {
+        "text": "Clear decisions, written down where the team can find them"
+      }
+    ]
+  }
+}

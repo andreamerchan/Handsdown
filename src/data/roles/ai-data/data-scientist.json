@@ -1,0 +1,136 @@
+{
+  "seo": {
+    "title": "Hire a Data Scientist",
+    "description": "Models, experiments, and the analysis behind them. Hire one when you need forecasts, experiments or models to guide decisions."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/ai-data",
+        "label": "AI & Data"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "Data Scientist"
+      }
+    ],
+    "titleAccent": "A data scientist",
+    "titleRest": " who puts models where they change outcomes.",
+    "lede": "Experiments, forecasts, and the analysis behind them.",
+    "showSampleProfile": true
+  },
+  "detail": {
+    "roleName": "Data Scientist",
+    "skillsLabel": "Technologies",
+    "exampleRoles": [
+      {
+        "removeLabel": "Remove Senior data scientist",
+        "label": "Senior data scientist"
+      },
+      {
+        "removeLabel": "Remove Experimentation scientist",
+        "label": "Experimentation scientist"
+      },
+      {
+        "removeLabel": "Remove Forecasting specialist",
+        "label": "Forecasting specialist"
+      }
+    ],
+    "promptPlaceholder": "e.g. a senior data scientist, US-hours overlap",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Languages"
+      },
+      {
+        "label": "Libraries"
+      },
+      {
+        "label": "Methods"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Python",
+        "group": "Languages"
+      },
+      {
+        "name": "SQL",
+        "group": "Languages"
+      },
+      {
+        "name": "pandas",
+        "group": "Libraries"
+      },
+      {
+        "name": "scikit-learn",
+        "group": "Libraries"
+      },
+      {
+        "name": "A/B testing",
+        "group": "Methods"
+      },
+      {
+        "name": "Forecasting",
+        "group": "Methods"
+      },
+      {
+        "name": "Statistical modeling",
+        "group": "Methods"
+      }
+    ]
+  },
+  "talentProfiles": {
+    "titleLead": "The ",
+    "titleAccent": "talent profiles",
+    "titleRest": " you can hire:"
+  },
+  "plate": {
+    "titleAccent": "Experiment design",
+    "titleRest": " and A/B test analysis:",
+    "points": [
+      {
+        "text": "Forecasting and predictive models"
+      },
+      {
+        "text": "Segmentation and customer insight"
+      },
+      {
+        "text": "Findings explained so the team can act on them"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior data scientist with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior data scientist"
+      },
+      {
+        "label": "Experimentation scientist"
+      },
+      {
+        "label": "Forecasting specialist"
+      },
+      {
+        "label": "Decision scientist"
+      },
+      {
+        "label": "Data science lead"
+      }
+    ]
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "seo": {
+    "title": "Hire AI Engineers and Data Specialists",
+    "description": "Senior AI and LLM engineers, data scientists and data analysts from Latin America who join your team and work your hours."
+  },
+  "hero": {
+    "titleAccent": "AI and data specialists",
+    "titleRest": " who put your data to work.",
+    "lede": "Tell us what you need to build or answer, and we’ll define who can do it.",
+    "promptPlaceholder": "e.g. a senior AI engineer, US-hours overlap",
+    "showSampleProfile": true
+  },
+  "specializations": {
+    "promptPlaceholder": "e.g. a senior AI engineer, US-hours overlap",
+    "roles": [
+      {
+        "name": "AI/ML Engineer",
+        "summary": "AI features that hold up in production.",
+        "facts": [
+          {
+            "label": "Working hours",
+            "value": "US overlap, from Latin America"
+          }
+        ],
+        "href": "/hire/ai-data/ai-engineer",
+        "cta": "Find an AI engineer "
+      },
+      {
+        "name": "Applied AI & LLM Engineer",
+        "summary": "LLM features that stay grounded past the demo.",
+        "facts": [
+          {
+            "label": "Working hours",
+            "value": "US overlap, from Latin America"
+          }
+        ],
+        "href": "/hire/ai-data/applied-ai-engineer",
+        "cta": "Find an applied AI engineer "
+      },
+      {
+        "name": "Data Scientist",
+        "summary": "Models, experiments, and the analysis behind them.",
+        "facts": [
+          {
+            "label": "Working hours",
+            "value": "US overlap, from Latin America"
+          }
+        ],
+        "href": "/hire/ai-data/data-scientist",
+        "cta": "Find a data scientist "
+      },
+      {
+        "name": "MLOps Engineer",
+        "summary": "Models that keep working after they ship.",
+        "facts": [
+          {
+            "label": "Working hours",
+            "value": "US overlap, from Latin America"
+          }
+        ],
+        "href": "/hire/ai-data/mlops-engineer",
+        "cta": "Find an MLOps engineer "
+      },
+      {
+        "name": "Data Analyst",
+        "summary": "Reporting people actually act on.",
+        "facts": [
+          {
+            "label": "Working hours",
+            "value": "US overlap, from Latin America"
+          }
+        ],
+        "href": "/hire/ai-data/data-analyst",
+        "cta": "Find a data analyst "
+      }
+    ],
+    "briefEyebrow": "Role brief · AI/ML Engineer",
+    "briefTitle": "AI engineer",
+    "briefHref": "/hire/ai-data/ai-engineer",
+    "briefCta": "Find an AI engineer "
+  },
+  "talentProfiles": {
+    "titleLead": "Talented ",
+    "titleAccent": "AI & data specialists",
+    "titleRest": " you can hire"
+  }
+}

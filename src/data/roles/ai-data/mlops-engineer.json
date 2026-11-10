@@ -1,0 +1,159 @@
+{
+  "seo": {
+    "title": "Hire an MLOps Engineer",
+    "description": "Models that keep working after they ship. Hire one when models work in a notebook and break, drift or stall on the way to production."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/ai-data",
+        "label": "AI & Data"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "MLOps Engineer"
+      }
+    ],
+    "titleAccent": "An MLOps engineer",
+    "titleRest": " who keeps models working live.",
+    "lede": "Repeatable releases, observable models, and infrastructure built for the entire ML lifecycle."
+  },
+  "detail": {
+    "roleName": "MLOps Engineer",
+    "skillsLabel": "Technologies",
+    "exampleRoles": [
+      {
+        "removeLabel": "Remove Senior MLOps engineer",
+        "label": "Senior MLOps engineer"
+      },
+      {
+        "removeLabel": "Remove ML platform engineer",
+        "label": "ML platform engineer"
+      },
+      {
+        "removeLabel": "Remove Model serving specialist",
+        "label": "Model serving specialist"
+      }
+    ],
+    "promptPlaceholder": "e.g. a senior mlops engineer, US-hours overlap",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Orchestration"
+      },
+      {
+        "label": "Registry"
+      },
+      {
+        "label": "Serving"
+      },
+      {
+        "label": "Monitoring"
+      },
+      {
+        "label": "Infrastructure"
+      },
+      {
+        "label": "CI/CD"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Kubeflow",
+        "group": "Orchestration"
+      },
+      {
+        "name": "MLflow",
+        "group": "Registry"
+      },
+      {
+        "name": "Metaflow",
+        "group": "Orchestration"
+      },
+      {
+        "name": "BentoML",
+        "group": "Serving"
+      },
+      {
+        "name": "KServe",
+        "group": "Serving"
+      },
+      {
+        "name": "Seldon",
+        "group": "Serving"
+      },
+      {
+        "name": "Evidently",
+        "group": "Monitoring"
+      },
+      {
+        "name": "Arize",
+        "group": "Monitoring"
+      },
+      {
+        "name": "Kubernetes",
+        "group": "Infrastructure"
+      },
+      {
+        "name": "Terraform",
+        "group": "Infrastructure"
+      },
+      {
+        "name": "GitHub Actions",
+        "group": "CI/CD"
+      },
+      {
+        "name": "DVC",
+        "group": "Registry"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "Keeping machine learning",
+    "titleRest": " reliable after deployment:",
+    "points": [
+      {
+        "text": "Reproducible training, safe rollouts, and the model drift nobody wants"
+      },
+      {
+        "text": "An ML platform that makes deployment repeatable, not heroic"
+      },
+      {
+        "text": "Connecting monitoring, versioning, and retraining into one lifecycle"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior mlops engineer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior MLOps engineer"
+      },
+      {
+        "label": "ML platform engineer"
+      },
+      {
+        "label": "Model serving specialist"
+      },
+      {
+        "label": "ML reliability engineer"
+      },
+      {
+        "label": "MLOps team lead"
+      }
+    ]
+  }
+}

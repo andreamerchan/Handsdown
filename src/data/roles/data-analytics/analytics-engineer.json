@@ -1,0 +1,127 @@
+{
+  "seo": {
+    "title": "Hire an Analytics Engineer",
+    "description": "Clean, tested models between the warehouse and the dashboards. Hire one when your analysts spend more time fixing tables than answering questions."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/data-analytics",
+        "label": "Data & Analytics"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "Analytics Engineer"
+      }
+    ],
+    "titleAccent": "An analytics engineer",
+    "titleRest": " who makes every metric mean one thing.",
+    "lede": "Tested data models in the warehouse, so every dashboard starts from the same numbers."
+  },
+  "detail": {
+    "roleName": "Analytics Engineer",
+    "skillsLabel": "Technologies",
+    "exampleRoles": [],
+    "promptPlaceholder": "Pick technologies below, or type what you need",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Languages"
+      },
+      {
+        "label": "Modeling"
+      },
+      {
+        "label": "Warehouses"
+      },
+      {
+        "label": "BI"
+      },
+      {
+        "label": "Tooling"
+      }
+    ],
+    "skills": [
+      {
+        "name": "SQL",
+        "group": "Languages"
+      },
+      {
+        "name": "Python",
+        "group": "Languages"
+      },
+      {
+        "name": "dbt",
+        "group": "Modeling"
+      },
+      {
+        "name": "Data testing",
+        "group": "Modeling"
+      },
+      {
+        "name": "Snowflake",
+        "group": "Warehouses"
+      },
+      {
+        "name": "BigQuery",
+        "group": "Warehouses"
+      },
+      {
+        "name": "Looker",
+        "group": "BI"
+      },
+      {
+        "name": "Git",
+        "group": "Tooling"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "Data models",
+    "titleRest": " your analysts and dashboards build on:",
+    "points": [
+      {
+        "text": "Metrics defined once, in code, and tested"
+      },
+      {
+        "text": "dbt projects with documentation people read"
+      },
+      {
+        "text": "Fewer “why don’t these numbers match” threads"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior RAG engineer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior backend engineer"
+      },
+      {
+        "label": "DevOps & cloud"
+      },
+      {
+        "label": "Product designer"
+      },
+      {
+        "label": "Data engineer"
+      },
+      {
+        "label": "Full-stack squad"
+      }
+    ]
+  }
+}

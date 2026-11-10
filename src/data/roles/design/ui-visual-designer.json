@@ -1,0 +1,130 @@
+{
+  "seo": {
+    "title": "Hire a UI & Visual Designer",
+    "description": "Interfaces that look finished and stay consistent. Hire one when your product works, but looks unfinished or inconsistent."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/design",
+        "label": "Design"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "UI & Visual Designer"
+      }
+    ],
+    "titleAccent": "A UI designer",
+    "titleRest": " who gives your product the polish it’s missing.",
+    "lede": "Visual design, layout and detail, ready for your engineers to build."
+  },
+  "detail": {
+    "roleName": "UI & Visual Designer",
+    "skillsLabel": "Skills & tools",
+    "exampleRoles": [
+      {
+        "removeLabel": "Remove Senior UI designer",
+        "label": "Senior UI designer"
+      },
+      {
+        "removeLabel": "Remove Visual designer",
+        "label": "Visual designer"
+      },
+      {
+        "removeLabel": "Remove Interface designer",
+        "label": "Interface designer"
+      }
+    ],
+    "promptPlaceholder": "e.g. a senior ui & visual designer, US-hours overlap",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Tools"
+      },
+      {
+        "label": "Design"
+      },
+      {
+        "label": "Platforms"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Figma",
+        "group": "Tools"
+      },
+      {
+        "name": "UI design",
+        "group": "Design"
+      },
+      {
+        "name": "Visual design",
+        "group": "Design"
+      },
+      {
+        "name": "Typography",
+        "group": "Design"
+      },
+      {
+        "name": "Iconography",
+        "group": "Design"
+      },
+      {
+        "name": "Motion design",
+        "group": "Design"
+      },
+      {
+        "name": "Web & mobile",
+        "group": "Platforms"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "Screens",
+    "titleRest": " that look as good as the product works:",
+    "points": [
+      {
+        "text": "Typography, color and spacing applied with discipline"
+      },
+      {
+        "text": "Visual detail specified so it survives development"
+      },
+      {
+        "text": "Your brand carried into the product, not just the website"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior ui & visual designer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior UI designer"
+      },
+      {
+        "label": "Visual designer"
+      },
+      {
+        "label": "Interface designer"
+      },
+      {
+        "label": "UI design lead"
+      },
+      {
+        "label": "Visual design specialist"
+      }
+    ]
+  }
+}

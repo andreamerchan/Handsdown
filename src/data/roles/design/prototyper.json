@@ -1,0 +1,116 @@
+{
+  "seo": {
+    "title": "Hire a Prototyper",
+    "description": "Clickable prototypes to test before you build. Hire one when you need to test an idea with users or investors before engineering commits to it."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/design",
+        "label": "Design"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "Prototyper"
+      }
+    ],
+    "titleAccent": "A prototyper",
+    "titleRest": " who lets you test the idea before you build it.",
+    "lede": "Interactive prototypes, real enough to put in front of users this week."
+  },
+  "detail": {
+    "roleName": "Prototyper",
+    "skillsLabel": "Skills & tools",
+    "exampleRoles": [],
+    "promptPlaceholder": "Pick technologies below, or type what you need",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Tools"
+      },
+      {
+        "label": "Code"
+      },
+      {
+        "label": "Design"
+      },
+      {
+        "label": "Research"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Figma prototyping",
+        "group": "Tools"
+      },
+      {
+        "name": "ProtoPie",
+        "group": "Tools"
+      },
+      {
+        "name": "Framer",
+        "group": "Tools"
+      },
+      {
+        "name": "Coded prototypes (React)",
+        "group": "Code"
+      },
+      {
+        "name": "Motion design",
+        "group": "Design"
+      },
+      {
+        "name": "Usability testing",
+        "group": "Research"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "Prototypes",
+    "titleRest": " real enough that users forget they’re prototypes:",
+    "points": [
+      {
+        "text": "Ideas tested in days, before engineering commits"
+      },
+      {
+        "text": "Interactions and motion shown, not described"
+      },
+      {
+        "text": "Demos for investors and sales that feel like the product"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior RAG engineer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior backend engineer"
+      },
+      {
+        "label": "DevOps & cloud"
+      },
+      {
+        "label": "Product designer"
+      },
+      {
+        "label": "Data engineer"
+      },
+      {
+        "label": "Full-stack squad"
+      }
+    ]
+  }
+}

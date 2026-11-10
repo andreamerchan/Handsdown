@@ -1,0 +1,117 @@
+{
+  "seo": {
+    "title": "Hire a Data Analyst",
+    "description": "Reporting people actually act on. Hire one when your team keeps asking questions the dashboards don’t answer."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/ai-data",
+        "label": "AI & Data"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "Data Analyst"
+      }
+    ],
+    "titleAccent": "A data analyst",
+    "titleRest": " who turns questions into answers.",
+    "lede": "Reporting people actually act on."
+  },
+  "detail": {
+    "roleName": "Data Analyst",
+    "skillsLabel": "Technologies",
+    "exampleRoles": [],
+    "promptPlaceholder": "Pick technologies below, or type what you need",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Languages"
+      },
+      {
+        "label": "Tools"
+      },
+      {
+        "label": "Methods"
+      }
+    ],
+    "skills": [
+      {
+        "name": "SQL",
+        "group": "Languages"
+      },
+      {
+        "name": "Power BI",
+        "group": "Tools"
+      },
+      {
+        "name": "Tableau",
+        "group": "Tools"
+      },
+      {
+        "name": "Looker",
+        "group": "Tools"
+      },
+      {
+        "name": "Excel & Google Sheets",
+        "group": "Tools"
+      },
+      {
+        "name": "Python",
+        "group": "Languages"
+      },
+      {
+        "name": "Metric definition",
+        "group": "Methods"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "Dashboards",
+    "titleRest": " built around the decisions you make:",
+    "points": [
+      {
+        "text": "Metrics defined once and used everywhere"
+      },
+      {
+        "text": "Analysis behind product and business calls"
+      },
+      {
+        "text": "Clear answers, written for people outside the data team"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior RAG engineer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior backend engineer"
+      },
+      {
+        "label": "DevOps & cloud"
+      },
+      {
+        "label": "Product designer"
+      },
+      {
+        "label": "Data engineer"
+      },
+      {
+        "label": "Full-stack squad"
+      }
+    ]
+  }
+}

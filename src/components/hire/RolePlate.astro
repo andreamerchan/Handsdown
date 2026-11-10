@@ -1,0 +1,26 @@
+---
+// Dark statement band: what this role does, in three points.
+const { data } = Astro.props;
+---
+
+<section
+  aria-labelledby="role-plate"
+  class="bg-background-inverted px-6 py-24 lg:py-32"
+>
+  <div class="mx-auto max-w-[1128px]">
+    <h2
+      id="role-plate"
+      class="max-w-[640px] text-[36px] leading-[1.1] font-medium text-balance tracking-[-0.02em] text-text-inverse-primary lg:text-[48px]"
+    >
+      <span class="text-gradient-heading">{data.titleAccent}</span>
+      {data.titleRest}
+    </h2>
+    <ul class="mt-14 grid gap-8 sm:grid-cols-3 lg:mt-24">
+      {data.points.map((item, i0) => (
+        <li class="max-w-[260px] text-[18px] leading-7 font-medium text-text-inverse-primary">
+          {item.text}
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>

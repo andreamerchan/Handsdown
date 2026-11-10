@@ -1,0 +1,126 @@
+{
+  "seo": {
+    "title": "Hire a Design Systems Designer",
+    "description": "Components your engineers will reuse. Hire one when your product has grown and needs one consistent set of components."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/design",
+        "label": "Design"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "Design Systems Designer"
+      }
+    ],
+    "titleAccent": "A design systems designer",
+    "titleRest": " who gives your product one language.",
+    "lede": "Components, tokens, and guidelines your whole team reuses."
+  },
+  "detail": {
+    "roleName": "Design Systems Designer",
+    "skillsLabel": "Skills & tools",
+    "exampleRoles": [
+      {
+        "removeLabel": "Remove Design systems designer",
+        "label": "Design systems designer"
+      },
+      {
+        "removeLabel": "Remove Component specialist",
+        "label": "Component specialist"
+      },
+      {
+        "removeLabel": "Remove Design system lead",
+        "label": "Design system lead"
+      }
+    ],
+    "promptPlaceholder": "e.g. a senior design systems designer, US-hours overlap",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Tools"
+      },
+      {
+        "label": "Systems"
+      },
+      {
+        "label": "Standards"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Figma components & variables",
+        "group": "Tools"
+      },
+      {
+        "name": "Design tokens",
+        "group": "Systems"
+      },
+      {
+        "name": "Component libraries",
+        "group": "Systems"
+      },
+      {
+        "name": "Storybook",
+        "group": "Tools"
+      },
+      {
+        "name": "Accessibility (WCAG)",
+        "group": "Standards"
+      },
+      {
+        "name": "Documentation",
+        "group": "Standards"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "A component library",
+    "titleRest": " shared by design and code:",
+    "points": [
+      {
+        "text": "Tokens for color, type, and spacing across every surface"
+      },
+      {
+        "text": "Documentation your team actually follows"
+      },
+      {
+        "text": "Consistency that holds as the product grows"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior design systems designer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Design systems designer"
+      },
+      {
+        "label": "Component specialist"
+      },
+      {
+        "label": "Design system lead"
+      },
+      {
+        "label": "Design technologist"
+      },
+      {
+        "label": "Systems design team"
+      }
+    ]
+  }
+}

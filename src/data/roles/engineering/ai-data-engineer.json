@@ -1,0 +1,159 @@
+{
+  "seo": {
+    "title": "Hire an AI & Data Engineer",
+    "description": "Data platforms, models and AI features that work as one. Hire one when your data, your models and your product features are built by people who never meet."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/engineering",
+        "label": "Engineering"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "AI & Data Engineer"
+      }
+    ],
+    "titleAccent": "An AI & data engineer",
+    "titleRest": " who connects the whole pipeline.",
+    "lede": "Data platforms, models, and intelligent features built to work together in your product."
+  },
+  "detail": {
+    "roleName": "AI & Data Engineer",
+    "skillsLabel": "Technologies",
+    "exampleRoles": [
+      {
+        "removeLabel": "Remove AI & data engineer",
+        "label": "AI & data engineer"
+      },
+      {
+        "removeLabel": "Remove AI platform engineer",
+        "label": "AI platform engineer"
+      },
+      {
+        "removeLabel": "Remove Data platform engineer",
+        "label": "Data platform engineer"
+      }
+    ],
+    "promptPlaceholder": "e.g. a senior ai & data engineer, US-hours overlap",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Languages"
+      },
+      {
+        "label": "Data platforms"
+      },
+      {
+        "label": "AI & ML"
+      },
+      {
+        "label": "Pipelines"
+      },
+      {
+        "label": "Serving"
+      },
+      {
+        "label": "Tooling"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Python",
+        "group": "Languages"
+      },
+      {
+        "name": "SQL",
+        "group": "Languages"
+      },
+      {
+        "name": "Spark",
+        "group": "Data platforms"
+      },
+      {
+        "name": "Snowflake",
+        "group": "Data platforms"
+      },
+      {
+        "name": "PyTorch",
+        "group": "AI & ML"
+      },
+      {
+        "name": "scikit-learn",
+        "group": "AI & ML"
+      },
+      {
+        "name": "Airflow",
+        "group": "Pipelines"
+      },
+      {
+        "name": "dbt",
+        "group": "Pipelines"
+      },
+      {
+        "name": "FastAPI",
+        "group": "Serving"
+      },
+      {
+        "name": "MLflow",
+        "group": "Tooling"
+      },
+      {
+        "name": "Docker",
+        "group": "Tooling"
+      },
+      {
+        "name": "Kafka",
+        "group": "Pipelines"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "Connecting data and AI",
+    "titleRest": " to the product you are building:",
+    "points": [
+      {
+        "text": "The engineering between raw data, useful models, and live features"
+      },
+      {
+        "text": "A shared foundation for analytics, machine learning, and AI"
+      },
+      {
+        "text": "Making the whole pipeline reliable, not just one piece"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior ai & data engineer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "AI & data engineer"
+      },
+      {
+        "label": "AI platform engineer"
+      },
+      {
+        "label": "Data platform engineer"
+      },
+      {
+        "label": "ML product engineer"
+      },
+      {
+        "label": "AI & data squad"
+      }
+    ]
+  }
+}

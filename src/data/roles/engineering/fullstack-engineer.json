@@ -1,0 +1,132 @@
+{
+  "seo": {
+    "title": "Hire a Full-Stack Engineer",
+    "description": "One engineer across the whole feature. Hire one when a small team needs one person to ship features end to end."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/engineering",
+        "label": "Engineering"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "Full-Stack Engineer"
+      }
+    ],
+    "titleRest": "One engineer, the whole feature.",
+    "lede": "For teams small enough that one engineer across the whole feature moves faster."
+  },
+  "detail": {
+    "roleName": "Full-Stack Engineer",
+    "skillsLabel": "Technologies",
+    "exampleRoles": [
+      {
+        "removeLabel": "Remove Senior full-stack engineer",
+        "label": "Senior full-stack engineer"
+      },
+      {
+        "removeLabel": "Remove React & Node.js",
+        "label": "React & Node.js"
+      },
+      {
+        "removeLabel": "Remove Product engineer",
+        "label": "Product engineer"
+      }
+    ],
+    "promptPlaceholder": "e.g. a senior full-stack engineer, US-hours overlap",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Stacks"
+      },
+      {
+        "label": "Frameworks"
+      },
+      {
+        "label": "Languages"
+      },
+      {
+        "label": "Databases"
+      }
+    ],
+    "skills": [
+      {
+        "name": "React + Node.js",
+        "group": "Stacks"
+      },
+      {
+        "name": "Next.js",
+        "group": "Frameworks"
+      },
+      {
+        "name": "TypeScript",
+        "group": "Languages"
+      },
+      {
+        "name": "Python / Django",
+        "group": "Frameworks"
+      },
+      {
+        "name": "Ruby on Rails",
+        "group": "Frameworks"
+      },
+      {
+        "name": "MERN",
+        "group": "Stacks"
+      },
+      {
+        "name": "PostgreSQL",
+        "group": "Databases"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "Features shipped",
+    "titleRest": " end to end, interface to database:",
+    "points": [
+      {
+        "text": "The glue work that usually sits between two people"
+      },
+      {
+        "text": "Prototypes that turn into production"
+      },
+      {
+        "text": "Enough judgment to know which half matters more"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior full-stack engineer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior full-stack engineer"
+      },
+      {
+        "label": "React & Node.js"
+      },
+      {
+        "label": "Product engineer"
+      },
+      {
+        "label": "Full-stack lead"
+      },
+      {
+        "label": "Full-stack squad"
+      }
+    ]
+  }
+}

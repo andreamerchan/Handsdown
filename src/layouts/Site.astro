@@ -1,0 +1,44 @@
+---
+// Standard page: header, main content, footer.
+import Base from "./Base.astro";
+import Header from "../components/site/Header.astro";
+import Footer from "../components/site/Footer.astro";
+import type { NavId } from "../data/site";
+
+interface Props {
+  /** Page name; " · Handsdown" is appended unless `fullTitle` is set. */
+  title: string;
+  description: string;
+  active?: NavId;
+  footer?: "light" | "dark";
+  fullTitle?: boolean;
+}
+const {
+  title,
+  description,
+  active,
+  footer = "light",
+  fullTitle = false,
+} = Astro.props;
+---
+
+<Base
+  title={fullTitle ? title : `${title} · Handsdown`}
+  description={description}
+  ogTitle={title}
+>
+  <div class="relative overflow-x-clip">
+    <slot name="backdrop" />
+    <Header active={active} />
+    <main class="relative z-10">
+      <slot />
+    </main>
+    {footer === "dark" ? (
+      <div data-section-view="footer">
+        <Footer variant="dark" />
+      </div>
+    ) : (
+      <Footer />
+    )}
+  </div>
+</Base>

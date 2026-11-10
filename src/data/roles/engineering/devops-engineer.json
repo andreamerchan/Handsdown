@@ -1,0 +1,141 @@
+{
+  "seo": {
+    "title": "Hire a DevOps & Cloud Engineer",
+    "description": "Deploys, cloud infrastructure, and the on-call rota. Hire one when deploys, infrastructure or cloud costs need an owner."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/engineering",
+        "label": "Engineering"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "DevOps & Cloud Engineer"
+      }
+    ],
+    "titleAccent": "A DevOps engineer",
+    "titleRest": " so your team can deploy on a Friday.",
+    "lede": "Cloud infrastructure, pipelines, and the pager that stops going off."
+  },
+  "detail": {
+    "roleName": "DevOps & Cloud Engineer",
+    "skillsLabel": "Technologies",
+    "exampleRoles": [
+      {
+        "removeLabel": "Remove Senior DevOps engineer",
+        "label": "Senior DevOps engineer"
+      },
+      {
+        "removeLabel": "Remove Cloud engineer",
+        "label": "Cloud engineer"
+      },
+      {
+        "removeLabel": "Remove Kubernetes specialist",
+        "label": "Kubernetes specialist"
+      }
+    ],
+    "promptPlaceholder": "e.g. a senior devops engineer, US-hours overlap",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Cloud"
+      },
+      {
+        "label": "Infrastructure"
+      },
+      {
+        "label": "Delivery"
+      },
+      {
+        "label": "Monitoring"
+      }
+    ],
+    "skills": [
+      {
+        "name": "AWS",
+        "group": "Cloud"
+      },
+      {
+        "name": "Google Cloud",
+        "group": "Cloud"
+      },
+      {
+        "name": "Azure",
+        "group": "Cloud"
+      },
+      {
+        "name": "Kubernetes",
+        "group": "Infrastructure"
+      },
+      {
+        "name": "Docker",
+        "group": "Infrastructure"
+      },
+      {
+        "name": "Terraform",
+        "group": "Infrastructure"
+      },
+      {
+        "name": "GitHub Actions",
+        "group": "Delivery"
+      },
+      {
+        "name": "CI/CD",
+        "group": "Delivery"
+      },
+      {
+        "name": "Observability",
+        "group": "Monitoring"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "CI/CD",
+    "titleRest": " that your engineers trust:",
+    "points": [
+      {
+        "text": "Cloud infrastructure as code, written down and repeatable"
+      },
+      {
+        "text": "Monitoring that catches it before your users do"
+      },
+      {
+        "text": "Cost, scaling, and the surprises in both"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior devops engineer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior DevOps engineer"
+      },
+      {
+        "label": "Cloud engineer"
+      },
+      {
+        "label": "Kubernetes specialist"
+      },
+      {
+        "label": "Platform engineer"
+      },
+      {
+        "label": "Site reliability engineer"
+      }
+    ]
+  }
+}

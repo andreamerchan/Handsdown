@@ -1,0 +1,159 @@
+{
+  "seo": {
+    "title": "Hire an Applied AI & LLM Engineer",
+    "description": "LLM features that stay grounded past the demo. Hire one when you are building on language models and they have to hold up with real users."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/ai-data",
+        "label": "AI & Data"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "Applied AI & LLM Engineer"
+      }
+    ],
+    "titleAccent": "An applied AI engineer",
+    "titleRest": " who takes models into production.",
+    "lede": "LLM-powered features that stay useful, grounded, and measurable beyond the demo."
+  },
+  "detail": {
+    "roleName": "Applied AI & LLM Engineer",
+    "skillsLabel": "Technologies",
+    "exampleRoles": [
+      {
+        "removeLabel": "Remove Senior LLM engineer",
+        "label": "Senior LLM engineer"
+      },
+      {
+        "removeLabel": "Remove RAG engineer",
+        "label": "RAG engineer"
+      },
+      {
+        "removeLabel": "Remove AI agents engineer",
+        "label": "AI agents engineer"
+      }
+    ],
+    "promptPlaceholder": "e.g. a senior applied ai engineer, US-hours overlap",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Models"
+      },
+      {
+        "label": "Retrieval"
+      },
+      {
+        "label": "Orchestration"
+      },
+      {
+        "label": "Evaluation"
+      },
+      {
+        "label": "Serving"
+      },
+      {
+        "label": "Languages"
+      }
+    ],
+    "skills": [
+      {
+        "name": "OpenAI API",
+        "group": "Models"
+      },
+      {
+        "name": "Claude API",
+        "group": "Models"
+      },
+      {
+        "name": "Llama",
+        "group": "Models"
+      },
+      {
+        "name": "LangChain",
+        "group": "Orchestration"
+      },
+      {
+        "name": "LlamaIndex",
+        "group": "Retrieval"
+      },
+      {
+        "name": "pgvector",
+        "group": "Retrieval"
+      },
+      {
+        "name": "Pinecone",
+        "group": "Retrieval"
+      },
+      {
+        "name": "LangGraph",
+        "group": "Orchestration"
+      },
+      {
+        "name": "Ragas",
+        "group": "Evaluation"
+      },
+      {
+        "name": "LangSmith",
+        "group": "Evaluation"
+      },
+      {
+        "name": "FastAPI",
+        "group": "Serving"
+      },
+      {
+        "name": "Python",
+        "group": "Languages"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "Turning language models",
+    "titleRest": " into products people can use:",
+    "points": [
+      {
+        "text": "Grounded retrieval, useful agents, and the failure modes nobody sees in a demo"
+      },
+      {
+        "text": "An evaluation loop your team can trust before each release"
+      },
+      {
+        "text": "Balancing model quality, latency, safety, and cost in production"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior applied ai engineer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior LLM engineer"
+      },
+      {
+        "label": "RAG engineer"
+      },
+      {
+        "label": "AI agents engineer"
+      },
+      {
+        "label": "Applied AI lead"
+      },
+      {
+        "label": "LLM product team"
+      }
+    ]
+  }
+}

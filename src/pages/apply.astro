@@ -1,0 +1,131 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title="Apply as Talent · Handsdown"
+  description="Join the Handsdown network. Upload your CV or build your profile here: senior engineers, designers and tech specialists from Latin America, introduced to US product teams."
+  ogTitle="Apply as Talent"
+>
+  <div class="relative min-h-svh overflow-hidden bg-background-raised">
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 hidden [clip-path:polygon(68.56%_0,100%_0,100%_100%,43.32%_100%)] lg:block"
+    >
+      <img
+        src="/brand/talent-apply/intro-photo-1400.jpg"
+        srcset="/brand/talent-apply/intro-photo-1400.jpg 1400w, /brand/talent-apply/intro-photo-2400.jpg 2400w"
+        sizes="70vw"
+        alt=""
+        width="2400"
+        height="1600"
+        fetchpriority="high"
+        decoding="async"
+        class="absolute top-[-12.67%] left-[25.17%] h-[114.6%] w-[107.57%] max-w-none object-cover"
+      />
+    </div>
+    <div class="relative flex min-h-svh flex-col px-6 py-8 md:px-16 lg:px-[87px] lg:py-[51px]">
+      <header>
+        <a
+          href="/"
+          aria-label="Handsdown"
+          class="inline-flex min-h-11 items-center focus-visible:shadow-ring focus-visible:outline-none lg:min-h-0"
+        >
+          <img
+            src="/brand/talent-apply/handsdown-talent.svg"
+            alt=""
+            width="113"
+            height="36"
+          />
+        </a>
+      </header>
+      <section
+        aria-labelledby="apply-intro"
+        class="flex flex-1 flex-col justify-center gap-8 py-12 lg:max-w-[600px] lg:gap-[39px]"
+      >
+        <h1
+          id="apply-intro"
+          tabindex="-1"
+          class="text-[40px] leading-[1.1] font-medium tracking-[-0.03em] text-text-primary outline-none md:text-[56px] md:leading-[62px]"
+        >
+          <span class="block">Your work,</span>{" "}
+          <span class="text-gradient-conversation block">on your terms.</span>
+        </h1>
+        <p class="max-w-[540px] text-[16px] leading-[26px] text-text-secondary md:text-[18px] md:leading-7">
+          Join the Handsdown network. We introduce senior engineers, designers
+          and tech specialists from Latin America to US product teams.
+        </p>
+        <ul class="flex flex-col gap-3">
+          <li class="flex items-start gap-3 text-[16px] leading-7 tracking-[-0.02em] text-text-primary md:text-[18px]">
+            <span
+              aria-hidden="true"
+              class="grid size-7 shrink-0 place-items-center rounded-full bg-background-brand-subtle text-text-brand"
+            >
+              <svg
+                class="size-3.5"
+                viewBox="0 0 14 14"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.31"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M11.667 3.5 5.25 9.917 2.333 7" />
+              </svg>
+            </span>
+            Upload your CV, or build your profile here if you don’t have one
+          </li>
+          <li class="flex items-start gap-3 text-[16px] leading-7 tracking-[-0.02em] text-text-primary md:text-[18px]">
+            <span
+              aria-hidden="true"
+              class="grid size-7 shrink-0 place-items-center rounded-full bg-background-brand-subtle text-text-brand"
+            >
+              <svg
+                class="size-3.5"
+                viewBox="0 0 14 14"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.31"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M11.667 3.5 5.25 9.917 2.333 7" />
+              </svg>
+            </span>
+            Check what we filled in and answer a few short questions
+          </li>
+          <li class="flex items-start gap-3 text-[16px] leading-7 tracking-[-0.02em] text-text-primary md:text-[18px]">
+            <span
+              aria-hidden="true"
+              class="grid size-7 shrink-0 place-items-center rounded-full bg-background-brand-subtle text-text-brand"
+            >
+              <svg
+                class="size-3.5"
+                viewBox="0 0 14 14"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.31"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M11.667 3.5 5.25 9.917 2.333 7" />
+              </svg>
+            </span>
+            Your answers save as you go, so you can finish later
+          </li>
+        </ul>
+        <div class="flex flex-wrap items-center gap-x-[30px] gap-y-3">
+          <button
+            type="button"
+            class="inline-flex min-h-11 items-center rounded-full bg-background-inverted px-[18px] text-[14px] leading-5 font-medium text-text-inverse-primary transition duration-120 ease-standard hover:bg-background-inverted-hover focus-visible:shadow-ring focus-visible:outline-none active:translate-y-px motion-reduce:transition-none"
+          >
+            Start application
+          </button>
+          <span class="text-[14px] leading-5 text-text-secondary">
+            About 3 minutes with a CV
+          </span>
+        </div>
+      </section>
+    </div>
+  </div>
+</Base>

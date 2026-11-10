@@ -1,0 +1,32 @@
+---
+// One page per file in src/data/categories/<category>.json
+import Site from "../../../layouts/Site.astro";
+import CategoryHero from "../../../components/hire/CategoryHero.astro";
+import Specializations from "../../../components/hire/Specializations.astro";
+import TalentProfiles from "../../../components/hire/TalentProfiles.astro";
+import RoleDetail from "../../../components/hire/RoleDetail.astro";
+import RolePlate from "../../../components/hire/RolePlate.astro";
+import HireCta from "../../../components/hire/HireCta.astro";
+import { categories } from "../../../data";
+
+export function getStaticPaths() {
+  return categories.map((category) => ({
+    params: { category: category.slug },
+    props: { category },
+  }));
+}
+const { category } = Astro.props;
+---
+
+<Site
+  title={category.seo.title}
+  description={category.seo.description}
+  active="hire"
+>
+  <CategoryHero data={category.hero} />
+  <Specializations data={category.specializations} />
+  {category.talentProfiles && <TalentProfiles data={category.talentProfiles} />}
+  {category.detail && <RoleDetail data={category.detail} />}
+  {category.plate && <RolePlate data={category.plate} />}
+  <HireCta />
+</Site>

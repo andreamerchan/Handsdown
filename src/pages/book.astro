@@ -1,0 +1,149 @@
+---
+import Base from "../layouts/Base.astro";
+---
+
+<Base
+  title="Review your position · Handsdown"
+  description="Review the position with a Handsdown talent partner before outreach begins. Introductions follow confirmed interest and role-specific validation."
+  ogTitle="Review your position"
+>
+  <main class="mx-auto flex min-h-svh max-w-xl flex-col justify-center gap-6 px-6 py-24">
+    <span class="eyebrow text-text-tertiary">Start with the position</span>
+    <h1 class="text-4xl font-semibold tracking-[-0.02em] text-text-primary">
+      Describe the gap.{" "}
+      <span class="text-gradient-heading">We shape the search.</span>
+    </h1>
+    <p class="text-text-secondary">
+      A talent partner will turn your context into a reviewable position and
+      explain the search, outreach, and validation steps.
+    </p>
+    <form
+      class="flex flex-col gap-4"
+      novalidate=""
+      action=""
+      enctype="multipart/form-data"
+      method="POST"
+    >
+      <input type="hidden" name="source" value="book-page" />
+      <input type="hidden" name="sessionId" value="" />
+      <input type="hidden" name="consentBinding" value="" />
+      <input
+        type="text"
+        tabindex="-1"
+        autocomplete="off"
+        aria-hidden="true"
+        class="absolute -left-[9999px] h-px w-px opacity-0"
+        name="website"
+        value=""
+      />
+      <label class="flex flex-col gap-1.5">
+        <span class="text-sm font-semibold text-text-secondary">
+          Work email
+        </span>
+        <input
+          type="email"
+          required=""
+          placeholder="you@company.com"
+          class="w-full rounded-md border border-input-color-border-default bg-input-color-background-default px-4 py-3 text-text-primary placeholder:text-text-tertiary transition-colors duration-150 hover:border-input-color-border-hover focus-visible:border-border-focus focus-visible:shadow-ring focus-visible:outline-none"
+          aria-invalid="false"
+          name="email"
+        />
+      </label>
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+        <label class="flex flex-col gap-1.5">
+          <span class="text-sm font-semibold text-text-secondary">Name</span>
+          <input
+            type="text"
+            placeholder="Jordan Mehta"
+            class="w-full rounded-md border border-input-color-border-default bg-input-color-background-default px-4 py-3 text-text-primary placeholder:text-text-tertiary transition-colors duration-150 hover:border-input-color-border-hover focus-visible:border-border-focus focus-visible:shadow-ring focus-visible:outline-none"
+            name="name"
+          />
+        </label>
+        <label class="flex flex-col gap-1.5">
+          <span class="text-sm font-semibold text-text-secondary">Company</span>
+          <input
+            type="text"
+            placeholder="Halcyon"
+            class="w-full rounded-md border border-input-color-border-default bg-input-color-background-default px-4 py-3 text-text-primary placeholder:text-text-tertiary transition-colors duration-150 hover:border-input-color-border-hover focus-visible:border-border-focus focus-visible:shadow-ring focus-visible:outline-none"
+            name="company"
+          />
+        </label>
+      </div>
+      <label class="flex flex-col gap-1.5">
+        <span class="text-sm font-semibold text-text-secondary">
+          What must this position deliver?
+        </span>
+        <textarea
+          name="need"
+          rows="3"
+          placeholder="e.g. We need RAG in production, not another proof-of-concept."
+          class="w-full rounded-md border border-input-color-border-default bg-input-color-background-default px-4 py-3 text-text-primary placeholder:text-text-tertiary transition-colors duration-150 hover:border-input-color-border-hover focus-visible:border-border-focus focus-visible:shadow-ring focus-visible:outline-none"
+        ></textarea>
+      </label>
+      <fieldset class="flex flex-col gap-3 rounded-lg border border-border-default p-4">
+        <legend class="px-1 text-sm font-semibold text-text-secondary">
+          Help us prepare the position review
+        </legend>
+        <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
+          <label class="flex flex-col gap-1.5">
+            <span class="text-xs font-semibold text-text-tertiary">
+              Team size
+            </span>
+            <select
+              name="teamSize"
+              class="w-full rounded-md border border-input-color-border-default bg-input-color-background-default px-4 py-3 text-text-primary placeholder:text-text-tertiary transition-colors duration-150 hover:border-input-color-border-hover focus-visible:border-border-focus focus-visible:shadow-ring focus-visible:outline-none"
+            >
+              <option value="" selected="">
+                —
+              </option>
+              <option value="1-5">1–5</option>
+              <option value="6-20">6–20</option>
+              <option value="21-50">21–50</option>
+              <option value="50+">50+</option>
+            </select>
+          </label>
+          <label class="flex flex-col gap-1.5">
+            <span class="text-xs font-semibold text-text-tertiary">
+              Start window
+            </span>
+            <select
+              name="startWindow"
+              class="w-full rounded-md border border-input-color-border-default bg-input-color-background-default px-4 py-3 text-text-primary placeholder:text-text-tertiary transition-colors duration-150 hover:border-input-color-border-hover focus-visible:border-border-focus focus-visible:shadow-ring focus-visible:outline-none"
+            >
+              <option value="" selected="">
+                —
+              </option>
+              <option value="this-week">This week</option>
+              <option value="this-month">This month</option>
+              <option value="this-quarter">This quarter</option>
+              <option value="exploring">Just exploring</option>
+            </select>
+          </label>
+          <label class="flex flex-col gap-1.5">
+            <span class="text-xs font-semibold text-text-tertiary">
+              Engagement
+            </span>
+            <select
+              name="engagementShape"
+              class="w-full rounded-md border border-input-color-border-default bg-input-color-background-default px-4 py-3 text-text-primary placeholder:text-text-tertiary transition-colors duration-150 hover:border-input-color-border-hover focus-visible:border-border-focus focus-visible:shadow-ring focus-visible:outline-none"
+            >
+              <option value="" selected="">
+                —
+              </option>
+              <option value="embed">Embed in our team</option>
+              <option value="pod">A pod</option>
+              <option value="project">A project</option>
+              <option value="unsure">Not sure yet</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+      <button
+        type="submit"
+        class="inline-flex items-center justify-center gap-2 rounded-full transition duration-120 ease-standard hover:-translate-y-px active:translate-y-px focus-visible:shadow-ring focus-visible:outline-none disabled:pointer-events-none disabled:bg-background-disabled disabled:text-text-disabled disabled:shadow-none motion-reduce:transition-none motion-reduce:hover:translate-y-0 bg-background-accent text-text-inverse-primary shadow-sm hover:bg-background-accent-hover hover:shadow-md px-8 py-4 text-base font-semibold self-start"
+      >
+        Request a position review →
+      </button>
+    </form>
+  </main>
+</Base>

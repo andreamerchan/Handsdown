@@ -1,0 +1,124 @@
+{
+  "seo": {
+    "title": "Hire an ML / Forecasting Engineer",
+    "description": "Forecasts that run every day, not once in a notebook. Hire one when your forecasts need to run in production and feed planning."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/data-analytics",
+        "label": "Data & Analytics"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "ML / Forecasting Engineer"
+      }
+    ],
+    "titleAccent": "A forecasting engineer",
+    "titleRest": " who puts the forecast into the plan.",
+    "lede": "Demand, revenue and capacity forecasts, built to run on schedule and checked against what happened."
+  },
+  "detail": {
+    "roleName": "ML / Forecasting Engineer",
+    "skillsLabel": "Technologies",
+    "exampleRoles": [],
+    "promptPlaceholder": "Pick technologies below, or type what you need",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Languages"
+      },
+      {
+        "label": "Methods"
+      },
+      {
+        "label": "Libraries"
+      },
+      {
+        "label": "Operations"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Python",
+        "group": "Languages"
+      },
+      {
+        "name": "SQL",
+        "group": "Languages"
+      },
+      {
+        "name": "Time series forecasting",
+        "group": "Methods"
+      },
+      {
+        "name": "scikit-learn",
+        "group": "Libraries"
+      },
+      {
+        "name": "Prophet",
+        "group": "Libraries"
+      },
+      {
+        "name": "XGBoost",
+        "group": "Libraries"
+      },
+      {
+        "name": "MLflow",
+        "group": "Operations"
+      },
+      {
+        "name": "Airflow",
+        "group": "Operations"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "Forecasts",
+    "titleRest": " that run on schedule and land where planners work:",
+    "points": [
+      {
+        "text": "Models retrained and checked against what actually happened"
+      },
+      {
+        "text": "Predictions with honest ranges, not single numbers"
+      },
+      {
+        "text": "The pipeline around the model, not just the model"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior RAG engineer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior backend engineer"
+      },
+      {
+        "label": "DevOps & cloud"
+      },
+      {
+        "label": "Product designer"
+      },
+      {
+        "label": "Data engineer"
+      },
+      {
+        "label": "Full-stack squad"
+      }
+    ]
+  }
+}

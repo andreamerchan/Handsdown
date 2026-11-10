@@ -1,0 +1,141 @@
+{
+  "seo": {
+    "title": "Hire an AI/ML Engineer",
+    "description": "AI features that hold up in production. Hire one when you want AI features working inside your product, not just a demo."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/ai-data",
+        "label": "AI & Data"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "AI/ML Engineer"
+      }
+    ],
+    "titleAccent": "An AI engineer",
+    "titleRest": " who takes features from demo to production.",
+    "lede": "Models, LLM integrations, and the evaluation that keeps them reliable."
+  },
+  "detail": {
+    "roleName": "AI/ML Engineer",
+    "skillsLabel": "Technologies",
+    "exampleRoles": [
+      {
+        "removeLabel": "Remove Senior ML engineer",
+        "label": "Senior ML engineer"
+      },
+      {
+        "removeLabel": "Remove Computer vision engineer",
+        "label": "Computer vision engineer"
+      },
+      {
+        "removeLabel": "Remove NLP engineer",
+        "label": "NLP engineer"
+      }
+    ],
+    "promptPlaceholder": "e.g. a senior ml engineer, US-hours overlap",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Techniques"
+      },
+      {
+        "label": "Tooling"
+      },
+      {
+        "label": "Languages"
+      },
+      {
+        "label": "Operations"
+      }
+    ],
+    "skills": [
+      {
+        "name": "LLM integration",
+        "group": "Techniques"
+      },
+      {
+        "name": "RAG",
+        "group": "Techniques"
+      },
+      {
+        "name": "AI agents",
+        "group": "Techniques"
+      },
+      {
+        "name": "LangChain / LlamaIndex",
+        "group": "Tooling"
+      },
+      {
+        "name": "Vector databases",
+        "group": "Tooling"
+      },
+      {
+        "name": "Python",
+        "group": "Languages"
+      },
+      {
+        "name": "PyTorch",
+        "group": "Tooling"
+      },
+      {
+        "name": "MLOps",
+        "group": "Operations"
+      },
+      {
+        "name": "Evals",
+        "group": "Operations"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "AI features",
+    "titleRest": " built into the product your users already use:",
+    "points": [
+      {
+        "text": "LLM integrations, retrieval, and the pipelines around them"
+      },
+      {
+        "text": "Evaluation and monitoring so quality holds after launch"
+      },
+      {
+        "text": "Cost and latency kept in check as usage grows"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior ml engineer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior ML engineer"
+      },
+      {
+        "label": "Computer vision engineer"
+      },
+      {
+        "label": "NLP engineer"
+      },
+      {
+        "label": "ML training specialist"
+      },
+      {
+        "label": "Machine learning lead"
+      }
+    ]
+  }
+}

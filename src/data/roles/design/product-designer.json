@@ -1,0 +1,130 @@
+{
+  "seo": {
+    "title": "Hire a Product Designer",
+    "description": "End-to-end, from the problem to the shipped flow. Hire one when you need someone to shape features and flows from problem to release."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/design",
+        "label": "Design"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "Product Designer"
+      }
+    ],
+    "titleAccent": "A product designer",
+    "titleRest": " who owns the flow from problem to release.",
+    "lede": "Research, interaction, and interfaces your engineers can build."
+  },
+  "detail": {
+    "roleName": "Product Designer",
+    "skillsLabel": "Skills & tools",
+    "exampleRoles": [
+      {
+        "removeLabel": "Remove Senior product designer",
+        "label": "Senior product designer"
+      },
+      {
+        "removeLabel": "Remove UX / UI designer",
+        "label": "UX / UI designer"
+      },
+      {
+        "removeLabel": "Remove Product design lead",
+        "label": "Product design lead"
+      }
+    ],
+    "promptPlaceholder": "e.g. a senior product designer, US-hours overlap",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Tools"
+      },
+      {
+        "label": "Design"
+      },
+      {
+        "label": "Research"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Figma",
+        "group": "Tools"
+      },
+      {
+        "name": "UI design",
+        "group": "Design"
+      },
+      {
+        "name": "UX research",
+        "group": "Research"
+      },
+      {
+        "name": "User flows & wireframes",
+        "group": "Design"
+      },
+      {
+        "name": "Prototyping",
+        "group": "Design"
+      },
+      {
+        "name": "Usability testing",
+        "group": "Research"
+      },
+      {
+        "name": "Web & mobile",
+        "group": "Design"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "End-to-end flows,",
+    "titleRest": " from first sketch to shipped screen:",
+    "points": [
+      {
+        "text": "Prototypes you can test before you build"
+      },
+      {
+        "text": "Design decisions backed by what users actually do"
+      },
+      {
+        "text": "Handoff your engineers can build from directly"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior product designer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior product designer"
+      },
+      {
+        "label": "UX / UI designer"
+      },
+      {
+        "label": "Product design lead"
+      },
+      {
+        "label": "Design generalist"
+      },
+      {
+        "label": "Embedded design team"
+      }
+    ]
+  }
+}

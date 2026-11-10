@@ -1,0 +1,105 @@
+{
+  "seo": {
+    "title": "Hire Product and UX Designers",
+    "description": "Senior product, UX, UI and design systems designers, researchers and prototypers from Latin America who work in your hours."
+  },
+  "hero": {
+    "titleAccent": "Designers",
+    "titleRest": " who own the decisions behind the screens.",
+    "lede": "Tell us what you’re designing and who it’s for.",
+    "promptPlaceholder": "e.g. a senior product designer, US-hours overlap"
+  },
+  "specializations": {
+    "promptPlaceholder": "e.g. a senior product designer, US-hours overlap",
+    "roles": [
+      {
+        "name": "Product Designer",
+        "summary": "End-to-end, from the problem to the shipped flow.",
+        "facts": [
+          {
+            "label": "Working hours",
+            "value": "US overlap, from Latin America"
+          }
+        ],
+        "href": "/hire/design/product-designer",
+        "cta": "Find a product designer "
+      },
+      {
+        "name": "Design Systems Designer",
+        "summary": "Components your engineers will reuse.",
+        "facts": [
+          {
+            "label": "Working hours",
+            "value": "US overlap, from Latin America"
+          }
+        ],
+        "href": "/hire/design/design-systems-designer",
+        "cta": "Find a design systems designer "
+      },
+      {
+        "name": "UX Designer",
+        "summary": "Journeys and flows people finish.",
+        "facts": [
+          {
+            "label": "Working hours",
+            "value": "US overlap, from Latin America"
+          }
+        ],
+        "href": "/hire/design/ux-designer",
+        "cta": "Find a UX designer "
+      },
+      {
+        "name": "Interaction Designer",
+        "summary": "Behaviors, states and motion that make each action clear.",
+        "facts": [
+          {
+            "label": "Working hours",
+            "value": "US overlap, from Latin America"
+          }
+        ],
+        "href": "/hire/design/interaction-designer",
+        "cta": "Find an interaction designer "
+      },
+      {
+        "name": "UI & Visual Designer",
+        "summary": "Interfaces that look finished and stay consistent.",
+        "facts": [
+          {
+            "label": "Working hours",
+            "value": "US overlap, from Latin America"
+          }
+        ],
+        "href": "/hire/design/ui-visual-designer",
+        "cta": "Find a UI designer "
+      },
+      {
+        "name": "User Researcher",
+        "summary": "Research that tells you what to build next.",
+        "facts": [
+          {
+            "label": "Working hours",
+            "value": "US overlap, from Latin America"
+          }
+        ],
+        "href": "/hire/design/user-researcher",
+        "cta": "Find a user researcher "
+      },
+      {
+        "name": "Prototyper",
+        "summary": "Clickable prototypes to test before you build.",
+        "facts": [
+          {
+            "label": "Working hours",
+            "value": "US overlap, from Latin America"
+          }
+        ],
+        "href": "/hire/design/prototyper",
+        "cta": "Find a prototyper "
+      }
+    ],
+    "briefEyebrow": "Role brief · Product Designer",
+    "briefTitle": "Product designer",
+    "briefHref": "/hire/design/product-designer",
+    "briefCta": "Find a product designer "
+  }
+}

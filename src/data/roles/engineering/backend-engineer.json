@@ -1,0 +1,145 @@
+{
+  "seo": {
+    "title": "Hire a Backend Engineer",
+    "description": "Services, data, and the things that break under load. Hire one when the systems behind your product need to scale and hold up."
+  },
+  "hero": {
+    "breadcrumbs": [
+      {
+        "href": "/hire",
+        "label": "Hire"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "href": "/hire/engineering",
+        "label": "Engineering"
+      },
+      {
+        "ariaHidden": "true",
+        "separator": true
+      },
+      {
+        "current": "Backend Engineer"
+      }
+    ],
+    "titleAccent": "A backend engineer",
+    "titleRest": " for the part that has to hold.",
+    "lede": "Services, data, and the systems that get loud under load."
+  },
+  "detail": {
+    "roleName": "Backend Engineer",
+    "skillsLabel": "Technologies",
+    "exampleRoles": [
+      {
+        "removeLabel": "Remove Senior backend engineer",
+        "label": "Senior backend engineer"
+      },
+      {
+        "removeLabel": "Remove API specialist",
+        "label": "API specialist"
+      },
+      {
+        "removeLabel": "Remove Platform engineer",
+        "label": "Platform engineer"
+      }
+    ],
+    "promptPlaceholder": "e.g. a senior backend engineer, US-hours overlap",
+    "skillGroups": [
+      {
+        "label": "All"
+      },
+      {
+        "label": "Languages"
+      },
+      {
+        "label": "Frameworks"
+      },
+      {
+        "label": "Databases"
+      },
+      {
+        "label": "Architecture"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Node.js",
+        "group": "Languages"
+      },
+      {
+        "name": "Python",
+        "group": "Languages"
+      },
+      {
+        "name": "Java",
+        "group": "Languages"
+      },
+      {
+        "name": "Go",
+        "group": "Languages"
+      },
+      {
+        "name": ".NET / C#",
+        "group": "Languages"
+      },
+      {
+        "name": "Ruby on Rails",
+        "group": "Frameworks"
+      },
+      {
+        "name": "PHP / Laravel",
+        "group": "Frameworks"
+      },
+      {
+        "name": "PostgreSQL",
+        "group": "Databases"
+      },
+      {
+        "name": "REST & GraphQL APIs",
+        "group": "Architecture"
+      },
+      {
+        "name": "Microservices",
+        "group": "Architecture"
+      }
+    ]
+  },
+  "plate": {
+    "titleAccent": "APIs and services",
+    "titleRest": " other teams depend on:",
+    "points": [
+      {
+        "text": "Databases, queues, and the things that fail at scale"
+      },
+      {
+        "text": "Reliability, on-call, and the incidents behind it"
+      },
+      {
+        "text": "Decisions your team will still be living with in two years"
+      }
+    ]
+  },
+  "cta": {
+    "promptPlaceholder": "Describe your role, e.g. a senior backend engineer with US-hours overlap",
+    "suggestions": [
+      {
+        "label": "Senior backend engineer"
+      },
+      {
+        "label": "API specialist"
+      },
+      {
+        "label": "Platform engineer"
+      },
+      {
+        "label": "Database engineer"
+      },
+      {
+        "label": "Backend team lead"
+      }
+    ]
+  }
+}
