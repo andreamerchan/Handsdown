@@ -1,8 +1,8 @@
 ---
 // Sticky site header. `active` highlights the current section in the nav.
-// Scroll behaviour, the Hire Talent menu and the mobile menu live in src/scripts/header.ts.
+// Behaviour (hide on scroll, light/dark tone, Hire Talent menu, mobile menu) is in src/scripts/site/header.ts.
 import Logo from "./Logo.astro";
-import type { NavId } from "../../data/site";
+import { hireMenu, promptDestination, type NavId } from "../../data/site";
 
 interface Props {
   active?: NavId;
@@ -49,7 +49,7 @@ const current = (id: NavId) => (active === id ? "page" : undefined);
         <a href="/" class={navLink("home")} aria-current={current("home")}>
           Home
         </a>
-        <div class="flex self-stretch">
+        <div class="flex self-stretch" data-hire-menu>
           <div class="flex items-center self-stretch px-[18px]">
             <a href="/hire" class={active === "hire" ? hireOn : hireOff}>
               Hire Talent
@@ -78,6 +78,70 @@ const current = (id: NavId) => (active === id ? "page" : undefined);
                 />
               </svg>
             </button>
+          </div>
+          <div
+            id="hire-menu-panel"
+            hidden
+            role="region"
+            aria-labelledby="hire-menu-trigger"
+            class="absolute inset-x-0 top-full border-b border-border-default bg-background-raised shadow-md motion-safe:animate-[www-menu-in_160ms_var(--ease-standard)]"
+          >
+            <div class="mx-auto w-full max-w-[1280px] px-6 pt-8 pb-10">
+              <div class="flex items-end justify-between gap-6 border-b border-border-default pb-5">
+                <div>
+                  <span class="font-mono text-[11px] font-medium tracking-[0.18em] text-text-brand uppercase">
+                    Hire Talent
+                  </span>
+                  <p class="mt-2 text-[24px] leading-tight font-semibold tracking-[-0.02em] text-text-primary">
+                    Browse vetted talent by capability
+                  </p>
+                </div>
+                <a
+                  href="/hire"
+                  class="inline-flex flex-none items-center gap-1.5 text-sm font-semibold text-text-brand transition-colors duration-120 hover:text-text-accent any-pointer-coarse:min-h-11"
+                >
+                  All talent <span aria-hidden="true">→</span>
+                </a>
+              </div>
+              <ul
+                class="mt-6 grid gap-6"
+                style={`grid-template-columns: repeat(${hireMenu.length}, minmax(0, 1fr))`}
+              >
+                {hireMenu.map((group) => (
+                  <li>
+                    <p class="flex items-baseline gap-2">
+                      <a
+                        href={group.href}
+                        class="rounded-md text-[15px] font-semibold tracking-[-0.015em] text-text-primary no-underline transition-colors duration-120 hover:text-text-brand focus-visible:shadow-ring focus-visible:outline-none any-pointer-coarse:inline-flex any-pointer-coarse:min-h-11 any-pointer-coarse:items-center"
+                      >
+                        {group.name}
+                      </a>
+                      {group.count != null && (
+                        <span class="font-mono text-[12px] text-text-tertiary">
+                          {group.count}
+                          <span class="sr-only"> vetted specialists</span>
+                        </span>
+                      )}
+                    </p>
+                    <ul
+                      aria-label={`${group.name} roles`}
+                      class="mt-3.5 flex flex-col gap-2.5 any-pointer-coarse:gap-0"
+                    >
+                      {group.roles.map((role) => (
+                        <li>
+                          <a
+                            href={role.href}
+                            class="rounded-md text-[14px] leading-5 text-text-secondary no-underline transition-colors duration-120 hover:text-text-brand focus-visible:shadow-ring focus-visible:outline-none any-pointer-coarse:flex any-pointer-coarse:min-h-11 any-pointer-coarse:w-full any-pointer-coarse:items-center"
+                          >
+                            {role.name}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
         <a
@@ -116,7 +180,7 @@ const current = (id: NavId) => (active === id ? "page" : undefined);
       </span>
       <a
         class="inline-flex items-center justify-center gap-2 rounded-full transition duration-120 ease-standard hover:-translate-y-px active:translate-y-px focus-visible:shadow-ring focus-visible:outline-none disabled:pointer-events-none disabled:bg-background-disabled disabled:text-text-disabled disabled:shadow-none motion-reduce:transition-none motion-reduce:hover:translate-y-0 border border-slate-800 bg-background-inverted text-text-inverse-primary shadow-dark-btn hover:bg-background-inverted-hover h-11 px-6 text-[14px] font-medium tracking-[-0.04em] whitespace-nowrap px-5 sm:px-9 group-data-[tone=dark]/header:border-transparent group-data-[tone=dark]/header:bg-background-raised group-data-[tone=dark]/header:text-text-primary group-data-[tone=dark]/header:hover:bg-background-neutral-hover"
-        href="/match"
+        href={promptDestination}
       >
         Describe your role
       </a>
@@ -125,7 +189,8 @@ const current = (id: NavId) => (active === id ? "page" : undefined);
           type="button"
           aria-label="Open menu"
           aria-expanded="false"
-          aria-controls="hd-1"
+          data-menu-toggle
+          aria-controls="site-mobile-menu"
           class="inline-flex size-11 items-center justify-center rounded-full text-text-primary transition-colors duration-120 hover:text-text-brand focus-visible:shadow-ring focus-visible:outline-none group-data-[tone=dark]/header:text-text-inverse-primary group-data-[tone=dark]/header:hover:text-text-inverse-accent"
         >
           <svg
@@ -143,7 +208,120 @@ const current = (id: NavId) => (active === id ? "page" : undefined);
             />
           </svg>
         </button>
+        <button
+          type="button"
+          aria-hidden="true"
+          tabindex="-1"
+          hidden
+          data-menu-backdrop
+          class="fixed inset-0 top-[74px] z-40 cursor-default bg-background-inverted/[0.1]"
+        ></button>
+        <div
+          id="site-mobile-menu"
+          hidden
+          class="absolute inset-x-0 top-full z-50 max-h-[calc(100svh-74px)] overflow-y-auto overscroll-contain border-b border-border-default bg-background-raised shadow-lg"
+        >
+          <nav class="mx-auto flex w-full max-w-[1280px] flex-col gap-1 px-6 py-4">
+            <a
+              class="flex min-h-11 items-center rounded-xl px-2 text-[15px] font-semibold text-text-primary transition-colors duration-120 hover:bg-background-inverted/[0.04] hover:text-text-brand"
+              href="/"
+            >
+              Home
+            </a>
+            <div>
+              <button
+                type="button"
+                aria-expanded="false"
+                aria-controls="site-mobile-hire"
+                class="flex min-h-11 items-center rounded-xl px-2 no-underline transition-colors duration-120 hover:bg-background-inverted/[0.04] hover:text-text-brand focus-visible:shadow-ring focus-visible:outline-none w-full justify-between text-[15px] font-semibold text-text-primary"
+                data-hire-toggle
+              >
+                Hire Talent
+                <svg
+                  viewBox="0 0 10 6"
+                  aria-hidden="true"
+                  class="h-1.5 w-2.5 transition-transform duration-150 ease-standard motion-reduce:transition-none"
+                >
+                  <path
+                    d="M1 1l4 4 4-4"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+              <div
+                id="site-mobile-hire"
+                hidden
+                class="mb-2 ml-2 border-l border-border-default pl-2"
+              >
+                <a
+                  href="/hire"
+                  class="flex min-h-11 items-center rounded-xl px-2 no-underline transition-colors duration-120 hover:bg-background-inverted/[0.04] hover:text-text-brand focus-visible:shadow-ring focus-visible:outline-none gap-1.5 text-[14px] font-semibold text-text-brand"
+                >
+                  All talent <span aria-hidden="true">→</span>
+                </a>
+                <ul>
+                  {hireMenu.map((group) => (
+                    <li>
+                      <a
+                        href={group.href}
+                        class="flex min-h-11 items-center rounded-xl px-2 no-underline transition-colors duration-120 hover:bg-background-inverted/[0.04] hover:text-text-brand focus-visible:shadow-ring focus-visible:outline-none gap-2 text-[14px] font-semibold text-text-primary"
+                      >
+                        {group.name}
+                        {group.count != null && (
+                          <span class="font-mono text-[12px] font-normal text-text-tertiary">
+                            {group.count}
+                            <span class="sr-only"> vetted specialists</span>
+                          </span>
+                        )}
+                      </a>
+                      <ul aria-label={`${group.name} roles`}>
+                        {group.roles.map((role) => (
+                          <li>
+                            <a
+                              href={role.href}
+                              class="flex min-h-11 items-center rounded-xl px-2 no-underline transition-colors duration-120 hover:bg-background-inverted/[0.04] hover:text-text-brand focus-visible:shadow-ring focus-visible:outline-none pl-5 text-[14px] text-text-secondary"
+                            >
+                              {role.name}
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+            <a
+              class="flex min-h-11 items-center rounded-xl px-2 text-[15px] font-semibold text-text-primary transition-colors duration-120 hover:bg-background-inverted/[0.04] hover:text-text-brand"
+              href="/how-it-works"
+            >
+              How it Works
+            </a>
+            <a
+              class="flex min-h-11 items-center rounded-xl px-2 text-[15px] font-semibold text-text-primary transition-colors duration-120 hover:bg-background-inverted/[0.04] hover:text-text-brand"
+              href="/pricing"
+            >
+              Pricing
+            </a>
+            <div class="pt-3">
+              <a
+                class="inline-flex items-center justify-center gap-2 rounded-full transition duration-120 ease-standard hover:-translate-y-px active:translate-y-px focus-visible:shadow-ring focus-visible:outline-none disabled:pointer-events-none disabled:bg-background-disabled disabled:text-text-disabled disabled:shadow-none motion-reduce:transition-none motion-reduce:hover:translate-y-0 bg-background-neutral text-text-primary hover:bg-background-neutral-hover h-11 px-6 text-[15px] font-semibold w-full border border-border-default"
+                href="/apply"
+              >
+                Apply as Talent
+              </a>
+            </div>
+          </nav>
+        </div>
       </div>
     </div>
   </nav>
 </header>
+
+<script>
+  import "../../scripts/site/header.ts";
+</script>

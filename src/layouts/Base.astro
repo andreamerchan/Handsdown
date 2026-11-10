@@ -7,10 +7,53 @@ interface Props {
   description: string;
   /** Title used for social previews. Defaults to `title`. */
   ogTitle?: string;
+  /** Trail between "Home" and this page, for search engines. Defaults to just this page. */
+  breadcrumbs?: { name: string; path: string }[];
 }
 
-const { title, description, ogTitle = title } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const { title, description, ogTitle = title, breadcrumbs } = Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const canonical = new URL(path, Astro.site);
+const site = new URL("/", Astro.site).href.replace(/\/$/, "");
+
+// Structured data for search engines.
+const organization = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${site}/#organization`,
+      name: "Handsdown",
+      url: site,
+      description:
+        "Handsdown is an AI-first staff augmentation company: senior engineers, designers, data and product specialists from Latin America who join your team and work your hours.",
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${site}/#website`,
+      name: "Handsdown",
+      url: site,
+      publisher: { "@id": `${site}/#organization` },
+    },
+  ],
+};
+const trail =
+  path === "/"
+    ? []
+    : [
+        { name: "Home", path: "" },
+        ...(breadcrumbs ?? [{ name: ogTitle, path }]),
+      ];
+const breadcrumbList = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: trail.map((crumb, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: crumb.name,
+    item: site + crumb.path,
+  })),
+};
 ---
 
 <!doctype html>
@@ -29,6 +72,17 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={ogTitle} />
     <meta name="twitter:description" content={description} />
+    {trail.length > 0 && (
+      <script
+        type="application/ld+json"
+        set:html={JSON.stringify(breadcrumbList)}
+      />
+    )}
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(organization)}
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
       rel="preload"
       href="/fonts/plus-jakarta-sans-4.woff2"
@@ -41,5 +95,19 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <div class="www-page">
       <slot />
     </div>
+    <noscript>
+      <!-- Without JavaScript nothing triggers the scroll reveal: show everything. -->
+      <style>
+        [data-reveal="out"] {
+          opacity: 1;
+          filter: none;
+          transform: none;
+        }
+      </style>
+    </noscript>
+    <script>
+      import "../scripts/site/reveal.ts";
+      import "../scripts/site/prompts.ts";
+    </script>
   </body>
 </html>

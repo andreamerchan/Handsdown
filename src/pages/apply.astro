@@ -117,6 +117,7 @@ import Base from "../layouts/Base.astro";
         <div class="flex flex-wrap items-center gap-x-[30px] gap-y-3">
           <button
             type="button"
+            data-apply-start
             class="inline-flex min-h-11 items-center rounded-full bg-background-inverted px-[18px] text-[14px] leading-5 font-medium text-text-inverse-primary transition duration-120 ease-standard hover:bg-background-inverted-hover focus-visible:shadow-ring focus-visible:outline-none active:translate-y-px motion-reduce:transition-none"
           >
             Start application
@@ -124,8 +125,32 @@ import Base from "../layouts/Base.astro";
           <span class="text-[14px] leading-5 text-text-secondary">
             About 3 minutes with a CV
           </span>
+          <p
+            data-apply-status
+            role="status"
+            class="w-full text-[14px] leading-5 text-text-secondary"
+            hidden
+          ></p>
         </div>
       </section>
     </div>
   </div>
 </Base>
+
+<script>
+  import { applyDestination } from "../data/site";
+
+  // "Start application" opens the application flow once one is configured in src/data/site.ts.
+  const button =
+    document.querySelector<HTMLButtonElement>("[data-apply-start]");
+  const status = document.querySelector<HTMLElement>("[data-apply-status]");
+  button?.addEventListener("click", () => {
+    if (applyDestination) {
+      location.href = applyDestination;
+    } else if (status) {
+      status.textContent =
+        "Applications are not connected yet (set applyDestination in src/data/site.ts).";
+      status.hidden = false;
+    }
+  });
+</script>

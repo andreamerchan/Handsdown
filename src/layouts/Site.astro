@@ -12,6 +12,8 @@ interface Props {
   active?: NavId;
   footer?: "light" | "dark";
   fullTitle?: boolean;
+  /** Trail between "Home" and this page, for search engines. */
+  breadcrumbs?: { name: string; path: string }[];
 }
 const {
   title,
@@ -19,6 +21,7 @@ const {
   active,
   footer = "light",
   fullTitle = false,
+  breadcrumbs,
 } = Astro.props;
 ---
 
@@ -26,6 +29,7 @@ const {
   title={fullTitle ? title : `${title} · Handsdown`}
   description={description}
   ogTitle={title}
+  breadcrumbs={breadcrumbs}
 >
   <div class="relative overflow-x-clip">
     <slot name="backdrop" />
