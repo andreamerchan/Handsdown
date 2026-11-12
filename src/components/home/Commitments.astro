@@ -2,10 +2,11 @@
 ---
 
 <div data-section-view="commitments">
-  <div data-reveal="out">
+  <div>
     <section
       id="commitments"
       aria-labelledby="partner-heading"
+      data-motion="commitments"
       class="www-partner relative scroll-mt-24 px-6 py-24 md:py-[70px]"
     >
       <span
@@ -23,9 +24,13 @@
         A partner for the whole engagement,{" "}
         <span class="text-gradient-conversation">not just the hire.</span>
       </h2>
-      <ul class="relative mx-auto mt-[60px] grid max-w-[1116px] gap-6 md:grid-cols-3 md:gap-[60px]">
+      <div class="hd-commit relative mx-auto mt-[60px] max-w-[1116px]">
+        <span class="hd-commit-line" aria-hidden="true">
+          <i style="--n:0"></i><i style="--n:1"></i><i style="--n:2"></i>
+        </span>
+      <ul class="relative grid gap-6 md:grid-cols-3 md:gap-[60px]">
         <li>
-          <article class="flex h-full flex-col gap-3 rounded-[15px] bg-background-raised px-[37px] py-[35px] shadow-[0_4px_1.55px_rgb(165_165_165/0.08)]">
+          <article data-commit="0" class="hd-commit-card flex h-full flex-col gap-3 rounded-[15px] bg-background-raised px-[37px] py-[35px] shadow-[0_4px_1.55px_rgb(165_165_165/0.08)]">
             <h3 class="text-[18px] leading-[30.45px] font-medium tracking-[-0.023em] text-text-accent">
               One partner on our side
             </h3>
@@ -36,7 +41,7 @@
           </article>
         </li>
         <li>
-          <article class="flex h-full flex-col gap-3 rounded-[15px] bg-background-raised px-[37px] py-[35px] shadow-[0_4px_1.55px_rgb(165_165_165/0.08)]">
+          <article data-commit="1" class="hd-commit-card flex h-full flex-col gap-3 rounded-[15px] bg-background-raised px-[37px] py-[35px] shadow-[0_4px_1.55px_rgb(165_165_165/0.08)]">
             <h3 class="text-[18px] leading-[30.45px] font-medium tracking-[-0.023em] text-text-accent">
               Part of your team
             </h3>
@@ -47,7 +52,7 @@
           </article>
         </li>
         <li>
-          <article class="flex h-full flex-col gap-3 rounded-[15px] bg-background-raised px-[37px] py-[35px] shadow-[0_4px_1.55px_rgb(165_165_165/0.08)]">
+          <article data-commit="2" class="hd-commit-card flex h-full flex-col gap-3 rounded-[15px] bg-background-raised px-[37px] py-[35px] shadow-[0_4px_1.55px_rgb(165_165_165/0.08)]">
             <h3 class="text-[18px] leading-[30.45px] font-medium tracking-[-0.023em] text-text-accent">
               Every decision is yours
             </h3>
@@ -58,6 +63,7 @@
           </article>
         </li>
       </ul>
+      </div>
     </section>
   </div>
 </div>

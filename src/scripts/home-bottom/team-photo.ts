@@ -210,20 +210,36 @@ function setUp(section: HTMLElement, photo: HTMLElement, card: HTMLElement) {
     );
   };
 
+  const startTour = () => {
+    touring = true;
+    resetTour();
+    // Two frames, so the "away" state is painted before the cursor moves in.
+    requestAnimationFrame(() => requestAnimationFrame(() => visit(0, true)));
+  };
+
+  // On wide screens the first card arrives from the shortlist above
+  // (src/motion/sections/handoff.ts sets `data-handoff`); the tour starts when
+  // it lands instead of at a fixed visibility.
+  const handoffMode = () => section.hasAttribute("data-handoff");
+  section.addEventListener("hd:handoff", (event) => {
+    const landed = (event as CustomEvent<{ landed: boolean }>).detail.landed;
+    if (landed && !touring) startTour();
+    else if (!landed && touring) {
+      touring = false;
+      resetTour();
+    }
+  });
+
   // Start the tour when the section is well in view; rewind once it is gone.
   const observer = new IntersectionObserver(
     (entries) => {
       const entry = entries[entries.length - 1];
       sectionVisible = entry.isIntersecting;
       schedulePhotoZoom();
+      const ready = !handoffMode() || section.dataset.handoff === "landed";
 
-      if (entry.intersectionRatio >= START_VISIBLE_RATIO && !touring) {
-        touring = true;
-        resetTour();
-        // Two frames, so the "away" state is painted before the cursor moves in.
-        requestAnimationFrame(() =>
-          requestAnimationFrame(() => visit(0, true)),
-        );
+      if (entry.intersectionRatio >= START_VISIBLE_RATIO && !touring && ready) {
+        startTour();
       } else if (!entry.isIntersecting && touring) {
         touring = false;
         resetTour();

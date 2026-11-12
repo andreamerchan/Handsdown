@@ -14,6 +14,9 @@
  * An illustration "plays" when it carries the `data-played` attribute.
  */
 
+import { createSpecSequence, type SpecSequence } from "../../motion/sections/spec-sequence";
+import { tokens } from "../../motion/tokens";
+
 type Layout = "pinned" | "flow" | "still";
 
 const PINNED_QUERY =
@@ -26,10 +29,6 @@ const HEADER_HEIGHT = 74;
 const STEP_SPAN = 0.225;
 /** An illustration starts playing once this much of it is visible ("flow"). */
 const PLAY_VISIBLE_RATIO = 0.35;
-
-/** Typing effect of the request bubble in step 1. */
-const TYPING_START_MS = 200;
-const TYPING_MS_PER_CHARACTER = 20;
 
 /** Coordinate system of the dotted map in step 2 (pins are placed in it). */
 const MAP_BOX = { width: 540, height: 498 };
@@ -69,8 +68,13 @@ function setUp(section: HTMLElement, track: HTMLElement, stage: HTMLElement) {
   });
   if (scenes.length !== steps.length) return;
 
-  const bubble = section.querySelector<HTMLElement>(".www-hww-bubble");
-  if (bubble) scenes[0].onPlay = createRequestTyper(bubble);
+  // Step 1 is a sequence (sentence -> spec) driven by scroll when pinned,
+  // by a timer when stacked, and shown finished with reduced motion.
+  const specPicture = section.querySelector<HTMLElement>(".www-hww-spec");
+  const spec = specPicture ? createSpecSequence(specPicture) : null;
+  if (spec)
+    scenes[0].onPlay = () =>
+      section.dataset.layout === "flow" ? spec.autoplay() : () => {};
 
   const mapCanvas = section.querySelector<HTMLCanvasElement>(".www-hwws-dots");
   if (mapCanvas) drawMapDots(mapCanvas);
@@ -88,9 +92,9 @@ function setUp(section: HTMLElement, track: HTMLElement, stage: HTMLElement) {
     leaveLayout();
     section.dataset.layout = layout;
     if (layout === "pinned")
-      leaveLayout = enterPinned(track, stage, steps, scenes);
+      leaveLayout = enterPinned(track, stage, steps, scenes, spec);
     else if (layout === "flow") leaveLayout = enterFlow(scenes);
-    else leaveLayout = enterStill(scenes);
+    else leaveLayout = enterStill(scenes, spec);
   };
 
   applyLayout();
@@ -123,44 +127,18 @@ function resetScene(scene: Scene) {
   delete scene.picture.dataset.played;
 }
 
-/**
- * Step 1: the request in the speech bubble is typed out letter by letter.
- * The rest of the illustration waits for it through the `--hww-typed` delay.
- */
-function createRequestTyper(bubble: HTMLElement) {
-  const request = (bubble.textContent ?? "").replace(/\s+/g, " ").trim();
-
-  return (picture: HTMLElement) => {
-    const timers: number[] = [];
-    bubble.textContent = "";
-    for (let length = 0; length <= request.length; length++) {
-      timers.push(
-        window.setTimeout(
-          () => (bubble.textContent = request.slice(0, length)),
-          TYPING_START_MS + TYPING_MS_PER_CHARACTER * length,
-        ),
-      );
-    }
-    picture.style.setProperty(
-      "--hww-typed",
-      `${TYPING_START_MS + TYPING_MS_PER_CHARACTER * request.length}ms`,
-    );
-
-    return () => {
-      timers.forEach(window.clearTimeout);
-      bubble.textContent = request;
-    };
-  };
-}
-
 /* ------------------------------------------------------------------------ */
 /* Layout: still (reduced motion)                                            */
 /* ------------------------------------------------------------------------ */
 
-function enterStill(scenes: Scene[]) {
+function enterStill(scenes: Scene[], spec: SpecSequence | null) {
   // Show every illustration in its finished state, without typing.
   scenes.forEach((scene) => (scene.picture.dataset.played = ""));
-  return () => scenes.forEach(resetScene);
+  spec?.render(1);
+  return () => {
+    scenes.forEach(resetScene);
+    spec?.render(0);
+  };
 }
 
 /* ------------------------------------------------------------------------ */
@@ -198,6 +176,7 @@ function enterPinned(
   stage: HTMLElement,
   steps: HTMLElement[],
   scenes: Scene[],
+  spec: SpecSequence | null,
 ) {
   const lastStep = steps.length - 1;
   /** How far the page scrolls while the stage stays pinned. */
@@ -246,6 +225,10 @@ function enterPinned(
     const progress = clamp01((HEADER_HEIGHT - trackTop) / scrollRange());
     const step = Math.min(lastStep, Math.floor(progress / STEP_SPAN));
     const reached = trackTop <= HEADER_HEIGHT + 1;
+    // Step 1's sequence follows the scroll position within its share of the range.
+    spec?.render(
+      clamp01(progress / (STEP_SPAN * tokens.scroll.specSequenceShare)),
+    );
 
     if (step === activeStep && reached === stageReached) return;
     if (step !== activeStep) showStep(step);

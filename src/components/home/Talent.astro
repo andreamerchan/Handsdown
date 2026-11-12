@@ -4,7 +4,7 @@
 <div data-section-view="talent">
   <section id="talent" aria-labelledby="talent-heading" class="pb-20 lg:pb-24">
     <div class="mx-auto max-w-[810px] px-6 text-center">
-      <div data-reveal="out">
+      <div>
         <h2
           id="talent-heading"
           class="text-[36px] leading-[1.2] font-medium tracking-[-0.04em] text-balance text-text-primary md:text-[54px]"
@@ -15,7 +15,7 @@
           </span>
         </h2>
       </div>
-      <div data-reveal="out" style="--reveal-delay:120ms">
+      <div>
         <p class="mx-auto mt-7 max-w-[770px] text-lg leading-[1.55] tracking-[-0.014em] text-text-secondary">
           We are the largest, globally distributed network of top business,
           design, and technology talent, ready to tackle your most important
@@ -23,10 +23,14 @@
         </p>
       </div>
     </div>
-    <div>
-      <ul class="mt-12 grid overflow-hidden border-y border-border-default bg-background-raised md:grid-cols-3 lg:mt-[57px]">
+    <div class="hd-talent-grid relative mt-12 lg:mt-[57px]" data-motion="talent-grid">
+      <span class="hd-rule hd-rule-top" aria-hidden="true"></span>
+      <span class="hd-rule hd-rule-bottom" aria-hidden="true"></span>
+      <span class="hd-rule hd-rule-col" style="--col:1" aria-hidden="true"></span>
+      <span class="hd-rule hd-rule-col" style="--col:2" aria-hidden="true"></span>
+      <ul class="grid overflow-hidden border-y border-border-default bg-background-raised md:grid-cols-3">
         <li class="border-b border-border-default last:border-b-0 md:border-r md:border-b-0 md:last:border-r-0">
-          <div data-reveal="out" class="h-full">
+          <div class="h-full" style="--i:0">
             <article class="www-talent-card relative flex h-full flex-col">
               <div class="relative z-[1] aspect-[480/310] overflow-hidden bg-background-neutral-subtle">
                 <img
@@ -37,6 +41,14 @@
                   loading="lazy"
                   decoding="async"
                   class="www-talent-photo size-full object-cover"
+                />
+                <img
+                  src="/brand/talent-cards/developers-750.jpg"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                  class="hd-blur-twin"
                 />
               </div>
               <div class="relative z-[1] flex flex-1 flex-col items-start gap-3.5 px-6 pt-8 pb-7 lg:gap-3 lg:px-8 lg:pt-6 lg:pb-6">
@@ -59,7 +71,7 @@
           </div>
         </li>
         <li class="border-b border-border-default last:border-b-0 md:border-r md:border-b-0 md:last:border-r-0">
-          <div data-reveal="out" style="--reveal-delay:120ms" class="h-full">
+          <div class="h-full" style="--i:1">
             <article class="www-talent-card relative flex h-full flex-col">
               <div class="relative z-[1] aspect-[480/310] overflow-hidden bg-background-neutral-subtle">
                 <img
@@ -70,6 +82,14 @@
                   loading="lazy"
                   decoding="async"
                   class="www-talent-photo size-full object-cover"
+                />
+                <img
+                  src="/brand/talent-cards/designers-750.jpg"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                  class="hd-blur-twin"
                 />
               </div>
               <div class="relative z-[1] flex flex-1 flex-col items-start gap-3.5 px-6 pt-8 pb-7 lg:gap-3 lg:px-8 lg:pt-6 lg:pb-6">
@@ -92,7 +112,7 @@
           </div>
         </li>
         <li class="border-b border-border-default last:border-b-0 md:border-r md:border-b-0 md:last:border-r-0">
-          <div data-reveal="out" style="--reveal-delay:240ms" class="h-full">
+          <div class="h-full" style="--i:2">
             <article class="www-talent-card relative flex h-full flex-col">
               <div class="relative z-[1] aspect-[480/310] overflow-hidden bg-background-neutral-subtle">
                 <img
@@ -103,6 +123,14 @@
                   loading="lazy"
                   decoding="async"
                   class="www-talent-photo size-full object-cover"
+                />
+                <img
+                  src="/brand/talent-cards/ai-data-750.jpg"
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  decoding="async"
+                  class="hd-blur-twin"
                 />
               </div>
               <div class="relative z-[1] flex flex-1 flex-col items-start gap-3.5 px-6 pt-8 pb-7 lg:gap-3 lg:px-8 lg:pt-6 lg:pb-6">

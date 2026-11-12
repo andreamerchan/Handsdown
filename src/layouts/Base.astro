@@ -83,6 +83,15 @@ const breadcrumbList = {
       set:html={JSON.stringify(organization)}
     />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script is:inline>
+      // Set before first paint so sections start in their "out of focus" state
+      // instead of flashing their final state (see src/styles/motion.css).
+      document.documentElement.dataset.motion = matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches
+        ? "reduced"
+        : "full";
+    </script>
     <link
       rel="preload"
       href="/fonts/plus-jakarta-sans-4.woff2"

@@ -1,0 +1,572 @@
+/*
+ * Home page motion ("Enfoque"). Behaviour lives in src/motion/; values in
+ * src/motion/tokens.ts (mirrored here as --m-* custom properties).
+ *
+ * Rule of the file: every "before" state is scoped to html[data-motion="full"].
+ * Without JavaScript, or with reduced motion, every element shows its final,
+ * readable state. Animations use opacity / transform (translate, scale);
+ * blur is only used on short, one-time "coming into focus" moments, and on
+ * photos it is a pre-blurred twin that fades out (opacity only).
+ */
+
+:root {
+  --m-dur-micro: 160ms;
+  --m-dur-short: 320ms;
+  --m-dur-base: 620ms;
+  --m-dur-focus: 1100ms;
+  --m-dur-draw: 1400ms;
+  --m-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --m-ease-inOut: cubic-bezier(0.65, 0, 0.35, 1);
+  --m-blur-headline: 14px;
+  --m-blur-photo: 22px;
+  --m-blur-value: 6px;
+  --m-stagger-line: 150ms;
+  --m-stagger-word: 40ms;
+  --m-stagger-card: 140ms;
+  --m-stagger-chip: 60ms;
+  --m-rise: 16px;
+}
+
+/* ---------------------------------------------------------------- focus lines
+   Hero headline and closing headline: each line comes into focus in turn. */
+
+[data-motion="focus-lines"] .hd-focus-line {
+  display: inline-block;
+}
+html[data-motion="full"] .hd-focus-line {
+  transition:
+    opacity var(--m-dur-focus) var(--m-ease-out),
+    filter var(--m-dur-focus) var(--m-ease-out),
+    translate var(--m-dur-focus) var(--m-ease-out);
+  transition-delay: calc(120ms + var(--i, 0) * var(--m-stagger-line));
+}
+html[data-motion="full"] [data-motion="focus-lines"]:not([data-focus="in"]) .hd-focus-line,
+html[data-motion="full"] [data-motion="invite"]:not([data-state="in"]) .hd-focus-line {
+  opacity: 0.12;
+  filter: blur(var(--m-blur-headline));
+  translate: 0 0.22em;
+}
+
+/* Hero stage leaves smoothly (values set per frame in home.ts). */
+html[data-motion="full"] .www-net-stage,
+html[data-motion="full"] .www-net-words {
+  will-change: translate, scale, opacity;
+}
+
+/* ---------------------------------------------------------------- talent grid
+   The grid draws itself, then each photo comes into focus. */
+
+.hd-rule,
+.hd-blur-twin {
+  display: none;
+}
+html[data-motion="full"] .hd-talent-grid > ul {
+  border-color: transparent;
+}
+@media (min-width: 768px) {
+  html[data-motion="full"] .hd-talent-grid > ul > li {
+    border-color: transparent;
+  }
+}
+html[data-motion="full"] .hd-rule {
+  display: block;
+  position: absolute;
+  z-index: 2;
+  pointer-events: none;
+  background: var(--color-border-default);
+  transition: scale var(--m-dur-draw) var(--m-ease-out);
+}
+html[data-motion="full"] .hd-rule-top,
+html[data-motion="full"] .hd-rule-bottom {
+  left: 0;
+  right: 0;
+  height: 1px;
+  scale: 0 1;
+}
+.hd-rule-top {
+  top: 0;
+  transform-origin: left;
+}
+.hd-rule-bottom {
+  bottom: 0;
+  transform-origin: right;
+  transition-delay: 160ms;
+}
+html[data-motion="full"] .hd-rule-col {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  left: calc(var(--col) * 100% / 3);
+  transform-origin: top;
+  scale: 1 0;
+  transition-delay: calc(240ms + var(--col) * 140ms);
+}
+@media (max-width: 767px) {
+  html[data-motion="full"] .hd-rule-col {
+    display: none;
+  }
+}
+html[data-motion="full"] [data-state="in"] .hd-rule {
+  scale: 1;
+}
+
+html[data-motion="full"] .hd-blur-twin {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(var(--m-blur-photo)) saturate(0.8);
+  scale: 1.14;
+  pointer-events: none;
+  transition: opacity var(--m-dur-focus) var(--m-ease-out);
+  transition-delay: calc(380ms + var(--i, 0) * var(--m-stagger-card));
+}
+html[data-motion="full"] .hd-talent-grid .www-talent-photo {
+  scale: 1.06;
+  transition: scale 1.8s var(--m-ease-out);
+  transition-delay: calc(380ms + var(--i, 0) * var(--m-stagger-card));
+}
+html[data-motion="full"] .hd-talent-grid[data-state="in"] .hd-blur-twin {
+  opacity: 0;
+}
+html[data-motion="full"] .hd-talent-grid[data-state="in"] .www-talent-photo {
+  scale: 1;
+}
+
+/* ---------------------------------------------------------------- map story
+   Each reason is set word by word: in from below, out through the top. */
+
+html[data-motion="full"] .www-tour[data-kinetic] .frame,
+html[data-motion="full"] .www-tour[data-kinetic] .frame.out {
+  transform: none;
+}
+.www-tour[data-kinetic] .frame h2 .hd-w {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+.www-tour[data-kinetic] .frame h2 .hd-w > span {
+  display: inline-block;
+  translate: 0 110%;
+  transition: translate 0.95s var(--m-ease-out);
+  transition-delay: calc(60ms + var(--wi, 0) * var(--m-stagger-word));
+}
+.www-tour[data-kinetic] .frame.on h2 .hd-w > span,
+.www-tour[data-kinetic]:not([data-tour-live]) .frame:first-child h2 .hd-w > span {
+  translate: none;
+}
+.www-tour[data-kinetic] .frame.out h2 .hd-w > span {
+  translate: 0 -110%;
+  transition-duration: 0.5s;
+  transition-delay: calc(var(--wi, 0) * 18ms);
+}
+.www-tour[data-kinetic] .frame p {
+  transition: translate 0.8s var(--m-ease-out) 0.25s;
+  translate: 0 10px;
+}
+.www-tour[data-kinetic] .frame.on p,
+.www-tour[data-kinetic]:not([data-tour-live]) .frame:first-child p {
+  translate: none;
+}
+
+/* ---------------------------------------------------------------- two ways
+   Who runs the day-to-day: one specialist joins your row of people, or a
+   small team arrives as a unit with its own lead. */
+
+.hd-join {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 14px 9px 12px;
+  border-radius: 9999px;
+  background: rgb(255 255 255 / 0.95);
+  box-shadow:
+    0 0 0 1px rgb(15 23 42 / 0.06),
+    0 14px 30px -14px rgb(15 23 42 / 0.45);
+  color: var(--color-text-primary);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.hd-join-team {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.hd-join-team i {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-slate-300);
+}
+.hd-join-team i[data-handsdown] {
+  background: var(--color-indigo-500);
+}
+.hd-join-new {
+  margin-left: 6px;
+}
+.hd-join-pod {
+  display: flex;
+  gap: 3px;
+  margin-left: 6px;
+  padding: 3px;
+  border-radius: 9999px;
+  box-shadow: inset 0 0 0 1px var(--color-indigo-200);
+}
+.hd-join-lead {
+  box-shadow:
+    0 0 0 1.5px #fff,
+    0 0 0 3px var(--color-violet);
+}
+html[data-motion="full"] .hd-join {
+  opacity: 0;
+  translate: 0 8px;
+  transition:
+    opacity var(--m-dur-base) var(--m-ease-out),
+    translate var(--m-dur-base) var(--m-ease-out);
+}
+html[data-motion="full"] .hd-join-team > i:not([data-handsdown]) {
+  opacity: 0;
+  scale: 0.4;
+  transition:
+    opacity 0.4s var(--m-ease-out),
+    scale 0.5s var(--m-ease-out);
+}
+html[data-motion="full"] .hd-join-team > i:nth-child(2) { transition-delay: 60ms; }
+html[data-motion="full"] .hd-join-team > i:nth-child(3) { transition-delay: 120ms; }
+html[data-motion="full"] .hd-join-team > i:nth-child(4) { transition-delay: 180ms; }
+html[data-motion="full"] .hd-join-new,
+html[data-motion="full"] .hd-join-pod {
+  opacity: 0;
+  translate: 34px 0;
+  transition:
+    opacity 0.5s var(--m-ease-out) 0.65s,
+    translate 0.9s var(--m-ease-out) 0.65s;
+}
+html[data-motion="full"] .hd-join-lead {
+  box-shadow:
+    0 0 0 1.5px #fff,
+    0 0 0 1.5px var(--color-violet);
+  transition: box-shadow 0.5s var(--m-ease-out) 1.35s;
+}
+html[data-motion="full"] .hd-join-label {
+  opacity: 0;
+  transition: opacity 0.5s var(--m-ease-out) 1s;
+}
+html[data-motion="full"] .hd-join[data-state="in"],
+html[data-motion="full"] .hd-join[data-state="in"] .hd-join-team > i,
+html[data-motion="full"] .hd-join[data-state="in"] .hd-join-new,
+html[data-motion="full"] .hd-join[data-state="in"] .hd-join-pod,
+html[data-motion="full"] .hd-join[data-state="in"] .hd-join-label {
+  opacity: 1;
+  translate: none;
+  scale: none;
+}
+html[data-motion="full"] .hd-join[data-state="in"] .hd-join-lead {
+  box-shadow:
+    0 0 0 1.5px #fff,
+    0 0 0 3px var(--color-violet);
+}
+
+/* ---------------------------------------------------------------- how we work, step 1
+   Driven by src/motion/sections/spec-sequence.ts through custom properties. */
+
+.www-hww-bubble mark {
+  color: inherit;
+  border-radius: 4px;
+  background: rgb(138 148 255 / calc(var(--hl, 0) * 0.42));
+  box-shadow: 0 0 0 2px rgb(138 148 255 / calc(var(--hl, 0) * 0.42));
+}
+.www-hww-spec[data-scrub] {
+  position: relative;
+}
+.www-hww-spec[data-scrub] .www-hww-row,
+.www-hww-spec[data-scrub] .www-hww-badge > *,
+.www-hww-spec[data-scrub] .www-hww-link:before,
+.www-hww-spec[data-scrub] .www-hww-link:after {
+  transition: none !important;
+}
+.www-hww-spec[data-scrub] .www-hww-link:before {
+  scale: 1 var(--link, 1);
+}
+.www-hww-spec[data-scrub] .www-hww-link:after {
+  scale: var(--arrow, 1);
+}
+.www-hww-spec[data-scrub] .www-hww-row {
+  opacity: var(--in, 1);
+  translate: 0 calc((1 - var(--in, 1)) * 6px);
+}
+.www-hww-spec[data-scrub] .www-hww-row > dd:first-of-type {
+  opacity: calc(0.15 + var(--val, 1) * 0.85);
+  filter: blur(calc((1 - var(--val, 1)) * var(--m-blur-value)));
+}
+.www-hww-spec[data-scrub] .www-hww-badge-done {
+  opacity: var(--done, 1);
+  scale: calc(0.92 + var(--done, 1) * 0.08);
+}
+.www-hww-spec[data-scrub] .www-hww-badge-wait {
+  opacity: calc(1 - var(--done, 1));
+}
+.www-hww-spec[data-scrub] .www-hww-scan {
+  animation: none !important;
+  opacity: var(--scan-o, 0);
+  translate: 0 var(--scan-y, 0px);
+}
+.hd-caret {
+  display: inline-block;
+  width: 1.5px;
+  height: 1.05em;
+  margin-left: 1px;
+  vertical-align: -0.17em;
+  background: currentColor;
+  animation: hd-blink 1s steps(1) infinite;
+}
+@keyframes hd-blink {
+  50% {
+    visibility: hidden;
+  }
+}
+.hd-ghost {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  margin: -2px -6px;
+  padding: 2px 6px;
+  border-radius: 6px;
+  background: var(--color-indigo-50);
+  color: var(--color-indigo-700);
+  box-shadow: 0 8px 18px -8px rgb(67 79 191 / 0.55);
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.3;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  will-change: translate, opacity;
+}
+
+/* ---------------------------------------------------------------- team photo hand-off */
+
+.hd-handoff {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 40;
+  overflow: hidden;
+  border-radius: 14px;
+  background: var(--color-background-raised);
+  box-shadow:
+    0 30px 60px -24px rgb(0 0 0 / 0.4),
+    0 0 0 1px var(--color-border-default);
+  pointer-events: none;
+  opacity: 0;
+  will-change: translate, width, height, opacity;
+}
+.hd-handoff-a,
+.hd-handoff-b {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  gap: 12px;
+}
+.hd-handoff-a {
+  align-items: center;
+  padding: 0 16px;
+  opacity: calc(1 - var(--swap, 0) * 1.6);
+  translate: 0 calc(var(--swap, 0) * -14px);
+}
+.hd-handoff-b {
+  flex-direction: column;
+  padding: 20px 22px;
+  opacity: calc(var(--swap, 0) * 1.6 - 0.6);
+  translate: 0 calc((1 - var(--swap, 0)) * 14px);
+}
+.hd-handoff b {
+  display: block;
+  color: var(--color-text-primary);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.2;
+}
+.hd-handoff-b b {
+  font-size: 20px;
+  line-height: 1;
+}
+.hd-handoff small {
+  display: block;
+  margin-top: 5px;
+  color: var(--color-text-tertiary);
+  font-size: 12px;
+  line-height: 1;
+}
+.hd-handoff-b small {
+  font-size: 15px;
+  margin-top: 4px;
+}
+.hd-handoff-avatar {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--color-slate-700);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+}
+html[data-motion="full"] .www-team[data-handoff="pending"] .www-team-card,
+html[data-motion="full"] .www-team[data-handoff="pending"] .www-team-cursor {
+  opacity: 0;
+}
+
+/* ---------------------------------------------------------------- commitments
+   One line runs through the three promises, from the first message to after
+   the start, and lights each one as it passes. */
+
+.hd-commit-line {
+  display: none;
+}
+@media (min-width: 768px) {
+  .hd-commit-line {
+    display: block;
+    position: absolute;
+    top: -30px;
+    left: calc((100% - 120px) / 6);
+    right: calc((100% - 120px) / 6);
+    height: 2px;
+    --p: 1;
+  }
+  .hd-commit-line:before,
+  .hd-commit-line:after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 2px;
+  }
+  .hd-commit-line:before {
+    background: var(--color-border-default);
+  }
+  .hd-commit-line:after {
+    background: var(--gradient-heading);
+    transform-origin: left;
+    scale: var(--p) 1;
+  }
+  .hd-commit-line i {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: calc(var(--n) * 50%);
+    width: 14px;
+    height: 14px;
+    margin: -7px 0 0 -7px;
+    border-radius: 50%;
+    background: var(--color-background-raised);
+    box-shadow: inset 0 0 0 4px var(--color-violet);
+    transition:
+      box-shadow var(--m-dur-short) var(--m-ease-out),
+      scale var(--m-dur-short) var(--m-ease-out);
+  }
+  html[data-motion="full"] .hd-commit .hd-commit-line {
+    --p: var(--p-live, 0);
+  }
+  html[data-motion="full"] .hd-commit-line i:not([data-lit]) {
+    box-shadow: inset 0 0 0 2px var(--color-slate-200);
+    scale: 0.8;
+  }
+}
+.hd-commit-card {
+  position: relative;
+}
+.hd-commit-card:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 37px;
+  right: 37px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--gradient-heading);
+  transform-origin: left;
+  transition: scale 0.9s var(--m-ease-out);
+}
+html[data-motion="full"] .hd-commit-card:not([data-lit]):before {
+  scale: 0 1;
+}
+
+/* ---------------------------------------------------------------- closing
+   The prompt invites you in: headline focuses, a ring sweeps the field once,
+   suggestions rise. */
+
+.hd-invite-ring {
+  display: none;
+}
+@property --hd-ring-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+html[data-motion="full"] .hd-invite-ring {
+  display: block;
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  padding: 1.5px;
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  background: conic-gradient(
+    from var(--hd-ring-angle),
+    transparent 0 62%,
+    var(--color-indigo-500) 82%,
+    var(--color-violet) 92%,
+    transparent 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+html[data-motion="full"] [data-motion="invite"][data-state="in"] .hd-invite-ring {
+  animation: hd-ring-sweep 2.2s var(--m-ease-inOut) 0.6s both;
+}
+@keyframes hd-ring-sweep {
+  0% {
+    opacity: 0;
+    --hd-ring-angle: 0deg;
+  }
+  15%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    --hd-ring-angle: 360deg;
+  }
+}
+html[data-motion="full"] [data-motion="invite"] .hd-chip {
+  transition:
+    opacity var(--m-dur-base) var(--m-ease-out),
+    translate var(--m-dur-base) var(--m-ease-out),
+    background-color 120ms var(--m-ease-out);
+  transition-delay: calc(900ms + var(--i, 0) * var(--m-stagger-chip)), calc(900ms + var(--i, 0) * var(--m-stagger-chip)), 0s;
+}
+html[data-motion="full"] [data-motion="invite"]:not([data-state="in"]) .hd-chip {
+  opacity: 0;
+  translate: 0 10px;
+}
