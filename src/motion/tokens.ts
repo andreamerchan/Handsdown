@@ -68,6 +68,20 @@ export const scroll = {
   /** "A partner for the whole engagement": the line draws while the section moves between these points. */
   commitmentsFrom: 0.85,
   commitmentsTo: 0.4,
+  /**
+   * "How we work" step text, scrubbed by scroll. Positions are in step units
+   * (0 = the step starts, 1 = the next step starts); rise/lift/blur in px.
+   */
+  stepText: {
+    stagger: 0.026,
+    rise: 46,
+    lift: 34,
+    blur: 8,
+    /** Step 1 comes in while the stage scrolls into place. */
+    firstEnter: [-0.55, -0.1] as const,
+    enter: [-0.1, 0.08] as const,
+    exit: [0.7, 0.86] as const,
+  },
 } as const;
 
 /** Screen sizes. Cross-section flights need room; below this they are skipped. */

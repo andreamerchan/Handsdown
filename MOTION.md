@@ -23,6 +23,7 @@ into `dist-preview/` (uses locally installed esbuild + tailwindcss; see the file
 | Talent | The grid's rules draw; each photo comes into focus (blurred twin fades out) | Calm moment: the people come into focus, text stays still and readable | Calm |
 | Map story | Rebuilt as a lit 3D globe (see below); each reason's headline is set word by word | Five reasons read as one camera journey from the world to one person | High |
 | Two ways | A chip on each photo: one dot joins your row of people ("You lead the work.") vs. a pod with its own lead arrives ("We run delivery.") | Shows who runs the day-to-day, the actual difference between the two models | Medium |
+| How we work, all steps | Each step's text (eyebrow, each headline line, paragraph, button) is scrubbed by the scroll: rises into focus line by line, holds, lifts away before the next step; reverses when scrolling up | Apple-style continuous storytelling: the scroll is the timeline | High |
 | How we work, step 1 | Scroll-scrubbed sequence: the request is typed, key phrases light up and fly into the spec fields, each field focuses and is checked, then "Tested by" is added and a scan passes | Cause and effect: your words become a spec, plus the part we add (how it's tested) | High |
 | Shortlist → team photo | The top candidate detaches from the shortlist, swings past the step bar and lands on the photo as "Edson, Senior Data Scientist"; the photo tour starts on landing | Closes the story: anonymous evidence becomes a person on your team | Medium |
 | Commitments | One line runs through the three promises and lights each as it passes | "The whole engagement": from first message to after the start | Calm |
@@ -36,6 +37,7 @@ Removed: the generic fade-in (`data-reveal`) on Talent, Two ways, Commitments an
 - `src/motion/core.ts` — shared frame loop, in-view helper, scroll progress, word splitting.
 - `src/motion/home.ts` — wires each section.
 - `src/motion/sections/spec-sequence.ts` — step 1 sequence (pure function of progress 0..1).
+- `src/motion/sections/step-text.ts` — scroll-scrubbed step text (values in `tokens.scroll.stepText`).
 - `src/motion/sections/handoff.ts` — shortlist → photo flight.
 - `src/styles/motion.css` — all motion styles; "before" states only under `html[data-motion="full"]`.
 

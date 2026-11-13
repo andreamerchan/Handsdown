@@ -570,3 +570,47 @@ html[data-motion="full"] [data-motion="invite"]:not([data-state="in"]) .hd-chip 
   opacity: 0;
   translate: 0 10px;
 }
+
+/* ---------------------------------------------------------------- how we work, step text
+   Pinned layout: every step stays mounted so its text can be scrubbed by the
+   scroll (src/motion/sections/step-text.ts); only the illustrations switch. */
+
+.www-hwws[data-layout="pinned"][data-text-scrub] .www-hwws-step {
+  opacity: 1;
+  visibility: visible;
+  transition:
+    background-color 0.36s var(--ease-standard),
+    border-color 0.36s var(--ease-standard);
+  pointer-events: none;
+}
+/* Steps stay stacked, so a step's own background (step 2's tint) only shows while it is the active one. */
+.www-hwws[data-layout="pinned"][data-text-scrub] .www-hwws-step:not([data-shown]) {
+  background-color: transparent;
+  border-color: transparent;
+}
+.www-hwws[data-layout="pinned"][data-text-scrub] .www-hwws-step[data-shown] {
+  pointer-events: auto;
+}
+.www-hwws[data-layout="pinned"][data-text-scrub] .www-hwws-step > .www-hwws-row {
+  translate: none;
+  transition: none;
+}
+.www-hwws[data-layout="pinned"][data-text-scrub] .www-hwws-step > .www-hwws-row > :not(.www-hww-text) {
+  opacity: 0;
+  visibility: hidden;
+  translate: 0 24px;
+  transition:
+    opacity 0.36s var(--ease-standard),
+    translate 0.48s var(--ease-brand-out),
+    visibility 0s 0.36s;
+}
+.www-hwws[data-layout="pinned"][data-text-scrub] .www-hwws-step[data-shown] > .www-hwws-row > :not(.www-hww-text) {
+  opacity: 1;
+  visibility: visible;
+  translate: none;
+  transition-delay: 0s;
+}
+html[data-motion="full"] .www-hww-text > *,
+html[data-motion="full"] .www-hww-text h3 > * {
+  will-change: opacity, translate;
+}

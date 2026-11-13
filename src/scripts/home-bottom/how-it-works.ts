@@ -15,6 +15,7 @@
  */
 
 import { createSpecSequence, type SpecSequence } from "../../motion/sections/spec-sequence";
+import { createStepText, type StepText } from "../../motion/sections/step-text";
 import { tokens } from "../../motion/tokens";
 
 type Layout = "pinned" | "flow" | "still";
@@ -72,6 +73,8 @@ function setUp(section: HTMLElement, track: HTMLElement, stage: HTMLElement) {
   // by a timer when stacked, and shown finished with reduced motion.
   const specPicture = section.querySelector<HTMLElement>(".www-hww-spec");
   const spec = specPicture ? createSpecSequence(specPicture) : null;
+  // Step text follows the scroll (not in the reduced-motion "still" layout).
+  const stepText = createStepText(steps);
   if (spec)
     scenes[0].onPlay = () =>
       section.dataset.layout === "flow" ? spec.autoplay() : () => {};
@@ -92,8 +95,8 @@ function setUp(section: HTMLElement, track: HTMLElement, stage: HTMLElement) {
     leaveLayout();
     section.dataset.layout = layout;
     if (layout === "pinned")
-      leaveLayout = enterPinned(track, stage, steps, scenes, spec);
-    else if (layout === "flow") leaveLayout = enterFlow(scenes);
+      leaveLayout = enterPinned(track, stage, steps, scenes, spec, stepText);
+    else if (layout === "flow") leaveLayout = enterFlow(scenes, stepText);
     else leaveLayout = enterStill(scenes, spec);
   };
 
@@ -145,8 +148,9 @@ function enterStill(scenes: Scene[], spec: SpecSequence | null) {
 /* Layout: flow (stacked steps, play on scroll into view)                    */
 /* ------------------------------------------------------------------------ */
 
-function enterFlow(scenes: Scene[]) {
+function enterFlow(scenes: Scene[], stepText: StepText) {
   scenes.forEach(resetScene);
+  const stopText = stepText.startFlow();
 
   const observer = new IntersectionObserver(
     (entries) => {
@@ -163,6 +167,8 @@ function enterFlow(scenes: Scene[]) {
 
   return () => {
     observer.disconnect();
+    stopText();
+    stepText.clear();
     scenes.forEach(resetScene);
   };
 }
@@ -177,7 +183,10 @@ function enterPinned(
   steps: HTMLElement[],
   scenes: Scene[],
   spec: SpecSequence | null,
+  stepText: StepText,
 ) {
+  const section = track.closest<HTMLElement>(".www-hwws");
+  section?.setAttribute("data-text-scrub", "");
   const lastStep = steps.length - 1;
   /** How far the page scrolls while the stage stays pinned. */
   const scrollRange = () =>
@@ -222,7 +231,9 @@ function enterPinned(
   const measure = () => {
     frame = 0;
     const trackTop = track.getBoundingClientRect().top;
-    const progress = clamp01((HEADER_HEIGHT - trackTop) / scrollRange());
+    const rawProgress = (HEADER_HEIGHT - trackTop) / scrollRange();
+    const progress = clamp01(rawProgress);
+    stepText.renderPinned(rawProgress, STEP_SPAN);
     const step = Math.min(lastStep, Math.floor(progress / STEP_SPAN));
     const reached = trackTop <= HEADER_HEIGHT + 1;
     // Step 1's sequence follows the scroll position within its share of the range.
@@ -249,6 +260,8 @@ function enterPinned(
     window.removeEventListener("resize", scheduleMeasure);
     cancelAnimationFrame(frame);
     bar.element.remove();
+    section?.removeAttribute("data-text-scrub");
+    stepText.clear();
     steps.forEach((el) => el.removeAttribute("data-shown"));
     scenes.forEach(resetScene);
   };
