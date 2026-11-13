@@ -69,19 +69,36 @@ export const scroll = {
   commitmentsFrom: 0.85,
   commitmentsTo: 0.4,
   /**
-   * "How we work" step text, scrubbed by scroll. Positions are in step units
-   * (0 = the step starts, 1 = the next step starts); rise/lift/blur in px.
+   * "How we work" (pinned layout). Positions are in step units: 0 = the step
+   * starts, 1 = the next step starts. See MOTION.md and tools/ux/.
    */
   stepText: {
-    stagger: 0.026,
-    rise: 46,
-    lift: 34,
-    blur: 8,
-    /** Step 1 comes in while the stage scrolls into place. */
-    firstEnter: [-0.55, -0.1] as const,
-    enter: [-0.1, 0.08] as const,
-    exit: [0.7, 0.86] as const,
+    /** Delay between lines entering, in step units. Kept small so the step is readable quickly. */
+    stagger: 0.006,
+    rise: 28,
+    lift: 22,
+    blur: 6,
+    /** Step 1's text is already in place when the stage pins (it enters while the stage scrolls up). */
+    firstEnter: [-0.4, -0.12] as const,
+    /** Lines enter right after the step boundary... */
+    enter: [0, 0.05] as const,
+    /** ...and leave together right before the next one, so text and illustration always match. */
+    exit: [0.955, 0.995] as const,
   },
+  /**
+   * Share of the pinned scroll each step gets, by how much there is to read
+   * and watch (step 1: request + spec sequence; step 3: five checks).
+   */
+  stepWeights: [1.3, 0.95, 1.15, 1.1] as const,
+  /**
+   * If scrolling stops in the middle of a text transition, the text finishes
+   * it (to the step currently shown) after this many ms. It never moves the page.
+   */
+  stepSettleMs: 160,
+  /** Steps 2-4: the illustration starts once the text is in (one change at a time). */
+  sceneStartsAt: 0.1,
+  /** Step 1: the sentence -> spec sequence plays across this part of the step. */
+  specRange: [0.04, 0.72] as const,
 } as const;
 
 /** Screen sizes. Cross-section flights need room; below this they are skipped. */

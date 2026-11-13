@@ -24,10 +24,12 @@ interface Line {
 }
 
 export interface StepText {
-  /** Pinned layout: `progress` is the stage's scroll progress, unclamped (negative before it pins). */
-  renderPinned(progress: number, stepSpan: number): void;
+  /** Pinned layout: `u` = each step's local position (0 = it starts, 1 = the next one starts), unclamped. */
+  renderPinned(u: (index: number) => number): void;
   /** Stacked layout: lines follow each step's own position on screen. Returns a stop function. */
   startFlow(): () => void;
+  /** Finishes any half-done transition: step `index` fully readable, the others hidden. */
+  settle(index: number): void;
   clear(): void;
 }
 
@@ -60,16 +62,19 @@ export function createStepText(steps: HTMLElement[]): StepText {
     const [enterFrom, enterTo] = index === 0 ? stepText.firstEnter : stepText.enter;
     for (const line of lines[index]) {
       const enter = smoothstep(enterFrom + line.delay, enterTo + line.delay, u);
-      const exit = isLast ? 0 : smoothstep(stepText.exit[0] + line.delay * 0.5, stepText.exit[1] + line.delay * 0.5, u);
+      // All lines leave together, just before the next step's lines come in.
+      const exit = isLast ? 0 : smoothstep(stepText.exit[0], stepText.exit[1], u);
       apply(line, enter, exit);
     }
   };
 
   return {
-    renderPinned(progress, stepSpan) {
-      steps.forEach((_, index) => {
-        const u = (progress - index * stepSpan) / stepSpan;
-        renderStep(index, u, index === steps.length - 1);
+    renderPinned(u) {
+      steps.forEach((_, index) => renderStep(index, u(index), index === steps.length - 1));
+    },
+    settle(index) {
+      lines.forEach((stepLines, i) => {
+        for (const line of stepLines) apply(line, i === index ? 1 : 0, 0);
       });
     },
     startFlow() {
@@ -77,11 +82,12 @@ export function createStepText(steps: HTMLElement[]): StepText {
         const vh = innerHeight;
         columns.forEach((column, index) => {
           if (!column) return;
-          // 0 when the column's top is just below the fold, 1 when it reaches 58% of the screen.
-          const f = clamp((0.98 - column.getBoundingClientRect().top / vh) / 0.4);
+          // Natural scrolling on small screens: a short entrance that is done
+          // by the time the text is 14% into the screen, so nothing on screen stays faded.
+          const f = clamp((0.98 - column.getBoundingClientRect().top / vh) / 0.14);
           for (const line of lines[index]) {
-            const start = line.delay * 1.5;
-            apply(line, smoothstep(start, start + 0.45, f), 0);
+            const start = line.delay * 4;
+            apply(line, smoothstep(start, start + 0.7, f), 0);
           }
         });
       });

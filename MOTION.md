@@ -85,3 +85,13 @@ devices reporting ≤4 cores/≤4 GB memory or Save-Data, or frames running slow
 for ~40 frames, switch to a lite render (half the dots, 1× pixels, no dust or
 mesh). Rendering pauses off-screen and in background tabs. Camera keyframes
 are in `DESKTOP_KEYS` / `PHONE_KEYS` in map-story.ts.
+
+## "How we work" scroll audit (Nov 13)
+
+The scroll-scrubbed step text halved how long each step stays readable. The
+section now gives each step scroll in proportion to its content, keeps text and
+illustration switching together, plays one change at a time, and finishes
+half-faded text when scrolling stops. Findings, measurements, hypotheses and the
+user-test plan: "How we work — scroll UX audit and test plan" (Claude Doc).
+Checks: `tools/ux/`. Values: `tokens.scroll.stepWeights`, `stepText`,
+`stepSettleMs`, `sceneStartsAt`, `specRange`.

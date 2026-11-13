@@ -26,8 +26,6 @@ const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
 
 /** Height of the fixed site header: the stage sticks this far from the top. */
 const HEADER_HEIGHT = 74;
-/** Each step owns this share of the pinned scroll range (the rest is a tail). */
-const STEP_SPAN = 0.225;
 /** An illustration starts playing once this much of it is visible ("flow"). */
 const PLAY_VISIBLE_RATIO = 0.35;
 
@@ -192,13 +190,26 @@ function enterPinned(
   const scrollRange = () =>
     Math.max(1, track.offsetHeight - stage.offsetHeight);
 
+  // Each step gets a share of the scroll range weighted by its content
+  // (tokens.scroll.stepWeights). bounds[i] = progress where step i starts.
+  const weights = tokens.scroll.stepWeights.slice(0, steps.length);
+  const totalWeight = weights.reduce((sum, w) => sum + w, 0);
+  const bounds = weights.reduce<number[]>(
+    (list, w) => [...list, list[list.length - 1] + w / totalWeight],
+    [0],
+  );
+  /** Local position inside step `index` (0 = start, 1 = next step), unclamped. */
+  const localU = (progress: number, index: number) =>
+    (progress - bounds[index]) / (bounds[index + 1] - bounds[index]);
+
   const bar = buildStepBar((step) => {
-    // Jump to the middle of the chosen step's part of the scroll range.
+    // Jump to just after the chosen step's text has come in.
     const trackTop =
       track.getBoundingClientRect().top + window.scrollY - HEADER_HEIGHT;
-    const stepMiddle = STEP_SPAN * step + STEP_SPAN / 2;
+    const target = step === 0 ? 0.02 : 0.14;
+    const progress = bounds[step] + target * (bounds[step + 1] - bounds[step]);
     window.scrollTo({
-      top: trackTop + stepMiddle * scrollRange(),
+      top: trackTop + progress * scrollRange(),
       behavior: "smooth",
     });
   });
@@ -206,6 +217,7 @@ function enterPinned(
 
   let activeStep = -1;
   let stageReached: boolean | null = null;
+  let scenePlayable = false;
 
   const showStep = (step: number) => {
     steps.forEach((el, index) =>
@@ -217,34 +229,50 @@ function enterPinned(
   /** Plays the active step's illustration and rewinds the others. */
   const syncScenes = () => {
     scenes.forEach((scene, index) => {
-      // Step 1 waits until the stage is actually pinned, so the visitor sees
-      // it play; later steps can only be active once it is.
+      // Step 1 waits until the stage is pinned; later steps wait until their
+      // text is in, so only one thing changes at a time.
       const shouldPlay =
-        index === activeStep && (index > 0 || stageReached === true);
+        index === activeStep &&
+        (index > 0 ? scenePlayable : stageReached === true);
       if (shouldPlay) playScene(scene);
       else if (scene.playing || scene.picture.hasAttribute("data-played"))
         resetScene(scene);
     });
   };
 
+  // When the visitor stops scrolling mid-transition, let the text finish it
+  // instead of leaving half-faded lines on screen.
+  let settleTimer = 0;
+  const settle = () => {
+    if (track.getBoundingClientRect().top < window.innerHeight) stepText.settle(activeStep < 0 ? 0 : activeStep);
+  };
+
   let frame = 0;
   const measure = () => {
     frame = 0;
+    clearTimeout(settleTimer);
+    settleTimer = window.setTimeout(settle, tokens.scroll.stepSettleMs);
     const trackTop = track.getBoundingClientRect().top;
     const rawProgress = (HEADER_HEIGHT - trackTop) / scrollRange();
     const progress = clamp01(rawProgress);
-    stepText.renderPinned(rawProgress, STEP_SPAN);
-    const step = Math.min(lastStep, Math.floor(progress / STEP_SPAN));
+    let step = 0;
+    while (step < lastStep && progress >= bounds[step + 1]) step++;
+    const u = localU(progress, step);
     const reached = trackTop <= HEADER_HEIGHT + 1;
-    // Step 1's sequence follows the scroll position within its share of the range.
-    spec?.render(
-      clamp01(progress / (STEP_SPAN * tokens.scroll.specSequenceShare)),
-    );
+    const playable = u >= tokens.scroll.sceneStartsAt;
 
-    if (step === activeStep && reached === stageReached) return;
+    stepText.renderPinned((index) => localU(rawProgress, index));
+    // Step 1's sequence follows the scroll within its part of step 1.
+    const [specFrom, specTo] = tokens.scroll.specRange;
+    spec?.render(clamp01((localU(rawProgress, 0) - specFrom) / (specTo - specFrom)));
+    // The bar fills continuously, so the visitor always sees how far along they are.
+    bar.setProgress(step === lastStep ? 1 : (step + clamp01(u)) / lastStep);
+
+    if (step === activeStep && reached === stageReached && playable === scenePlayable) return;
     if (step !== activeStep) showStep(step);
     activeStep = step;
     stageReached = reached;
+    scenePlayable = playable;
     syncScenes();
   };
   const scheduleMeasure = () => {
@@ -259,6 +287,7 @@ function enterPinned(
     window.removeEventListener("scroll", scheduleMeasure);
     window.removeEventListener("resize", scheduleMeasure);
     cancelAnimationFrame(frame);
+    clearTimeout(settleTimer);
     bar.element.remove();
     section?.removeAttribute("data-text-scrub");
     stepText.clear();
@@ -306,9 +335,12 @@ function buildStepBar(onSelect: (step: number) => void) {
 
   return {
     element,
+    /** Fill of the line between the dots (0..1). */
+    setProgress(at: number) {
+      element.style.setProperty("--hwws-at", at.toFixed(4));
+    },
     /** Marks earlier steps as done, and everything as done on the last step. */
     setActive(active: number, lastStep: number) {
-      element.style.setProperty("--hwws-at", String(active / lastStep));
       nodes.forEach(({ node, button }, step) => {
         const done = step < active || active === lastStep;
         node.dataset.state = done

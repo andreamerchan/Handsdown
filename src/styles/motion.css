@@ -614,3 +614,20 @@ html[data-motion="full"] .www-hww-text > *,
 html[data-motion="full"] .www-hww-text h3 > * {
   will-change: opacity, translate;
 }
+
+/* Pinned "How we work": more scroll for more content (weights in tokens.scroll.stepWeights),
+   and a step bar that fills with the scroll instead of jumping. */
+.www-hwws[data-layout="pinned"][data-text-scrub] .www-hwws-track {
+  height: 480svh;
+}
+.www-hwws[data-text-scrub] .www-hwws-bar-line:after {
+  transition: width 0.12s linear;
+}
+/* Step text: a short easing so scrubbing feels smooth and a settled transition finishes softly. */
+.www-hwws[data-text-scrub] .www-hww-text > *,
+.www-hwws[data-text-scrub] .www-hww-text h3 > * {
+  transition:
+    opacity 0.18s var(--m-ease-out),
+    translate 0.18s var(--m-ease-out),
+    filter 0.18s var(--m-ease-out);
+}
