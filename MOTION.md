@@ -21,7 +21,7 @@ into `dist-preview/` (uses locally installed esbuild + tailwindcss; see the file
 |---|---|---|---|
 | Hero | Headline lines come into focus one by one; when you leave, the globe recedes and fades | The promise lands first; the network steps back so the people (next section) take over | High |
 | Talent | The grid's rules draw; each photo comes into focus (blurred twin fades out) | Calm moment: the people come into focus, text stays still and readable | Calm |
-| Map story | Each reason's headline is set word by word (in from below, out through the top) | Five reasons read as a sequence of statements, not a slideshow | High |
+| Map story | Rebuilt as a lit 3D globe (see below); each reason's headline is set word by word | Five reasons read as one camera journey from the world to one person | High |
 | Two ways | A chip on each photo: one dot joins your row of people ("You lead the work.") vs. a pod with its own lead arrives ("We run delivery.") | Shows who runs the day-to-day, the actual difference between the two models | Medium |
 | How we work, step 1 | Scroll-scrubbed sequence: the request is typed, key phrases light up and fly into the spec fields, each field focuses and is checked, then "Tested by" is added and a scan passes | Cause and effect: your words become a spec, plus the part we add (how it's tested) | High |
 | Shortlist → team photo | The top candidate detaches from the shortlist, swings past the step bar and lands on the photo as "Edson, Senior Data Scientist"; the photo tour starts on landing | Closes the story: anonymous evidence becomes a person on your team | Medium |
@@ -57,3 +57,29 @@ Change values in `src/motion/tokens.ts`:
 ## Missing assets
 
 - Optional video for the team photo ("joins your standup"): 6–8 s loop, no audio, MP4 (H.264) + WebM, 1920×1080 and a 1080×1350 crop for mobile, real people with consent. Until then the current photo + scorecard stays.
+
+## Map story ("You bring the role…") — immersive globe
+
+Replaces the flat Mercator dot map. Same five beats, same cards and copy; the
+map is now a lit 3D globe drawn on canvas (`src/scripts/home-top/map-globe.ts`),
+choreographed by `src/scripts/home-top/map-story.ts`.
+
+| Beat | Camera | What it shows |
+|---|---|---|
+| Arrival | Globe rises over the horizon as the section scrolls in | Routes from companies worldwide (SF, NY, Austin, Toronto, London, Berlin, Madrid) arc into Latin American hubs |
+| 1. You bring the role | Low horizon | Your company (square) and two talent hubs connect to the request card |
+| 2. Working your hours | Whole globe, US in front | The Americas' time-zone band (UTC−8 to UTC−3) lights up; a route runs from the US to Latin America |
+| 3. Only senior specialists | Into South America | Eight talent hubs light up one by one and join into one network |
+| 4. Vetted against your role | Close on São Paulo | Rings and a target close in on one place while the checks complete |
+| 5. We stay after they start | Pull back | São Paulo ↔ US route; day 30 / 60 / 90 check-ins light up along it; a light keeps travelling |
+
+Depth: Lambert-lit land dots with limb darkening, atmosphere halo and rim,
+routes lifted above the surface (visible past the horizon), space dust on
+several shells (parallax), brand-coloured light blooms and film grain (CSS,
+`src/styles/map-story.css`). Brand indigo/violet replaces the reference's green.
+
+Fallbacks: reduced motion follows the scroll exactly with no idle motion;
+devices reporting ≤4 cores/≤4 GB memory or Save-Data, or frames running slow
+for ~40 frames, switch to a lite render (half the dots, 1× pixels, no dust or
+mesh). Rendering pauses off-screen and in background tabs. Camera keyframes
+are in `DESKTOP_KEYS` / `PHONE_KEYS` in map-story.ts.

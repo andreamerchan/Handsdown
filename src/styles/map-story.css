@@ -1,0 +1,70 @@
+/*
+ * Map story ("You bring the role…"): the cinematic layers around the globe.
+ * The globe itself is drawn on the canvas by src/scripts/home-top/map-globe.ts.
+ *
+ *   .why-atmos     brand-coloured light blooming from the edges (moves with the camera)
+ *   canvas         the globe, routes and nodes
+ *   .why-vignette  keeps the text side dark and readable
+ *   .why-grain     a little film grain, as in the reference
+ */
+
+.www-tour .why-atmos {
+  position: absolute;
+  inset: -12%;
+  pointer-events: none;
+  background:
+    radial-gradient(55% 50% at 6% 100%, rgb(154 126 240 / 0.34), transparent 72%),
+    radial-gradient(42% 58% at 100% 52%, rgb(92 134 234 / 0.24), transparent 70%),
+    radial-gradient(38% 36% at 72% 92%, rgb(124 140 255 / 0.2), transparent 70%),
+    radial-gradient(70% 60% at 30% 0%, rgb(10 11 16 / 0.9), transparent 70%);
+  will-change: transform, opacity;
+}
+
+.www-tour .why-vignette {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgb(20 22 29 / 0.94) 0, rgb(20 22 29 / 0.72) 26%, rgb(20 22 29 / 0) 47%),
+    linear-gradient(180deg, rgb(20 22 29 / 0.55) 0, rgb(20 22 29 / 0) 18%);
+}
+
+.www-tour .why-grain {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.09;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Place label in the reference's wide-tracked caps. */
+.www-tour #ovLatam {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.32em;
+  color: #f1f2fa;
+  text-shadow: 0 0 18px rgb(154 126 240 / 0.8);
+}
+
+@media (max-width: 760px) {
+  .www-tour .why-vignette {
+    background: linear-gradient(180deg, rgb(20 22 29 / 0.6) 0, rgb(20 22 29 / 0) 40%);
+  }
+  .www-tour .why-atmos {
+    background:
+      radial-gradient(80% 45% at 0% 100%, rgb(154 126 240 / 0.34), transparent 72%),
+      radial-gradient(70% 40% at 100% 75%, rgb(92 134 234 / 0.24), transparent 70%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .www-tour .why-atmos {
+    will-change: auto;
+  }
+}
