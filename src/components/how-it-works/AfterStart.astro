@@ -1,20 +1,19 @@
 ---
-// Step 4 continued: from the shortlist to the last check-in.
-import { AFTER_START, STEPS } from "../../data/how-it-works";
-const note = STEPS.find((s) => s.id === "hire")?.note;
+// After the hire: the path to the last check-in.
+import { AFTER_START } from "../../data/how-it-works";
 ---
 
 <section id="after-the-start" aria-labelledby="hiw-after-title" class="px-6 py-24 md:py-32">
-  <div class="mx-auto max-w-[1080px]">
-    <div class="mx-auto max-w-[640px] text-center">
+  <div class="mx-auto max-w-[1000px]">
+    <div class="text-center">
       <p class="hiw-kicker">After they start</p>
       <h2
         id="hiw-after-title"
         class="mt-3 text-[clamp(32px,3.6vw,48px)] leading-[1.15] font-medium tracking-[-0.04em] text-balance text-text-primary"
       >
-        We stay with you <span class="text-gradient-heading">after the start.</span>
+        We stay <span class="text-gradient-heading">after the start.</span>
       </h2>
-      {note && <p class="mt-4 text-[17px] leading-[1.55] text-text-secondary">{note}</p>}
+      <p class="mt-4 text-[17px] text-text-secondary">Each check-in measures the hire against your spec.</p>
     </div>
     <ol class="hiw-path mt-14" data-get aria-label="From shortlist to the last check-in">
       {AFTER_START.map((stop, k) => (
@@ -24,7 +23,7 @@ const note = STEPS.find((s) => s.id === "hire")?.note;
           style={`--k:${k}`}
         >
           <span class="hiw-path-dot" aria-hidden="true"></span>
-          <span class="hiw-path-label">{stop}</span>
+          <span>{stop}</span>
         </li>
       ))}
     </ol>

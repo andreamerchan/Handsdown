@@ -1,12 +1,11 @@
 ---
-// Step 3 in depth: the five checks, what each one is and what it tells you.
-import { CHECKS, STEPS } from "../../data/how-it-works";
-const note = STEPS.find((s) => s.id === "match")?.note;
+// Step 3 up close: the five checks as five tiles.
+import { CHECKS } from "../../data/how-it-works";
 ---
 
-<section id="checks" aria-labelledby="hiw-checks-title" class="hiw-band bg-background-inverted px-6 py-24 md:py-32">
-  <div class="mx-auto max-w-[1080px]">
-    <div class="max-w-[620px]">
+<section id="checks" aria-labelledby="hiw-checks-title" class="bg-background-inverted px-6 py-24 md:py-32">
+  <div class="mx-auto max-w-[1120px]">
+    <div class="text-center">
       <p class="hiw-kicker hiw-kicker-inverse">Step 3, up close</p>
       <h2
         id="hiw-checks-title"
@@ -14,22 +13,15 @@ const note = STEPS.find((s) => s.id === "match")?.note;
       >
         Five checks. <span class="text-gradient-heading">One scale for everyone.</span>
       </h2>
-      <p class="mt-4 text-[17px] leading-[1.55] text-text-inverse-secondary">
-        Every candidate answers the same questions and is rated on the same scale, so the scores mean the same thing for everyone.
-      </p>
     </div>
-    <ol class="hiw-check-table mt-12" data-seq>
+    <ol class="hiw-check-grid mt-12 md:mt-16" data-seq>
       {CHECKS.map((c, k) => (
-        <li class="hiw-check-row" style={`--k:${k}`}>
+        <li class="hiw-check-tile" style={`--k:${k}`}>
           <span class="hiw-check-n" aria-hidden="true">{String(k + 1).padStart(2, "0")}</span>
-          <span>
-            <b class="block text-[17px] leading-[1.3] font-semibold text-text-inverse-primary">{c.name}</b>
-            <span class="mt-1 block font-mono text-[11.5px] leading-[1.5] tracking-[0.04em] text-text-inverse-tertiary uppercase">{c.how}</span>
-          </span>
-          <span class="text-[15.5px] leading-[1.5] text-text-inverse-secondary">{c.tells}</span>
+          <b class="mt-2 block text-[18px] lg:mt-6 leading-[1.25] font-semibold text-text-inverse-primary">{c.name}</b>
+          <span class="mt-2 block text-[14.5px] leading-[1.45] text-text-inverse-secondary">{c.tells}</span>
         </li>
       ))}
     </ol>
-    {note && <p class="hiw-note hiw-note-inverse mt-10 max-w-[620px]">{note}</p>}
   </div>
 </section>

@@ -1,59 +1,49 @@
 ---
-// The four steps: same steps and headlines as Home, plus what happens in each one.
-// Everything else has its own section further down the page (Checks, Deliverables,
-// Roles, AfterStart), so each step stays short.
-// Motion (src/scripts/how-it-works/stages.ts):
-//   rail      shows where you are in the four steps and how far along you are
-//   sequence  each step's list is drawn in order, because order is the point
+// The four steps: same labels and headlines as Home, three short points each.
+// Detail lives in the sections below (Checks, Deliverables, Roles, AfterStart).
+// Motion (src/scripts/how-it-works/stages.ts): each step's number fills and its
+// points tick in once, in order, when the step is reached.
 import { STEPS } from "../../data/how-it-works";
+
+const check = `<svg viewBox="0 0 10 10" aria-hidden="true" class="size-2.5"><path d="M1.8 5.3 4 7.4 8.2 2.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 ---
 
-<section id="steps" aria-label="The four steps" class="hiw-stages px-6 pb-24 md:pb-32">
-  <div class="mx-auto max-w-[1180px] gap-x-16 lg:grid lg:grid-cols-[180px_minmax(0,1fr)]">
-    <nav class="hiw-rail" aria-label="Steps">
-      <ol class="hiw-rail-list">
-        <li class="hiw-rail-line" aria-hidden="true"><i></i></li>
-        {STEPS.map((step, i) => (
-          <li class="hiw-rail-item">
-            <a href={`#${step.id}`} data-rail={i} class="hiw-rail-link">
-              <span class="hiw-rail-dot" aria-hidden="true"></span>
-              <span class="hiw-rail-n">{String(i + 1).padStart(2, "0")}</span>
-              <span class="hiw-rail-t">{step.label}</span>
-            </a>
-          </li>
-        ))}
-      </ol>
-    </nav>
+<section id="steps" aria-labelledby="hiw-steps-title" class="px-6 pt-8 pb-24 md:pt-12 md:pb-32">
+  <div class="mx-auto max-w-[1120px]">
+    <div class="text-center">
+      <p class="hiw-kicker">How we work</p>
+      <h2
+        id="hiw-steps-title"
+        class="mt-3 text-[clamp(36px,4.2vw,54px)] leading-[1.15] font-medium tracking-[-0.04em] text-balance text-text-primary"
+      >
+        Less hiring. <span class="text-gradient-conversation">More building.</span>
+      </h2>
+    </div>
 
-    <div class="hiw-stage-list">
+    <ol class="hiw-steps mt-14 md:mt-20">
       {STEPS.map((step, i) => (
-        <article id={step.id} data-stage={i} aria-labelledby={`${step.id}-title`} class="hiw-stage grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-14">
-          <header>
-            <p class="font-mono text-[14px] leading-[1.2] tracking-[1px] text-text-tertiary uppercase">
-              Step {i + 1} · {step.label}
-            </p>
-            <h2
+        <li id={step.id} class="hiw-step" data-get aria-labelledby={`${step.id}-title`}>
+          <div class="hiw-step-n" aria-hidden="true">{String(i + 1).padStart(2, "0")}</div>
+          <div>
+            <p class="font-mono text-[12px] tracking-[0.14em] text-text-accent uppercase">{step.label}</p>
+            <h3
               id={`${step.id}-title`}
-              class="mt-3 text-[clamp(28px,3vw,40px)] leading-[1.2] font-medium tracking-[-0.04em] text-balance text-text-primary"
+              class="mt-2 text-[clamp(24px,2.4vw,32px)] leading-[1.2] font-medium tracking-[-0.035em] text-balance text-text-primary"
             >
               {step.title}
-            </h2>
-            <p class="mt-4 text-[17px] leading-[1.55] text-text-secondary">{step.lead}</p>
-          </header>
-          <div>
-            <h3 class="hiw-kicker">What happens</h3>
-            <ol class="hiw-seq" data-seq>
-              {step.happens.map((line, k) => (
-                <li class="hiw-seq-item" style={`--k:${k}`}>
-                  <span class="hiw-seq-mark" aria-hidden="true"></span>
-                  <span class="block text-[16px] leading-[1.5] text-text-primary">{line}</span>
-                </li>
-              ))}
-            </ol>
+            </h3>
           </div>
-        </article>
+          <ul class="hiw-points">
+            {step.points.map((point, k) => (
+              <li class="hiw-part" style={`--k:${k}`}>
+                <span class="hiw-tick" set:html={check}></span>
+                {point}
+              </li>
+            ))}
+          </ul>
+        </li>
       ))}
-    </div>
+    </ol>
   </div>
 </section>
 

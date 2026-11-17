@@ -1,42 +1,38 @@
 ---
-// Who does what, step by step: the client's part and ours side by side.
+// Who does what: one short line per side, per step.
 import { STEPS } from "../../data/how-it-works";
-const partnerNote = STEPS.find((s) => s.id === "align")?.note;
 ---
 
 <section id="who-does-what" aria-labelledby="hiw-roles-title" class="bg-background-raised px-6 py-24 md:py-32">
-  <div class="mx-auto max-w-[1080px]">
-    <div class="max-w-[620px]">
+  <div class="mx-auto max-w-[880px]">
+    <div class="text-center">
       <p class="hiw-kicker">Who does what</p>
       <h2
         id="hiw-roles-title"
         class="mt-3 text-[clamp(32px,3.6vw,48px)] leading-[1.15] font-medium tracking-[-0.04em] text-balance text-text-primary"
       >
-        You make the calls. <span class="text-gradient-heading">We do the legwork.</span>
+        You decide. <span class="text-gradient-heading">We do the legwork.</span>
       </h2>
-      {partnerNote && <p class="mt-4 text-[17px] leading-[1.55] text-text-secondary">{partnerNote}</p>}
+      <p class="mt-4 text-[17px] text-text-secondary">One hiring partner, from first call to after the start.</p>
     </div>
 
-    <div class="hiw-roles-table mt-12" role="table" aria-label="Who does what at each step">
-      <div class="hiw-roles-head" role="row">
-        <span role="columnheader" class="hiw-kicker">Step</span>
-        <span role="columnheader" class="hiw-kicker">You</span>
-        <span role="columnheader" class="hiw-kicker text-text-accent">We</span>
-      </div>
-      {STEPS.map((step, i) => (
-        <div class="hiw-roles-row" role="row">
-          <span role="rowheader" class="hiw-roles-step">
-            <span class="font-mono text-[12px] text-text-accent">{String(i + 1).padStart(2, "0")}</span>
-            <b class="text-[17px] font-medium tracking-[-0.02em] text-text-primary">{step.label}</b>
-          </span>
-          <ul role="cell" class="hiw-roles-cell" data-label="You">
-            {step.you.map((line) => <li class="hiw-role-line">{line}</li>)}
-          </ul>
-          <ul role="cell" class="hiw-roles-cell" data-side="us" data-label="We">
-            {step.we.map((line) => <li class="hiw-role-line">{line}</li>)}
-          </ul>
-        </div>
-      ))}
-    </div>
+    <table class="hiw-roles mt-12">
+      <thead>
+        <tr>
+          <th scope="col"><span class="sr-only">Step</span></th>
+          <th scope="col" class="hiw-kicker">You</th>
+          <th scope="col" class="hiw-kicker text-text-accent">We</th>
+        </tr>
+      </thead>
+      <tbody>
+        {STEPS.map((step) => (
+          <tr>
+            <th scope="row">{step.label}</th>
+            <td>{step.you}</td>
+            <td data-side="us">{step.we}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
   </div>
 </section>

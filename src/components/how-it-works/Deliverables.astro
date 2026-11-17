@@ -1,20 +1,13 @@
 ---
-// What the client has in hand at the end of each step.
-import { STEPS, SPEC_PARTS } from "../../data/how-it-works";
+// What the client has in hand after each step: four cards, the visual does the talking.
+import { STEPS, SPEC_PARTS, ALIGN_GATES, ON_YOUR_TEAM } from "../../data/how-it-works";
 
 const check = `<svg viewBox="0 0 10 10" aria-hidden="true" class="size-2.5"><path d="M1.8 5.3 4 7.4 8.2 2.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-const ALIGN_GATES = [
-  { name: "Spec reviewed with you", state: "done" },
-  { name: "Call with your hiring partner", state: "optional" },
-  { name: "Role and terms approved", state: "done" },
-  { name: "Search starts", state: "next" },
-];
-const specNote = STEPS[0].note;
 ---
 
 <section id="what-you-get" aria-labelledby="hiw-get-title" class="px-6 py-24 md:py-32">
-  <div class="mx-auto max-w-[1180px]">
-    <div class="mx-auto max-w-[640px] text-center">
+  <div class="mx-auto max-w-[1120px]">
+    <div class="text-center">
       <p class="hiw-kicker">What you get</p>
       <h2
         id="hiw-get-title"
@@ -24,35 +17,31 @@ const specNote = STEPS[0].note;
       </h2>
     </div>
 
-    <ol class="mt-12 grid gap-4 md:grid-cols-2 lg:mt-16">
+    <ol class="mt-12 grid gap-4 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
       {STEPS.map((step, i) => (
         <li class="hiw-get" data-get data-step={step.id}>
           <div class="hiw-get-card h-full">
-            <div class="flex items-start justify-between gap-4 border-b border-border-default pb-3.5">
-              <span>
-                <span class="font-mono text-[11.5px] tracking-[0.1em] text-text-accent uppercase">
-                  {String(i + 1).padStart(2, "0")} · {step.label}
-                </span>
-                <b class="mt-1.5 block text-[18px] leading-[1.25] font-semibold text-text-primary">{step.get.title}</b>
-                <span class="mt-1 block text-[14.5px] leading-[1.45] text-text-tertiary">{step.get.body}</span>
+            <div class="flex items-center justify-between gap-3">
+              <span class="font-mono text-[11.5px] tracking-[0.1em] text-text-accent uppercase">
+                {String(i + 1).padStart(2, "0")} · {step.label}
               </span>
               {step.id === "describe" && (
-                <span class="shrink-0 rounded-full bg-background-brand-subtle px-2.5 text-[11px] leading-[22px] font-semibold text-text-accent">Free</span>
+                <span class="rounded-full bg-background-brand-subtle px-2.5 text-[11px] leading-[22px] font-semibold text-text-accent">Free</span>
               )}
             </div>
+            <b class="mt-2 block border-b border-border-default pb-3 text-[17px] leading-[1.25] font-semibold text-text-primary">
+              {step.get}
+            </b>
 
             {step.id === "describe" && (
-              <>
-                <ul class="hiw-parts" aria-label="What's in it">
-                  {SPEC_PARTS.map((part, k) => (
-                    <li class="hiw-part" style={`--k:${k}`}>
-                      <span class="hiw-tick" set:html={check}></span>
-                      {part}
-                    </li>
-                  ))}
-                </ul>
-                {specNote && <p class="hiw-card-foot">{specNote}</p>}
-              </>
+              <ul class="hiw-parts" aria-label="What's in it">
+                {SPEC_PARTS.map((part, k) => (
+                  <li class="hiw-part" style={`--k:${k}`}>
+                    <span class="hiw-tick" set:html={check}></span>
+                    {part}
+                  </li>
+                ))}
+              </ul>
             )}
 
             {step.id === "align" && (
@@ -68,29 +57,19 @@ const specNote = STEPS[0].note;
             )}
 
             {step.id === "match" && (
-              <div>
-                <div class="flex items-center gap-2.5 py-3.5">
-                  <span class="grid size-[34px] place-items-center rounded-full bg-background-inverted text-[11px] font-medium text-text-inverse-primary" aria-hidden="true">A</span>
-                  <span>
-                    <b class="block text-sm leading-[1.2] font-semibold text-text-primary">Candidate A</b>
-                    <span class="mt-1 block text-xs leading-none text-text-tertiary">Example scorecard</span>
-                  </span>
-                </div>
-                <ul aria-label="Example scores">
-                  {["Skill 1 from your spec", "Skill 2 from your spec", "Skill 3 from your spec"].map((label, k) => (
-                    <li class="hiw-score-row" style={`--k:${k};--v:${[0.86, 0.72, 0.8][k]}`}>
-                      <span class="text-[13.5px] text-text-secondary">{label}</span>
-                      <span class="hiw-score-bar" aria-hidden="true"><i></i></span>
-                    </li>
-                  ))}
-                </ul>
-                <p class="hiw-card-foot">Evidence: interview notes and work sample, for every rating.</p>
-              </div>
+              <ul aria-label="Example scorecard">
+                {["Skill 1", "Skill 2", "Skill 3", "Skill 4"].map((label, k) => (
+                  <li class="hiw-score-row" style={`--k:${k};--v:${[0.86, 0.72, 0.8, 0.64][k]}`}>
+                    <span class="text-[14px] text-text-secondary">{label}</span>
+                    <span class="hiw-score-bar" aria-hidden="true"><i></i></span>
+                  </li>
+                ))}
+              </ul>
             )}
 
             {step.id === "hire" && (
               <ul class="hiw-parts" aria-label="How they work with you">
-                {["Your hours", "Your tools and rituals", "Your priorities, led by you"].map((part, k) => (
+                {ON_YOUR_TEAM.map((part, k) => (
                   <li class="hiw-part" style={`--k:${k}`}>
                     <span class="hiw-tick" set:html={check}></span>
                     {part}

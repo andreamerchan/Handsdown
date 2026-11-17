@@ -98,21 +98,18 @@ Checks: `tools/ux/`. Values: `tokens.scroll.stepWeights`, `stepText`,
 
 ## /how-it-works page (Nov 17)
 
-Home tells the four steps in one line each; the dedicated page tells the same four steps in more depth. Both read from `src/data/how-it-works.ts`. Edit that file, not the components.
+Home tells the four steps in one card each; the dedicated page uses the same steps, labels and headlines, then unpacks them in short, visual sections. Copy is kept to a few words per line. Everything reads from `src/data/how-it-works.ts`; edit that file, not the components.
 
-Each kind of information has its own section, so no single section carries everything:
-
-| Section | Component | What it holds |
+| Section | Component | What it shows |
 | --- | --- | --- |
-| Overview | `Overview.astro` | Same headline as Home, the four steps in one line each (links to each step) |
-| The four steps | `Stages.astro` | Per step: headline, one line, what happens. Progress rail. |
-| Five checks | `Checks.astro` | Step 3 up close: each check and what it tells you (dark band) |
-| What you get | `Deliverables.astro` | The deliverable of each step: Role Spec, approved role, scorecard, specialist |
-| Who does what | `Roles.astro` | You / We for each step, and who your hiring partner is |
-| After they start | `AfterStart.astro` | Shortlist → start → Day 30 / 60 / 90 check-ins |
+| The four steps | `Stages.astro` | Number, label, Home headline, three short points |
+| Five checks | `Checks.astro` | Five tiles: check name + what it shows (dark band) |
+| What you get | `Deliverables.astro` | One card per step: Role Spec, approved role, scorecard, specialist |
+| Who does what | `Roles.astro` | One line per side, per step |
+| After they start | `AfterStart.astro` | Shortlist → Start → Day 30 / 60 / 90 |
+| FAQ | `Faq.astro` | Five questions, one-line answers |
 
-- **Motion**: every list draws in order and every deliverable assembles once, when reached; the rail shows where you are. Reduced motion: all finished, instant jumps.
-- **Removed**: the page's copy of the Home scroll animation (`HowWeWork.astro`, `how-we-work.ts`, `search-map.ts`).
+- **Motion**: step numbers light up, lists tick in order, scorecard bars fill, the timeline draws: once each, when reached. Reduced motion: everything finished.
 - **Home**: step 1 no longer repeats step 3's copy; step 2 says the search starts once you approve the role (what "Align" means on the step bar); a link at the end points to the page.
 
 Preview both pages: `node tools/preview/build.mjs index how-it-works`.

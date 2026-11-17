@@ -1,9 +1,9 @@
 /*
- * /how-it-works: overview + the four steps in detail.
- * Markup: components/how-it-works/Overview.astro, Stages.astro
- * Motion: scripts/how-it-works/stages.ts sets data-state="in" on [data-seq] and [data-get],
- *         and --hiw-at / data-current on the rail. With reduced motion everything
- *         is shown finished (the hidden states only apply under html[data-motion="full"]).
+ * /how-it-works: the four steps and the short sections that unpack them.
+ * Markup: components/how-it-works/{Stages,Checks,Deliverables,Roles,AfterStart}.astro
+ * Motion: scripts/how-it-works/stages.ts sets data-state="in" on [data-seq] / [data-get]
+ *         once they're in view. The hidden starting states only apply under
+ *         html[data-motion="full"], so reduced motion (and no JS) shows everything finished.
  */
 
 .hiw-kicker {
@@ -14,233 +14,21 @@
   text-transform: uppercase;
   color: var(--color-text-tertiary);
 }
+.hiw-kicker-inverse { color: var(--color-text-inverse-tertiary); }
 
-/* ---------------------------------------------------------------- overview */
-
-.hiw-glance-link {
-  display: block;
-  height: 100%;
-  padding: 20px 22px 24px;
-  border-radius: 14px;
-  border: 1px solid var(--color-border-default);
-  background: var(--color-background-raised);
-  transition: border-color 0.2s var(--ease-standard), translate 0.2s var(--ease-standard);
-}
-.hiw-glance-link:hover { border-color: var(--color-border-hover); translate: 0 -2px; }
-.hiw-glance-link:focus-visible { outline: none; box-shadow: var(--shadow-ring); }
-.hiw-glance-head { display: flex; align-items: center; gap: 12px; }
-.hiw-glance-n {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  color: var(--color-text-accent);
-}
-.hiw-glance-dot { display: none; }
-
-@media (min-width: 1024px) {
-  /* One line through the four steps, as on the Home step bar. */
-  .hiw-glance-link {
-    border: 0;
-    background: none;
-    border-radius: 0;
-    padding: 0 28px 0 0;
-  }
-  .hiw-glance-link:hover { translate: none; }
-  .hiw-glance-link:hover .hiw-glance-dot { background: var(--color-text-accent); }
-  .hiw-glance-dot {
-    display: block;
-    order: -1;
-    flex: none;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    border: 2px solid var(--color-text-accent);
-    background: var(--color-background-base);
-    transition: background 0.2s var(--ease-standard);
-  }
-  .hiw-glance-head { gap: 10px; }
-  .hiw-glance-head::after {
-    content: "";
-    flex: 1;
-    height: 1px;
-    background: var(--color-slate-300);
-  }
-  .hiw-glance-step:last-child .hiw-glance-head::after { display: none; }
-}
-
-/* ---------------------------------------------------------------- rail */
-
-.hiw-rail {
-  position: sticky;
-  top: 74px;
-  z-index: 20;
-  margin: 0 -24px;
-  padding: 10px 24px;
-  background: color-mix(in srgb, var(--color-background-base) 88%, transparent);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-border-default);
-}
-.hiw-rail-list { display: flex; gap: 4px; justify-content: space-between; }
-.hiw-rail-line { display: none; }
-.hiw-rail-link {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 40px;
-  padding: 0 10px;
-  border-radius: 999px;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-text-tertiary);
-  transition: color 0.2s var(--ease-standard), background 0.2s var(--ease-standard);
-}
-.hiw-rail-link:hover { color: var(--color-text-primary); }
-.hiw-rail-link:focus-visible { outline: none; box-shadow: var(--shadow-ring); }
-.hiw-rail-link[aria-current="step"] { color: var(--color-text-primary); background: var(--color-background-neutral); }
-.hiw-rail-n { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-accent); }
-.hiw-rail-dot { display: none; }
-
-@media (max-width: 479px) {
-  .hiw-rail-n { display: none; }
-  .hiw-rail-link { padding: 0 8px; font-size: 13.5px; }
-}
-
-@media (min-width: 1024px) {
-  .hiw-rail {
-    top: 120px;
-    align-self: start;
-    margin: 0;
-    padding: 0;
-    background: none;
-    backdrop-filter: none;
-    border: 0;
-  }
-  .hiw-rail-list { position: relative; flex-direction: column; gap: 6px; }
-  .hiw-rail-line {
-    display: block;
-    position: absolute;
-    left: 5px;
-    top: 20px;
-    bottom: 20px;
-    width: 1px;
-    background: var(--color-slate-300);
-  }
-  /* Fill = how far through the four steps you are. */
-  .hiw-rail-line i {
-    position: absolute;
-    inset: 0;
-    background: var(--color-text-accent);
-    transform-origin: top;
-    transform: scaleY(var(--hiw-at, 0));
-  }
-  .hiw-rail-link { padding: 0; gap: 12px; border-radius: 0; }
-  .hiw-rail-link[aria-current="step"] { background: none; }
-  .hiw-rail-dot {
-    display: block;
-    position: relative;
-    z-index: 1;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    border: 2px solid var(--color-slate-300);
-    background: var(--color-background-base);
-    transition: border-color 0.25s var(--ease-standard), background 0.25s var(--ease-standard), scale 0.25s var(--ease-brand-out);
-  }
-  .hiw-rail-link[data-passed] .hiw-rail-dot { border-color: var(--color-text-accent); background: var(--color-text-accent); }
-  .hiw-rail-link[aria-current="step"] .hiw-rail-dot { border-color: var(--color-text-accent); background: var(--color-background-base); scale: 1.25; }
-  .hiw-rail-link[aria-current="step"] .hiw-rail-t { font-weight: 600; }
-}
-
-/* ---------------------------------------------------------------- stages */
-
-.hiw-stage {
-  padding-top: 56px;
-  scroll-margin-top: 130px;
-}
-.hiw-stage + .hiw-stage { margin-top: 56px; border-top: 1px solid var(--color-border-default); }
-.hiw-stage:first-child { padding-top: 24px; }
-@media (min-width: 1024px) {
-  .hiw-stage { padding-top: 88px; scroll-margin-top: 40px; }
-  .hiw-stage:first-child { padding-top: 0; }
-  .hiw-stage + .hiw-stage { margin-top: 88px; }
-}
-
-/* What happens: a numbered sequence on one line. */
-.hiw-seq { position: relative; margin-top: 18px; display: grid; gap: 22px; counter-reset: hiw; }
-.hiw-seq::before {
-  content: "";
-  position: absolute;
-  left: 11px;
-  top: 12px;
-  bottom: 12px;
-  width: 1px;
-  background: var(--color-slate-300);
-  transform-origin: top;
-}
-.hiw-seq-item { position: relative; padding-left: 40px; counter-increment: hiw; }
-.hiw-seq-mark {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 23px;
-  height: 23px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: var(--color-background-base);
-  border: 1px solid var(--color-slate-300);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--color-text-accent);
-}
-.hiw-seq-mark::before { content: counter(hiw); }
-.hiw-checks { gap: 26px; }
-
-.hiw-role-line { position: relative; padding-left: 16px; font-size: 15px; line-height: 1.5; color: var(--color-text-primary); }
-.hiw-role-line::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.66em;
-  width: 6px;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.5;
-}
-
-.hiw-note {
-  padding-left: 14px;
-  border-left: 2px solid var(--color-text-accent);
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--color-text-secondary);
-}
-
-/* What you get */
-.hiw-get-card {
-  border: 1px solid var(--color-border-default);
-  background: var(--color-background-raised);
-  border-radius: 12px;
-  padding: 16px 18px 10px;
-  box-shadow: 0 1px 2px #0f172a0a, 0 18px 40px -22px #0f172a38;
-}
-/* The Role Spec is a document: the one warm paper surface on the site. */
-[data-step="describe"] .hiw-get-card { background: #fbf8f2; border-color: #ebe4d6; }
-
-.hiw-parts { display: grid; }
+/* Ticked list item, used in steps and cards. */
 .hiw-part {
   display: flex;
   align-items: center;
   gap: 10px;
-  min-height: 44px;
-  padding: 8px 0;
+  min-height: 40px;
+  padding: 6px 0;
   border-bottom: 1px solid var(--color-border-default);
-  font-size: 14.5px;
+  font-size: 15px;
   line-height: 1.35;
   color: var(--color-text-primary);
 }
 .hiw-part:last-child { border-bottom: 0; }
-[data-step="describe"] .hiw-part { border-color: #ebe4d6; }
 .hiw-tick {
   flex: none;
   width: 20px;
@@ -266,14 +54,66 @@
   background: var(--color-background-neutral);
 }
 
+/* ---------------------------------------------------------------- the four steps */
+
+.hiw-steps { display: grid; border-top: 1px solid var(--color-border-default); }
+.hiw-step {
+  display: grid;
+  gap: 16px 24px;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--color-border-default);
+  scroll-margin-top: 96px;
+}
+.hiw-step-n {
+  font-size: 40px;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  color: var(--color-text-accent);
+  transition: color 0.6s var(--ease-brand-out);
+}
+.hiw-points .hiw-part { border: 0; min-height: 34px; padding: 3px 0; }
+@media (min-width: 768px) {
+  .hiw-step { grid-template-columns: 96px minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 40px; align-items: start; padding: 48px 0; }
+  .hiw-step-n { font-size: 72px; }
+}
+
+/* ---------------------------------------------------------------- five checks */
+
+.hiw-check-grid { display: grid; gap: 10px; }
+.hiw-check-tile {
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: rgb(255 255 255 / 0.04);
+  border: 1px solid rgb(255 255 255 / 0.1);
+}
+.hiw-check-n { font-family: var(--font-mono); font-size: 13px; color: var(--color-indigo-300); }
+@media (min-width: 1024px) { .hiw-check-tile { padding: 22px 22px 24px; } }
+@media (min-width: 640px) { .hiw-check-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .hiw-check-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+
+/* ---------------------------------------------------------------- what you get */
+
+.hiw-get-card {
+  border: 1px solid var(--color-border-default);
+  background: var(--color-background-raised);
+  border-radius: 14px;
+  padding: 18px 18px 10px;
+  box-shadow: 0 1px 2px #0f172a0a, 0 18px 40px -22px #0f172a38;
+}
+/* The Role Spec is a document: the one warm paper surface on the site. */
+[data-step="describe"] .hiw-get-card { background: #fbf8f2; border-color: #ebe4d6; }
+[data-step="describe"] :is(.hiw-part, b) { border-color: #ebe4d6; }
+
 .hiw-score-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 96px;
+  grid-template-columns: 52px minmax(0, 1fr);
   align-items: center;
   gap: 12px;
   min-height: 40px;
-  border-top: 1px solid var(--color-border-default);
+  border-bottom: 1px solid var(--color-border-default);
 }
+.hiw-score-row:last-child { border-bottom: 0; }
 .hiw-score-bar { position: relative; height: 6px; border-radius: 3px; background: var(--color-background-neutral); overflow: hidden; }
 .hiw-score-bar i {
   position: absolute;
@@ -283,71 +123,24 @@
   transform-origin: left;
   transform: scaleX(var(--v));
 }
-.hiw-score-ev {
-  margin-top: 4px;
-  padding: 10px 0 6px;
-  border-top: 1px solid var(--color-border-default);
-  font-size: 12.5px;
-  line-height: 1.45;
-  color: var(--color-text-tertiary);
-}
-
-.hiw-card-foot {
-  margin-top: 4px;
-  padding: 10px 0 6px;
-  border-top: 1px solid var(--color-border-default);
-  font-size: 13px;
-  line-height: 1.45;
-  color: var(--color-text-tertiary);
-}
-[data-step="describe"] .hiw-card-foot { border-color: #ebe4d6; }
-
-/* ---------------------------------------------------------------- five checks (dark band) */
-
-.hiw-kicker-inverse { color: var(--color-text-inverse-tertiary); }
-.hiw-note-inverse { color: var(--color-text-inverse-secondary); border-color: var(--color-indigo-400); }
-.hiw-check-table { position: relative; display: grid; border-top: 1px solid rgb(255 255 255 / 0.12); }
-.hiw-check-row {
-  display: grid;
-  grid-template-columns: 40px minmax(0, 1fr);
-  gap: 6px 16px;
-  padding: 22px 0;
-  border-bottom: 1px solid rgb(255 255 255 / 0.12);
-}
-.hiw-check-row > :last-child { grid-column: 2; }
-.hiw-check-n { font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: var(--color-indigo-300); }
-@media (min-width: 768px) {
-  .hiw-check-row { grid-template-columns: 56px minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 24px; align-items: baseline; }
-  .hiw-check-row > :last-child { grid-column: auto; }
-}
 
 /* ---------------------------------------------------------------- who does what */
 
-.hiw-roles-table { display: grid; border-top: 1px solid var(--color-border-default); }
-.hiw-roles-head { display: none; }
-.hiw-roles-row { display: grid; gap: 14px; padding: 24px 0; border-bottom: 1px solid var(--color-border-default); }
-.hiw-roles-step { display: flex; align-items: baseline; gap: 10px; }
-.hiw-roles-cell { display: grid; gap: 6px; align-content: start; }
-.hiw-roles-cell::before {
-  content: attr(data-label);
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--color-text-tertiary);
-}
-.hiw-roles-cell[data-side="us"]::before { color: var(--color-text-accent); }
-@media (min-width: 768px) {
-  .hiw-roles-head,
-  .hiw-roles-row { display: grid; grid-template-columns: 180px minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
-  .hiw-roles-head { padding: 0 0 14px; border-bottom: 1px solid var(--color-border-default); }
-  .hiw-roles-table { border-top: 0; }
-  .hiw-roles-cell::before { display: none; }
+.hiw-roles { width: 100%; border-collapse: collapse; text-align: left; }
+.hiw-roles th,
+.hiw-roles td { padding: 18px 12px 18px 0; border-bottom: 1px solid var(--color-border-default); vertical-align: top; }
+.hiw-roles thead th { padding-top: 0; padding-bottom: 12px; font-weight: 400; }
+.hiw-roles tbody th { width: 30%; font-size: 17px; font-weight: 500; letter-spacing: -0.02em; color: var(--color-text-primary); }
+.hiw-roles td { width: 35%; font-size: 16px; color: var(--color-text-primary); }
+.hiw-roles td[data-side="us"] { color: var(--color-text-accent); font-weight: 500; }
+@media (max-width: 479px) {
+  .hiw-roles tbody th { width: 28%; font-size: 15px; }
+  .hiw-roles td { font-size: 14.5px; }
 }
 
 /* ---------------------------------------------------------------- after the start */
 
-.hiw-path { position: relative; display: grid; gap: 4px; max-width: 320px; margin-inline: auto; }
+.hiw-path { position: relative; display: grid; gap: 4px; width: max-content; margin-inline: auto; }
 .hiw-path::before {
   content: "";
   position: absolute;
@@ -383,16 +176,33 @@
 .hiw-path-stop[data-kind="check"] .hiw-path-dot { border-color: var(--color-text-success); }
 @media (min-width: 768px) {
   /* Left to right: the path is a timeline. */
-  .hiw-path { grid-template-columns: repeat(7, minmax(0, 1fr)); max-width: none; gap: 0; }
-  .hiw-path::before { left: calc(100% / 14); right: calc(100% / 14); top: 5px; bottom: auto; width: auto; height: 1px; transform-origin: left; }
-  .hiw-path-stop { flex-direction: column; gap: 14px; text-align: center; font-size: 15px; }
+  .hiw-path { width: auto; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0; }
+  .hiw-path::before { left: calc(100% / 12); right: calc(100% / 12); top: 5px; bottom: auto; width: auto; height: 1px; transform-origin: left; }
+  .hiw-path-stop { flex-direction: column; gap: 14px; text-align: center; }
 }
 
 /* ---------------------------------------------------------------- motion (full only) */
 
-html[data-motion="full"] .hiw-seq::before {
-  transform: scaleY(0);
-  transition: transform 1.1s var(--ease-brand-out);
+html[data-motion="full"] .hiw-part,
+html[data-motion="full"] .hiw-check-tile,
+html[data-motion="full"] .hiw-score-row,
+html[data-motion="full"] .hiw-path-stop {
+  opacity: 0;
+  translate: 0 10px;
+  transition:
+    opacity 0.5s var(--ease-brand-out) calc(var(--k, 0) * 100ms + 80ms),
+    translate 0.5s var(--ease-brand-out) calc(var(--k, 0) * 100ms + 80ms);
+}
+html[data-motion="full"] .hiw-tick {
+  scale: 0.4;
+  opacity: 0;
+  transition:
+    scale 0.4s var(--ease-brand-out) calc(var(--k, 0) * 100ms + 240ms),
+    opacity 0.3s var(--ease-standard) calc(var(--k, 0) * 100ms + 240ms);
+}
+html[data-motion="full"] .hiw-score-bar i {
+  transform: scaleX(0);
+  transition: transform 0.8s var(--ease-brand-out) calc(var(--k, 0) * 100ms + 240ms);
 }
 html[data-motion="full"] .hiw-path::before {
   transform: scaleY(0);
@@ -401,42 +211,15 @@ html[data-motion="full"] .hiw-path::before {
 @media (min-width: 768px) {
   html[data-motion="full"] .hiw-path::before { transform: scaleX(0); }
 }
-html[data-motion="full"] .hiw-seq-item,
-html[data-motion="full"] .hiw-check-row,
-html[data-motion="full"] .hiw-part,
-html[data-motion="full"] .hiw-score-row,
-html[data-motion="full"] .hiw-path-stop {
-  opacity: 0;
-  translate: 0 10px;
-  transition:
-    opacity 0.5s var(--ease-brand-out) calc(var(--k, 0) * 110ms + 80ms),
-    translate 0.5s var(--ease-brand-out) calc(var(--k, 0) * 110ms + 80ms);
-}
-html[data-motion="full"] .hiw-tick {
-  scale: 0.4;
-  opacity: 0;
-  transition:
-    scale 0.4s var(--ease-brand-out) calc(var(--k, 0) * 110ms + 260ms),
-    opacity 0.3s var(--ease-standard) calc(var(--k, 0) * 110ms + 260ms);
-}
-html[data-motion="full"] .hiw-score-bar i {
-  transform: scaleX(0);
-  transition: transform 0.8s var(--ease-brand-out) calc(var(--k, 0) * 110ms + 240ms);
-}
-html[data-motion="full"] [data-state="in"] .hiw-seq-item,
-html[data-motion="full"] [data-state="in"] .hiw-part,
-html[data-motion="full"] [data-state="in"] .hiw-score-row,
-html[data-motion="full"] [data-state="in"] .hiw-path-stop,
-html[data-motion="full"] [data-seq][data-state="in"] > li {
+html[data-motion="full"] [data-state="in"] :is(.hiw-part, .hiw-score-row),
+html[data-motion="full"] [data-state="in"] > :is(.hiw-check-tile, .hiw-path-stop) {
   opacity: 1;
   translate: none;
 }
-html[data-motion="full"] .hiw-seq[data-state="in"]::before,
-html[data-motion="full"] .hiw-path[data-state="in"]::before { transform: none; }
 html[data-motion="full"] [data-state="in"] .hiw-tick { scale: 1; opacity: 1; }
 html[data-motion="full"] [data-state="in"] .hiw-score-bar i { transform: scaleX(var(--v)); }
-/* Without JS, <html data-motion> is never set, so none of the hidden states apply. */
-.hiw-stage h2:focus { outline: none; }
+html[data-motion="full"] .hiw-path[data-state="in"]::before { transform: none; }
+html[data-motion="full"] .hiw-step:not([data-state="in"]) .hiw-step-n { color: var(--color-slate-200); }
 
 /* Home: the link from the "How we work" section to this page. */
 .www-hwws-more { margin-top: 28px; padding-bottom: 48px; }
