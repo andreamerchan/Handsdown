@@ -102,11 +102,12 @@ Home tells the four steps in one card each; the dedicated page uses the same ste
 
 | Section | Component | What it shows |
 | --- | --- | --- |
-| The four steps | `Stages.astro` | Number, label, Home headline, three short points |
+| The four steps | `Stages.astro` | Pinned: the scroll plays one step at a time, points tick in one by one, a 4-part progress bar (Describe / Align / Match / Hire) fills and jumps to a step. Reduced motion or short screens: a plain list. |
 | Five checks | `Checks.astro` | Five tiles: check name + what it shows (dark band) |
 | What you get | `Deliverables.astro` | One card per step: Role Spec, approved role, scorecard, specialist |
 | Who does what | `Roles.astro` | One line per side, per step |
 | After they start | `AfterStart.astro` | Shortlist → Start → Day 30 / 60 / 90 |
+| Specialist strips | `SpecialistStrips.astro` | Pinned: the scroll hands width, colour and caption from strip to strip; 3-part progress bar |
 | FAQ | `Faq.astro` | Five questions, one-line answers |
 
 - **Motion**: step numbers light up, lists tick in order, scorecard bars fill, the timeline draws: once each, when reached. Reduced motion: everything finished.

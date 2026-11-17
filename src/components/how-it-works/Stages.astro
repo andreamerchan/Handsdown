@@ -1,8 +1,11 @@
 ---
 // The four steps: same labels and headlines as Home, three short points each.
 // Detail lives in the sections below (Checks, Deliverables, Roles, AfterStart).
-// Motion (src/scripts/how-it-works/stages.ts): each step's number fills and its
-// points tick in once, in order, when the step is reached.
+// Motion (src/scripts/how-it-works/stages.ts): on screens tall enough and without
+// reduced motion, the steps are pinned and the scroll plays them one at a time: each
+// step comes in, its points tick in one by one, then it hands over to the next. A
+// four-part bar (same labels as Home's step bar) shows where you are and jumps to a
+// step. Otherwise the four steps are a plain list.
 import { STEPS } from "../../data/how-it-works";
 
 const check = `<svg viewBox="0 0 10 10" aria-hidden="true" class="size-2.5"><path d="M1.8 5.3 4 7.4 8.2 2.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
@@ -20,7 +23,10 @@ const check = `<svg viewBox="0 0 10 10" aria-hidden="true" class="size-2.5"><pat
       </h2>
     </div>
 
-    <ol class="hiw-steps mt-14 md:mt-20">
+  </div>
+  <div class="hiw-steps-track mt-14 md:mt-20" data-steps-track>
+    <div class="hiw-steps-stage">
+    <ol class="hiw-steps mx-auto max-w-[1120px]">
       {STEPS.map((step, i) => (
         <li id={step.id} class="hiw-step" data-get aria-labelledby={`${step.id}-title`}>
           <div class="hiw-step-n" aria-hidden="true">{String(i + 1).padStart(2, "0")}</div>
@@ -35,7 +41,7 @@ const check = `<svg viewBox="0 0 10 10" aria-hidden="true" class="size-2.5"><pat
           </div>
           <ul class="hiw-points">
             {step.points.map((point, k) => (
-              <li class="hiw-part" style={`--k:${k}`}>
+              <li class="hiw-part" data-point={k} style={`--k:${k}`}>
                 <span class="hiw-tick" set:html={check}></span>
                 {point}
               </li>
@@ -44,6 +50,18 @@ const check = `<svg viewBox="0 0 10 10" aria-hidden="true" class="size-2.5"><pat
         </li>
       ))}
     </ol>
+    <ol class="hiw-bar" aria-label="Steps">
+      {STEPS.map((step, i) => (
+        <li>
+          <button type="button" data-step-go={i}>
+            <span class="hiw-bar-n">{String(i + 1).padStart(2, "0")}</span>
+            <span>{step.label}</span>
+            <i aria-hidden="true"><b></b></i>
+          </button>
+        </li>
+      ))}
+    </ol>
+    </div>
   </div>
 </section>
 

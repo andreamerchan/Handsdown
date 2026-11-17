@@ -78,6 +78,109 @@
   .hiw-step-n { font-size: 72px; }
 }
 
+/* Pinned: the scroll plays the steps one at a time (stages.ts sets --vis, --dir,
+ * data-on on points, --fill on bar parts). */
+.hiw-bar { display: none; }
+.hiw-steps-track[data-mode="pinned"] { height: calc(100svh - 74px + 4 * 70svh); }
+.hiw-steps-track[data-mode="pinned"] .hiw-steps-stage {
+  position: sticky;
+  top: 74px;
+  height: calc(100svh - 74px);
+  display: flex;
+  flex-direction: column;
+}
+.hiw-steps-track[data-mode="pinned"] .hiw-steps {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  border: 0;
+}
+.hiw-steps-track[data-mode="pinned"] .hiw-step {
+  position: absolute;
+  inset: 0;
+  align-content: center;
+  border: 0;
+  padding: 0;
+  opacity: var(--vis, 0);
+  translate: 0 calc((1 - var(--vis, 0)) * 48px * var(--dir, 1));
+  pointer-events: none;
+  will-change: opacity, translate;
+}
+.hiw-steps-track[data-mode="pinned"] .hiw-step[data-current] { pointer-events: auto; }
+.hiw-steps-track[data-mode="pinned"] .hiw-step-n {
+  font-size: clamp(72px, 12vw, 168px);
+  color: var(--color-text-accent);
+  transition: none;
+}
+.hiw-steps-track[data-mode="pinned"] .hiw-step h3 { font-size: clamp(28px, 3.4vw, 44px); }
+.hiw-steps-track[data-mode="pinned"] .hiw-points .hiw-part { font-size: 17px; min-height: 40px; }
+@media (min-width: 768px) {
+  .hiw-steps-track[data-mode="pinned"] .hiw-step {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    grid-template-rows: auto auto;
+    column-gap: 56px;
+    row-gap: 28px;
+    align-items: end;
+  }
+  .hiw-steps-track[data-mode="pinned"] .hiw-step-n { grid-row: span 2; align-self: center; justify-self: end; }
+  .hiw-steps-track[data-mode="pinned"] .hiw-points { align-self: start; }
+}
+/* Points tick in with the scroll, one by one (reversible). */
+html[data-motion="full"] .hiw-steps-track[data-mode="pinned"] .hiw-part {
+  opacity: 0;
+  translate: 0 10px;
+  transition: opacity 0.35s var(--ease-brand-out), translate 0.35s var(--ease-brand-out);
+}
+html[data-motion="full"] .hiw-steps-track[data-mode="pinned"] .hiw-part .hiw-tick {
+  scale: 0.4;
+  opacity: 0;
+  transition: scale 0.35s var(--ease-brand-out) 0.1s, opacity 0.25s var(--ease-standard) 0.1s;
+}
+html[data-motion="full"] .hiw-steps-track[data-mode="pinned"] .hiw-part[data-on] { opacity: 1; translate: none; }
+html[data-motion="full"] .hiw-steps-track[data-mode="pinned"] .hiw-part[data-on] .hiw-tick { scale: 1; opacity: 1; }
+
+/* Progress bar: one part per step, filled with the scroll; click to jump. */
+.hiw-steps-track[data-mode="pinned"] .hiw-bar {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 0 28px;
+}
+.hiw-bar button {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: baseline;
+  gap: 4px 8px;
+  width: 100%;
+  min-height: 44px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  transition: color 0.2s var(--ease-standard);
+}
+.hiw-bar button:hover { color: var(--color-text-primary); }
+.hiw-bar button:focus-visible { outline: none; box-shadow: var(--shadow-ring); border-radius: 6px; }
+.hiw-bar-n { font-family: var(--font-mono); font-size: 11.5px; color: var(--color-text-accent); }
+.hiw-bar i { grid-column: 1 / -1; height: 3px; border-radius: 2px; background: var(--color-slate-200); overflow: hidden; }
+.hiw-bar b {
+  display: block;
+  height: 100%;
+  background: var(--color-text-accent);
+  transform-origin: left;
+  transform: scaleX(var(--fill, 0));
+}
+.hiw-bar li[data-current] button,
+.hiw-bar li[data-done] button { color: var(--color-text-primary); }
+.hiw-bar li[data-current] button { font-weight: 600; }
+@media (max-width: 479px) {
+  .hiw-bar button { grid-template-columns: 1fr; font-size: 12.5px; }
+  .hiw-bar-n { display: none; }
+}
+
 /* ---------------------------------------------------------------- five checks */
 
 .hiw-check-grid { display: grid; gap: 10px; }
