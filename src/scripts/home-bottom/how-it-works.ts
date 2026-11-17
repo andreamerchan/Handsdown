@@ -17,6 +17,7 @@
 import { createSpecSequence, type SpecSequence } from "../../motion/sections/spec-sequence";
 import { createStepText, type StepText } from "../../motion/sections/step-text";
 import { tokens } from "../../motion/tokens";
+import { STEP_LABELS } from "../../data/how-it-works";
 
 type Layout = "pinned" | "flow" | "still";
 
@@ -33,8 +34,8 @@ const PLAY_VISIBLE_RATIO = 0.35;
 const MAP_BOX = { width: 540, height: 498 };
 const MAP_DOTS_URL = "/brand/how-we-work/americas-dots.json";
 
-/** Labels of the step bar, in step order. */
-const STEP_BAR_LABELS = ["Describe", "Align", "Match", "Hire"];
+/** Labels of the step bar, in step order (shared with the /how-it-works page). */
+const STEP_BAR_LABELS = STEP_LABELS;
 const STEP_BAR_ARIA_LABEL = "Steps";
 
 /** One animated illustration and how to start / rewind it. */

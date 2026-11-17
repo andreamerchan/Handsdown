@@ -95,3 +95,16 @@ half-faded text when scrolling stops. Findings, measurements, hypotheses and the
 user-test plan: "How we work — scroll UX audit and test plan" (Claude Doc).
 Checks: `tools/ux/`. Values: `tokens.scroll.stepWeights`, `stepText`,
 `stepSettleMs`, `sceneStartsAt`, `specRange`.
+
+## /how-it-works page (Nov 17)
+
+Home tells the four steps in one line each; the dedicated page tells the same four steps in full. Both read from `src/data/how-it-works.ts` (labels, headlines, what happens, who does what, what you get). Edit that file, not the components.
+
+- **Overview**: same kicker and headline as Home ("Less hiring. More building."), the four steps in one line each, each linking to its full description.
+- **Stages**: per step: what happens (numbered), what you get (the deliverable, drawn as it would look), You / We, and one note. Step 3 lists the five checks with what each tells you.
+- **Rail**: shows the step you're reading and how far through the four you are; sticky on the left (desktop) or under the header (mobile). Clicks jump without losing the hash.
+- **Motion**: each list draws in order and each deliverable assembles once, when reached. Reduced motion: all finished, instant jumps.
+- **Removed**: the page's copy of the Home scroll animation (`HowWeWork.astro`, `how-we-work.ts`, `search-map.ts`).
+- **Home**: step 1 no longer repeats step 3's copy; step 2 says the search starts once you approve the role (that's what "Align" means on the step bar); a link at the end points to the page.
+
+Preview both pages: `node tools/preview/build.mjs index how-it-works`.

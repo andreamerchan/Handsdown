@@ -1,0 +1,39 @@
+---
+// The four steps at a glance: the same steps, labels and message as the Home section,
+// one line each. Each step links to its full description below (Stages.astro).
+import { STEPS } from "../../data/how-it-works";
+---
+
+<section aria-labelledby="hiw-overview-title" class="hiw-overview px-6 pt-10 pb-12 md:pt-16 md:pb-20">
+  <div class="mx-auto max-w-[1180px]">
+    <div class="mx-auto max-w-[760px] text-center">
+      <p class="font-mono text-[14px] leading-[1.2] font-medium tracking-[-0.02em] text-text-tertiary uppercase">
+        How we work
+      </p>
+      <h2
+        id="hiw-overview-title"
+        class="mt-[11px] text-[clamp(36px,4.2vw,54px)] leading-[1.2] font-medium tracking-[-0.04em] text-balance text-text-primary"
+      >
+        <span class="block">Less hiring.</span>
+        <span class="block text-gradient-conversation">More building.</span>
+      </h2>
+      <p class="mx-auto mt-5 max-w-[560px] text-[17px] leading-[1.5] text-text-secondary">
+        Four steps from your first message to a specialist on your team. Here's what happens in each one, who does what, and what you get.
+      </p>
+    </div>
+    <ol class="hiw-glance mt-12 grid gap-3 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-0">
+      {STEPS.map((step, i) => (
+        <li class="hiw-glance-step" style={`--i:${i}`}>
+          <a href={`#${step.id}`} class="hiw-glance-link">
+            <span class="hiw-glance-head">
+              <span class="hiw-glance-n">{String(i + 1).padStart(2, "0")}</span>
+              <span class="hiw-glance-dot" aria-hidden="true"></span>
+            </span>
+            <span class="mt-4 block text-[22px] leading-[1.2] font-medium tracking-[-0.03em] text-text-primary">{step.label}</span>
+            <span class="mt-2 block max-w-[240px] text-[15px] leading-[1.45] text-text-secondary">{step.short}</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>

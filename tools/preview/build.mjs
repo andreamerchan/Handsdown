@@ -6,7 +6,9 @@
 // the page scripts with esbuild. The output in dist-preview/ only uses relative
 // paths, so it can be opened from any sub-folder or static host.
 //
-// Usage: node tools/preview/build.mjs [page=index] [--tools=/opt/npm-tools/node_modules]
+// Usage: node tools/preview/build.mjs [page ...] [--tools=/opt/npm-tools/node_modules]
+// Pages default to "index". Each page gets <page>.html (+ its own css/js); links between
+// built pages point at each other, all other internal links stay on the page.
 // The real site is still built with `npm run build` (Astro). This is a preview aid only.
 
 import { createRequire } from "node:module";
@@ -17,7 +19,8 @@ import { pathToFileURL } from "node:url";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "../..");
 const toolsArg = process.argv.find((a) => a.startsWith("--tools="));
 const TOOLS = toolsArg ? toolsArg.slice(8) : "/opt/npm-tools/node_modules";
-const page = process.argv.slice(2).find((a) => !a.startsWith("--")) ?? "index";
+const argPages = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+const pages = argPages.length ? argPages : ["index"];
 const OUT = path.join(ROOT, "dist-preview");
 const requireTools = createRequire(path.join(TOOLS, "noop.js"));
 const esbuild = requireTools("esbuild");
@@ -83,7 +86,7 @@ function preserveTextWhitespace(src) {
 
 function compileAstro(file) {
   const source = fs.readFileSync(file, "utf8");
-  const match = source.match(/^---\n([\s\S]*?)\n---\n?/);
+  const match = source.match(/^---\n([\s\S]*?)\n?---\n?/);
   const front = match ? match[1] : "";
   let template = match ? source.slice(match[0].length) : source;
 
@@ -137,6 +140,21 @@ const astroPlugin = {
 
 fs.rmSync(OUT, { recursive: true, force: true });
 fs.mkdirSync(OUT, { recursive: true });
+const runtime = await import(pathToFileURL(path.join(ROOT, "tools/preview/runtime.mjs")).href);
+/** Asset names per page: index keeps site.css / site.js. */
+const assetName = (page) => (page === "index" ? "site" : page);
+const pageHref = (route) => {
+  const [p, hash = ""] = route.split("#");
+  const name = p === "" ? "index" : p.replace(/\/$/, "");
+  return pages.includes(name) ? `${name}.html${hash ? "#" + hash : ""}` : `#${hash || p}`;
+};
+const usedAssets = new Set();
+for (const page of pages) await buildPage(page);
+copyAssets();
+
+async function buildPage(page) {
+runtime.resetScripts();
+const name = assetName(page);
 const pageFile = path.join(ROOT, "src/pages", `${page}.astro`);
 const ssr = await esbuild.build({
   entryPoints: [pageFile],
@@ -152,7 +170,6 @@ const ssr = await esbuild.build({
 });
 const ssrFile = path.join(OUT, "_ssr.mjs");
 fs.writeFileSync(ssrFile, ssr.outputFiles[0].text);
-const runtime = await import(pathToFileURL(path.join(ROOT, "tools/preview/runtime.mjs")).href);
 const { default: Page } = await import(pathToFileURL(ssrFile).href + `?t=${Date.now()}`);
 let html = "<!doctype html>\n" + String(Page({}, {}));
 fs.rmSync(ssrFile);
@@ -166,7 +183,7 @@ await esbuild.build({
   format: "esm",
   target: "es2020",
   minify: false,
-  outfile: path.join(OUT, "site.js"),
+  outfile: path.join(OUT, `${name}.js`),
   logLevel: "warning",
 });
 
@@ -186,30 +203,35 @@ const scanText = html + walk(path.join(ROOT, "src/scripts")).concat(walk(path.jo
 const candidates = new Set(scanText.split(/[\s"'`<>=]+/).filter((t) => t && t.length < 200));
 let css = compiler.build([...candidates]);
 
+
+/* ---------------------------------------------------------------- relative paths + assets */
+
+html = relativize(html)
+  .replace("</head>", `<link rel="stylesheet" href="${name}.css" />\n<script type="module" src="${name}.js"></script>\n</head>`)
+  .replace(/href="\/(?!\/)([^"]*)"/g, (_, route) => `href="${pageHref(route)}"`);
+fs.writeFileSync(path.join(OUT, `${page}.html`), html);
+css = relativize(css);
+fs.writeFileSync(path.join(OUT, `${name}.css`), css);
+const js = relativize(fs.readFileSync(path.join(OUT, `${name}.js`), "utf8"));
+fs.writeFileSync(path.join(OUT, `${name}.js`), js);
+for (const text of [html, css, js])
+  for (const m of text.matchAll(/(?:^|["'(\s,])((?:brand|fonts)\/[A-Za-z0-9_\-./]+\.[a-z0-9]+)/g)) usedAssets.add(m[1]);
+console.log(`preview: ${path.relative(ROOT, OUT)}/${page}.html`);
+}
+
 function walk(dir) {
   if (!fs.existsSync(dir)) return [];
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((d) =>
     d.isDirectory() ? walk(path.join(dir, d.name)) : [path.join(dir, d.name)],
   );
 }
+function relativize(s) {
+  return s.replace(/(["'(\s,])\/(brand|fonts|media|favicon\.svg)/g, "$1$2");
+}
 
-/* ---------------------------------------------------------------- relative paths + assets */
-
-const relativize = (s) => s.replace(/(["'(\s,])\/(brand|fonts|media|favicon\.svg)/g, "$1$2");
-html = relativize(html)
-  .replace("</head>", `<link rel="stylesheet" href="site.css" />\n<script type="module" src="site.js"></script>\n</head>`)
-  // Internal links have no pages in the preview; keep them on the page.
-  .replace(/href="\/(?!\/)([^"]*)"/g, 'href="#$1"');
-fs.writeFileSync(path.join(OUT, "index.html"), html);
-css = relativize(css);
-fs.writeFileSync(path.join(OUT, "site.css"), css);
-fs.writeFileSync(path.join(OUT, "site.js"), relativize(fs.readFileSync(path.join(OUT, "site.js"), "utf8")));
-
-// Copy only the public assets the page references.
-const used = new Set();
-for (const text of [html, css, fs.readFileSync(path.join(OUT, "site.js"), "utf8")])
-  for (const m of text.matchAll(/(?:^|["'(\s,])((?:brand|fonts)\/[A-Za-z0-9_\-./]+\.[a-z0-9]+)/g)) used.add(m[1]);
-for (const rel of used) {
+// Copy only the public assets the pages reference.
+function copyAssets() {
+for (const rel of usedAssets) {
   const src = path.join(ROOT, "public", rel);
   if (!fs.existsSync(src)) continue;
   fs.mkdirSync(path.dirname(path.join(OUT, rel)), { recursive: true });
@@ -217,4 +239,5 @@ for (const rel of used) {
 }
 if (fs.existsSync(path.join(ROOT, "public/media"))) fs.cpSync(path.join(ROOT, "public/media"), path.join(OUT, "media"), { recursive: true });
 fs.copyFileSync(path.join(ROOT, "public/favicon.svg"), path.join(OUT, "favicon.svg"));
-console.log(`preview: ${path.relative(ROOT, OUT)}/index.html  (${used.size} assets)`);
+console.log(`preview: ${usedAssets.size} assets`);
+}

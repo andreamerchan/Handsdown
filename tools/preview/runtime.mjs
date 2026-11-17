@@ -30,6 +30,7 @@ export function __useScripts(list) {
   for (const s of list) if (!scripts.includes(s)) scripts.push(s);
 }
 export const collectedScripts = () => scripts;
+export const resetScripts = () => scripts.splice(0);
 
 export function h(tag, props, ...children) {
   props = props ?? {};
