@@ -223,3 +223,58 @@ html[data-motion="full"] .hiw-step:not([data-state="in"]) .hiw-step-n { color: v
 
 /* Home: the link from the "How we work" section to this page. */
 .www-hwws-more { margin-top: 28px; padding-bottom: 48px; }
+
+/* ---------------------------------------------------------------- specialist strips
+ * Pinned (desktop): the scroll drives the strips continuously (--open per strip, 0..1),
+ * so the width/colour/caption transitions are off and follow the scroll instead.
+ * The three-part bar at the top shows progress (--fill per part, 0..1).
+ */
+.www-strips:not([data-layout="pinned"]) .www-strips-stage { position: relative; }
+.www-strips[data-layout="pinned"] .www-strips-row { transition: none; }
+.www-strips[data-layout="pinned"] .www-strip-photo {
+  transition: none;
+  filter: grayscale(calc(1 - var(--open, 0))) brightness(calc(0.85 + 0.15 * var(--open, 0)));
+}
+.www-strips[data-layout="pinned"] .www-strip-words {
+  transition: none;
+  opacity: calc(0.3 + 0.7 * var(--open, 0));
+  scale: calc(0.8 + 0.2 * var(--open, 0));
+}
+
+.www-strips-progress { display: none; }
+.www-strips[data-layout="pinned"] .www-strips-progress {
+  position: absolute;
+  z-index: 2;
+  top: 20px;
+  left: 50%;
+  translate: -50% 0;
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 999px;
+  background: rgb(15 23 42 / 0.55);
+  backdrop-filter: blur(10px);
+}
+.www-strips-progress button {
+  display: grid;
+  gap: 6px;
+  min-width: 108px;
+  padding: 7px 14px 9px;
+  border-radius: 999px;
+  text-align: left;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: rgb(255 255 255 / 0.6);
+  transition: color 0.2s var(--ease-standard), background 0.2s var(--ease-standard);
+}
+.www-strips-progress button:hover { color: #fff; }
+.www-strips-progress button:focus-visible { outline: none; box-shadow: var(--shadow-ring); }
+.www-strips-progress li[data-current] button { color: #fff; background: rgb(255 255 255 / 0.08); }
+.www-strips-progress i { display: block; height: 2px; border-radius: 1px; background: rgb(255 255 255 / 0.2); overflow: hidden; }
+.www-strips-progress b {
+  display: block;
+  height: 100%;
+  background: #fff;
+  transform-origin: left;
+  transform: scaleX(var(--fill, 0));
+}
