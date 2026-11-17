@@ -75,7 +75,12 @@ export const STEPS: Step[] = [
     short: "Every candidate goes through five checks.",
     title: "Every candidate goes through five checks.",
     lead: "The same questions and the same scale for everyone, so you compare people fairly and see the evidence behind every score.",
-    happens: [],
+    happens: [
+      "Every candidate goes through the same five checks.",
+      "Every rating comes with evidence: interview notes and the work sample.",
+      "The fairness check runs before any ranking reaches a person.",
+      "Only people who pass and say yes to your role move on.",
+    ],
     you: ["See the skills candidates will be rated on before anyone is scored.", "Tell us how you'd like to run your own interviews."],
     we: ["Run all five checks on every candidate.", "Write down the evidence behind every rating."],
     get: {
@@ -101,7 +106,7 @@ export const STEPS: Step[] = [
     we: ["Prepare the shortlist and the scorecards.", "Search again if no one fits.", "Stay with the engagement after the start."],
     get: {
       title: "A specialist on your team",
-      body: "Working your hours, on your tools and priorities, with us checking in along the way.",
+      body: "They join your team the way an in-house hire would.",
     },
     note: "Each check-in rates your specialist against the outcomes in your spec. The answers make our scoring better for every next hire.",
   },

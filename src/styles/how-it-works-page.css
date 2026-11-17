@@ -154,15 +154,15 @@
 /* ---------------------------------------------------------------- stages */
 
 .hiw-stage {
-  padding-top: 72px;
+  padding-top: 56px;
   scroll-margin-top: 130px;
 }
-.hiw-stage + .hiw-stage { margin-top: 72px; border-top: 1px solid var(--color-border-default); }
+.hiw-stage + .hiw-stage { margin-top: 56px; border-top: 1px solid var(--color-border-default); }
 .hiw-stage:first-child { padding-top: 24px; }
 @media (min-width: 1024px) {
-  .hiw-stage { padding-top: 112px; scroll-margin-top: 40px; }
+  .hiw-stage { padding-top: 88px; scroll-margin-top: 40px; }
   .hiw-stage:first-child { padding-top: 0; }
-  .hiw-stage + .hiw-stage { margin-top: 112px; }
+  .hiw-stage + .hiw-stage { margin-top: 88px; }
 }
 
 /* What happens: a numbered sequence on one line. */
@@ -196,15 +196,6 @@
 .hiw-seq-mark::before { content: counter(hiw); }
 .hiw-checks { gap: 26px; }
 
-/* You / We */
-.hiw-role {
-  border-radius: 14px;
-  border: 1px solid var(--color-border-default);
-  background: var(--color-background-raised);
-  padding: 20px 22px;
-}
-.hiw-role[data-side="us"] { background: var(--color-background-brand-subtle); border-color: transparent; }
-.hiw-role[data-side="us"] .hiw-kicker { color: var(--color-text-accent); }
 .hiw-role-line { position: relative; padding-left: 16px; font-size: 15px; line-height: 1.5; color: var(--color-text-primary); }
 .hiw-role-line::before {
   content: "";
@@ -226,9 +217,6 @@
 }
 
 /* What you get */
-.hiw-get { align-self: start; }
-@media (min-width: 768px) { .hiw-get { position: sticky; top: 150px; } }
-@media (min-width: 1024px) { .hiw-get { top: 120px; } }
 .hiw-get-card {
   border: 1px solid var(--color-border-default);
   background: var(--color-background-raised);
@@ -237,7 +225,7 @@
   box-shadow: 0 1px 2px #0f172a0a, 0 18px 40px -22px #0f172a38;
 }
 /* The Role Spec is a document: the one warm paper surface on the site. */
-#describe .hiw-get-card { background: #fbf8f2; border-color: #ebe4d6; }
+[data-step="describe"] .hiw-get-card { background: #fbf8f2; border-color: #ebe4d6; }
 
 .hiw-parts { display: grid; }
 .hiw-part {
@@ -252,7 +240,7 @@
   color: var(--color-text-primary);
 }
 .hiw-part:last-child { border-bottom: 0; }
-#describe .hiw-part { border-color: #ebe4d6; }
+[data-step="describe"] .hiw-part { border-color: #ebe4d6; }
 .hiw-tick {
   flex: none;
   width: 20px;
@@ -304,13 +292,68 @@
   color: var(--color-text-tertiary);
 }
 
-.hiw-path { position: relative; display: grid; gap: 2px; padding: 12px 0 6px; }
+.hiw-card-foot {
+  margin-top: 4px;
+  padding: 10px 0 6px;
+  border-top: 1px solid var(--color-border-default);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--color-text-tertiary);
+}
+[data-step="describe"] .hiw-card-foot { border-color: #ebe4d6; }
+
+/* ---------------------------------------------------------------- five checks (dark band) */
+
+.hiw-kicker-inverse { color: var(--color-text-inverse-tertiary); }
+.hiw-note-inverse { color: var(--color-text-inverse-secondary); border-color: var(--color-indigo-400); }
+.hiw-check-table { position: relative; display: grid; border-top: 1px solid rgb(255 255 255 / 0.12); }
+.hiw-check-row {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 6px 16px;
+  padding: 22px 0;
+  border-bottom: 1px solid rgb(255 255 255 / 0.12);
+}
+.hiw-check-row > :last-child { grid-column: 2; }
+.hiw-check-n { font-family: var(--font-mono); font-size: 13px; line-height: 1.6; color: var(--color-indigo-300); }
+@media (min-width: 768px) {
+  .hiw-check-row { grid-template-columns: 56px minmax(0, 0.9fr) minmax(0, 1.1fr); gap: 24px; align-items: baseline; }
+  .hiw-check-row > :last-child { grid-column: auto; }
+}
+
+/* ---------------------------------------------------------------- who does what */
+
+.hiw-roles-table { display: grid; border-top: 1px solid var(--color-border-default); }
+.hiw-roles-head { display: none; }
+.hiw-roles-row { display: grid; gap: 14px; padding: 24px 0; border-bottom: 1px solid var(--color-border-default); }
+.hiw-roles-step { display: flex; align-items: baseline; gap: 10px; }
+.hiw-roles-cell { display: grid; gap: 6px; align-content: start; }
+.hiw-roles-cell::before {
+  content: attr(data-label);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+.hiw-roles-cell[data-side="us"]::before { color: var(--color-text-accent); }
+@media (min-width: 768px) {
+  .hiw-roles-head,
+  .hiw-roles-row { display: grid; grid-template-columns: 180px minmax(0, 1fr) minmax(0, 1fr); gap: 32px; }
+  .hiw-roles-head { padding: 0 0 14px; border-bottom: 1px solid var(--color-border-default); }
+  .hiw-roles-table { border-top: 0; }
+  .hiw-roles-cell::before { display: none; }
+}
+
+/* ---------------------------------------------------------------- after the start */
+
+.hiw-path { position: relative; display: grid; gap: 4px; max-width: 320px; margin-inline: auto; }
 .hiw-path::before {
   content: "";
   position: absolute;
   left: 5px;
-  top: 24px;
-  bottom: 18px;
+  top: 16px;
+  bottom: 16px;
   width: 1px;
   background: var(--color-slate-300);
   transform-origin: top;
@@ -320,32 +363,46 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  min-height: 32px;
-  font-size: 14.5px;
+  min-height: 34px;
+  font-size: 15px;
   color: var(--color-text-primary);
 }
 .hiw-path-dot {
   position: relative;
   z-index: 1;
+  flex: none;
   width: 11px;
   height: 11px;
   border-radius: 50%;
   border: 2px solid var(--color-text-accent);
-  background: var(--color-background-raised);
+  background: var(--color-background-base);
 }
 .hiw-path-stop[data-kind="start"] { font-weight: 600; }
 .hiw-path-stop[data-kind="start"] .hiw-path-dot { background: var(--color-text-accent); }
 .hiw-path-stop[data-kind="check"] { color: var(--color-text-secondary); }
 .hiw-path-stop[data-kind="check"] .hiw-path-dot { border-color: var(--color-text-success); }
+@media (min-width: 768px) {
+  /* Left to right: the path is a timeline. */
+  .hiw-path { grid-template-columns: repeat(7, minmax(0, 1fr)); max-width: none; gap: 0; }
+  .hiw-path::before { left: calc(100% / 14); right: calc(100% / 14); top: 5px; bottom: auto; width: auto; height: 1px; transform-origin: left; }
+  .hiw-path-stop { flex-direction: column; gap: 14px; text-align: center; font-size: 15px; }
+}
 
 /* ---------------------------------------------------------------- motion (full only) */
 
-html[data-motion="full"] .hiw-seq::before,
-html[data-motion="full"] .hiw-path::before {
+html[data-motion="full"] .hiw-seq::before {
   transform: scaleY(0);
   transition: transform 1.1s var(--ease-brand-out);
 }
+html[data-motion="full"] .hiw-path::before {
+  transform: scaleY(0);
+  transition: transform 1.2s var(--ease-brand-out);
+}
+@media (min-width: 768px) {
+  html[data-motion="full"] .hiw-path::before { transform: scaleX(0); }
+}
 html[data-motion="full"] .hiw-seq-item,
+html[data-motion="full"] .hiw-check-row,
 html[data-motion="full"] .hiw-part,
 html[data-motion="full"] .hiw-score-row,
 html[data-motion="full"] .hiw-path-stop {
@@ -370,12 +427,12 @@ html[data-motion="full"] [data-state="in"] .hiw-seq-item,
 html[data-motion="full"] [data-state="in"] .hiw-part,
 html[data-motion="full"] [data-state="in"] .hiw-score-row,
 html[data-motion="full"] [data-state="in"] .hiw-path-stop,
-html[data-motion="full"] .hiw-seq[data-state="in"] .hiw-seq-item {
+html[data-motion="full"] [data-seq][data-state="in"] > li {
   opacity: 1;
   translate: none;
 }
 html[data-motion="full"] .hiw-seq[data-state="in"]::before,
-html[data-motion="full"] [data-state="in"] .hiw-path::before { transform: none; }
+html[data-motion="full"] .hiw-path[data-state="in"]::before { transform: none; }
 html[data-motion="full"] [data-state="in"] .hiw-tick { scale: 1; opacity: 1; }
 html[data-motion="full"] [data-state="in"] .hiw-score-bar i { transform: scaleX(var(--v)); }
 /* Without JS, <html data-motion> is never set, so none of the hidden states apply. */

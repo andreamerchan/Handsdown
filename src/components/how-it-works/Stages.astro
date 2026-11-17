@@ -1,22 +1,14 @@
 ---
-// The four steps in full. Same steps and headlines as Home; here each one adds
-// what happens, who does what, and what the client has at the end of it.
+// The four steps: same steps and headlines as Home, plus what happens in each one.
+// Everything else has its own section further down the page (Checks, Deliverables,
+// Roles, AfterStart), so each step stays short.
 // Motion (src/scripts/how-it-works/stages.ts):
 //   rail      shows where you are in the four steps and how far along you are
 //   sequence  each step's list is drawn in order, because order is the point
-//   outcome   the deliverable assembles once, when you reach it
-import { STEPS, CHECKS, SPEC_PARTS, AFTER_START } from "../../data/how-it-works";
-
-const check = `<svg viewBox="0 0 10 10" aria-hidden="true" class="size-2.5"><path d="M1.8 5.3 4 7.4 8.2 2.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-const ALIGN_GATES = [
-  { name: "Spec reviewed with you", state: "done" },
-  { name: "Call with your hiring partner", state: "optional" },
-  { name: "Role and terms approved", state: "done" },
-  { name: "Search starts", state: "next" },
-];
+import { STEPS } from "../../data/how-it-works";
 ---
 
-<section id="steps" aria-label="The four steps in detail" class="hiw-stages px-6 pb-24 md:pb-36">
+<section id="steps" aria-label="The four steps" class="hiw-stages px-6 pb-24 md:pb-32">
   <div class="mx-auto max-w-[1180px] gap-x-16 lg:grid lg:grid-cols-[180px_minmax(0,1fr)]">
     <nav class="hiw-rail" aria-label="Steps">
       <ol class="hiw-rail-list">
@@ -35,138 +27,30 @@ const ALIGN_GATES = [
 
     <div class="hiw-stage-list">
       {STEPS.map((step, i) => (
-        <article id={step.id} data-stage={i} aria-labelledby={`${step.id}-title`} class="hiw-stage">
-          <header class="max-w-[720px]">
+        <article id={step.id} data-stage={i} aria-labelledby={`${step.id}-title`} class="hiw-stage grid gap-8 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] md:gap-14">
+          <header>
             <p class="font-mono text-[14px] leading-[1.2] tracking-[1px] text-text-tertiary uppercase">
               Step {i + 1} · {step.label}
             </p>
             <h2
               id={`${step.id}-title`}
-              class="mt-3 text-[clamp(30px,3.4vw,44px)] leading-[1.2] font-medium tracking-[-0.04em] text-balance text-text-primary"
+              class="mt-3 text-[clamp(28px,3vw,40px)] leading-[1.2] font-medium tracking-[-0.04em] text-balance text-text-primary"
             >
               {step.title}
             </h2>
-            <p class="mt-4 max-w-[600px] text-[17px] leading-[1.55] text-text-secondary">{step.lead}</p>
+            <p class="mt-4 text-[17px] leading-[1.55] text-text-secondary">{step.lead}</p>
           </header>
-
-          <div class="hiw-stage-body mt-10 grid gap-10 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:gap-12">
-            <div>
-              {step.id === "match" ? (
-                <>
-                  <h3 class="hiw-kicker">The five checks</h3>
-                  <ol class="hiw-seq hiw-checks" data-seq>
-                    {CHECKS.map((c, k) => (
-                      <li class="hiw-seq-item" style={`--k:${k}`}>
-                        <span class="hiw-seq-mark" aria-hidden="true"></span>
-                        <span class="block text-[16px] leading-[1.35] font-semibold text-text-primary">{c.name}</span>
-                        <span class="mt-0.5 block font-mono text-[11.5px] leading-[1.5] tracking-[0.04em] text-text-tertiary uppercase">{c.how}</span>
-                        <span class="mt-1.5 block text-[15px] leading-[1.5] text-text-secondary">{c.tells}</span>
-                      </li>
-                    ))}
-                  </ol>
-                </>
-              ) : (
-                <>
-                  <h3 class="hiw-kicker">What happens</h3>
-                  <ol class="hiw-seq" data-seq>
-                    {step.happens.map((line, k) => (
-                      <li class="hiw-seq-item" style={`--k:${k}`}>
-                        <span class="hiw-seq-mark" aria-hidden="true"></span>
-                        <span class="block text-[16px] leading-[1.5] text-text-primary">{line}</span>
-                      </li>
-                    ))}
-                  </ol>
-                </>
-              )}
-            </div>
-
-            <aside class="hiw-get" data-get aria-label={`What you get: ${step.get.title}`}>
-              <p class="hiw-kicker">What you get</p>
-              <div class="hiw-get-card mt-4">
-                <div class="flex items-start justify-between gap-4 border-b border-border-default pb-3.5">
-                  <span>
-                    <b class="block text-[17px] leading-[1.25] font-semibold text-text-primary">{step.get.title}</b>
-                    <span class="mt-1 block text-[14px] leading-[1.45] text-text-tertiary">{step.get.body}</span>
-                  </span>
-                  {step.id === "describe" && (
-                    <span class="shrink-0 rounded-full bg-background-brand-subtle px-2.5 text-[11px] leading-[22px] font-semibold text-text-accent">Free</span>
-                  )}
-                </div>
-
-                {step.id === "describe" && (
-                  <ul class="hiw-parts" aria-label="What's in it">
-                    {SPEC_PARTS.map((part, k) => (
-                      <li class="hiw-part" style={`--k:${k}`}>
-                        <span class="hiw-tick" set:html={check}></span>
-                        {part}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                {step.id === "align" && (
-                  <ul class="hiw-parts" aria-label="Before the search starts">
-                    {ALIGN_GATES.map((g, k) => (
-                      <li class="hiw-part" data-gate={g.state} style={`--k:${k}`}>
-                        <span class="hiw-tick" set:html={g.state === "next" ? "→" : check}></span>
-                        <span class="min-w-0 flex-1">{g.name}</span>
-                        {g.state === "optional" && <span class="hiw-tag">Optional</span>}
-                      </li>
-                    ))}
-                  </ul>
-                )}
-
-                {step.id === "match" && (
-                  <div class="hiw-score">
-                    <div class="flex items-center gap-2.5 py-3.5">
-                      <span class="grid size-[34px] place-items-center rounded-full bg-background-inverted text-[11px] font-medium text-text-inverse-primary" aria-hidden="true">A</span>
-                      <span>
-                        <b class="block text-sm leading-[1.2] font-semibold text-text-primary">Candidate A</b>
-                        <span class="mt-1 block text-xs leading-none text-text-tertiary">Example scorecard</span>
-                      </span>
-                    </div>
-                    <ul aria-label="Example scores">
-                      {["Skill 1 from your spec", "Skill 2 from your spec", "Skill 3 from your spec"].map((label, k) => (
-                        <li class="hiw-score-row" style={`--k:${k};--v:${[0.86, 0.72, 0.8][k]}`}>
-                          <span class="text-[13.5px] text-text-secondary">{label}</span>
-                          <span class="hiw-score-bar" aria-hidden="true"><i></i></span>
-                        </li>
-                      ))}
-                    </ul>
-                    <p class="hiw-score-ev">Evidence: interview notes and work sample, for every rating.</p>
-                  </div>
-                )}
-
-                {step.id === "hire" && (
-                  <ol class="hiw-path" aria-label="From shortlist to the last check-in">
-                    {AFTER_START.map((stop, k) => (
-                      <li class="hiw-path-stop" data-kind={stop.startsWith("Day") ? "check" : stop === "Start" ? "start" : "step"} style={`--k:${k}`}>
-                        <span class="hiw-path-dot" aria-hidden="true"></span>
-                        {stop}
-                      </li>
-                    ))}
-                  </ol>
-                )}
-              </div>
-            </aside>
+          <div>
+            <h3 class="hiw-kicker">What happens</h3>
+            <ol class="hiw-seq" data-seq>
+              {step.happens.map((line, k) => (
+                <li class="hiw-seq-item" style={`--k:${k}`}>
+                  <span class="hiw-seq-mark" aria-hidden="true"></span>
+                  <span class="block text-[16px] leading-[1.5] text-text-primary">{line}</span>
+                </li>
+              ))}
+            </ol>
           </div>
-
-          <div class="hiw-roles mt-10 grid gap-3 sm:grid-cols-2">
-            <div class="hiw-role">
-              <h3 class="hiw-kicker">You</h3>
-              <ul class="mt-3 grid gap-2">
-                {step.you.map((line) => <li class="hiw-role-line">{line}</li>)}
-              </ul>
-            </div>
-            <div class="hiw-role" data-side="us">
-              <h3 class="hiw-kicker">We</h3>
-              <ul class="mt-3 grid gap-2">
-                {step.we.map((line) => <li class="hiw-role-line">{line}</li>)}
-              </ul>
-            </div>
-          </div>
-
-          {step.note && <p class="hiw-note mt-6 max-w-[640px]">{step.note}</p>}
         </article>
       ))}
     </div>

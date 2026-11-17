@@ -2,8 +2,8 @@
 //
 // Rail      marks the step you're reading (aria-current) and fills the line with how far
 //           through the four steps you are. Clicking a step jumps to it.
-// Sequence  each "What happens" list and each "What you get" card is drawn once, in order,
-//           when it comes into view (data-state="in"). The CSS does the drawing.
+// Sequence  every list on the page ([data-seq]: steps, checks) and every deliverable
+//           ([data-get]: cards, the after-start path) is drawn once, in order, when it comes into view (data-state="in"). The CSS does the drawing.
 // With reduced motion the CSS shows everything finished and jumps are instant.
 
 import { applyMotionTokens, clamp, inView, onFrame, prefersReducedMotion } from "../../motion/core";
@@ -23,7 +23,7 @@ function setUp(root: HTMLElement) {
   const links = [...root.querySelectorAll<HTMLAnchorElement>("[data-rail]")];
   const fill = root.querySelector<HTMLElement>(".hiw-rail-line");
 
-  for (const el of root.querySelectorAll<HTMLElement>("[data-seq], [data-get]")) {
+  for (const el of document.querySelectorAll<HTMLElement>("[data-seq], [data-get]")) {
     inView(el, () => (el.dataset.state = "in"), { ratio: DRAW_RATIO });
   }
 
