@@ -11,7 +11,7 @@
 const BOOK_URL = "/book";
 
 const buttons = document.querySelectorAll<HTMLButtonElement>(
-  "[data-way] > button, .www-hwws .www-hww-text > button",
+  "[data-way] button, .www-hwws .www-hww-text > button",
 );
 
 buttons.forEach((button) => {
