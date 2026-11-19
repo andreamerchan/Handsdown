@@ -1,0 +1,42 @@
+---
+// After the start: how we keep following quality once your specialist joins.
+import { AFTER_START } from "../../data/how-it-works";
+---
+
+<section id="after-the-start" aria-labelledby="hiw-after-title" class="bg-background-raised px-6 py-20 md:py-28">
+  <div class="mx-auto grid max-w-[1120px] items-center gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-20">
+    <figure class="hiw-photo-card lg:order-1">
+      <img
+        src="/brand/team-photo/team-1000.jpg"
+        srcset="/brand/team-photo/team-1000.jpg 1000w, /brand/team-photo/team-2000.jpg 2000w"
+        sizes="(min-width: 1024px) 540px, 100vw"
+        alt="A product team smiling together at the office"
+        loading="lazy"
+        decoding="async"
+      />
+      <figcaption class="hiw-days">
+        <span><i aria-hidden="true">✓</i>Day 30</span>
+        <span><i aria-hidden="true">✓</i>Day 60</span>
+        <span><i aria-hidden="true">✓</i>Day 90</span>
+      </figcaption>
+    </figure>
+    <div class="lg:order-2">
+      <p class="hiw-kicker">After the start</p>
+      <h2 id="hiw-after-title" class="hiw-h2">
+        Quality doesn’t stop <span class="text-gradient-conversation">at the hire.</span>
+      </h2>
+      <p class="hiw-lead">We keep checking that your specialist delivers what you hired them for.</p>
+      <ol class="mt-8 grid gap-5">
+        {AFTER_START.map((item, k) => (
+          <li class="hiw-after">
+            <span class="hiw-after-n">{k + 1}</span>
+            <span>
+              <b class="block text-[16.5px] font-semibold text-text-primary">{item.name}</b>
+              <span class="mt-0.5 block text-[15px] leading-[1.45] text-text-secondary">{item.line}</span>
+            </span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

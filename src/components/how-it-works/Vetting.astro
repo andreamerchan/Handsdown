@@ -1,0 +1,34 @@
+---
+// Vetting: the five checks, with a funnel showing the path to your shortlist.
+import { CHECKS } from "../../data/how-it-works";
+---
+
+<section id="vetting" aria-labelledby="hiw-vetting-title" class="bg-background-inverted px-6 py-20 md:py-28">
+  <div class="mx-auto grid max-w-[1120px] items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
+    <div class="hiw-funnel" aria-hidden="true">
+      <span class="hiw-funnel-bar" style="--w:100%">Candidates found</span>
+      {CHECKS.map((c, k) => (
+        <span class="hiw-funnel-bar" style={`--w:${92 - k * 9}%`}><i>{String(k + 1).padStart(2, "0")}</i>{c.name}</span>
+      ))}
+      <span class="hiw-funnel-bar hiw-funnel-end" style="--w:44%">Your shortlist</span>
+    </div>
+    <div>
+      <p class="hiw-kicker hiw-kicker-inverse">Vetting</p>
+      <h2 id="hiw-vetting-title" class="hiw-h2">
+        Five checks. <span class="text-gradient-heading">One scale for everyone.</span>
+      </h2>
+      <p class="hiw-lead">Nobody reaches your shortlist on a CV alone.</p>
+      <ol class="mt-8 grid gap-5">
+        {CHECKS.map((c, k) => (
+          <li class="hiw-vet">
+            <span class="hiw-vet-n">{String(k + 1).padStart(2, "0")}</span>
+            <span>
+              <b class="block text-[16.5px] font-semibold text-text-inverse-primary">{c.name}</b>
+              <span class="mt-0.5 block text-[15px] leading-[1.45] text-text-inverse-secondary">{c.line}</span>
+            </span>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </div>
+</section>

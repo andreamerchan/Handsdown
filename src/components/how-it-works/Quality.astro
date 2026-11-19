@@ -1,0 +1,61 @@
+---
+// Quality assurance: what stands behind every score, shown on an example scorecard.
+import { QUALITY } from "../../data/how-it-works";
+
+const SCORES = [
+  { skill: "Python", weight: "Must-have", score: "4.5", v: 0.9 },
+  { skill: "Machine learning", weight: "Must-have", score: "4.3", v: 0.86 },
+  { skill: "Communication", weight: "Weighted", score: "4.0", v: 0.8 },
+];
+const check = `<svg viewBox="0 0 10 10" aria-hidden="true" class="size-2.5"><path d="M1.8 5.3 4 7.4 8.2 2.8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+---
+
+<section id="quality" aria-labelledby="hiw-quality-title" class="px-6 py-20 md:py-28">
+  <div class="mx-auto grid max-w-[1120px] items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-20">
+    <div>
+      <p class="hiw-kicker">Quality assurance</p>
+      <h2 id="hiw-quality-title" class="hiw-h2">
+        You see the evidence, <span class="text-gradient-conversation">not just a score.</span>
+      </h2>
+      <ul class="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2">
+        {QUALITY.map((q) => (
+          <li>
+            <span class="hiw-tick" set:html={check}></span>
+            <b class="mt-3 block text-[16.5px] font-semibold text-text-primary">{q.name}</b>
+            <span class="mt-1 block text-[15px] leading-[1.45] text-text-secondary">{q.line}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    <figure class="hiw-photo-card">
+      <img
+        src="/brand/specialist-strips/developer-800.jpg"
+        srcset="/brand/specialist-strips/developer-800.jpg 800w, /brand/specialist-strips/developer-1600.jpg 1600w"
+        sizes="(min-width: 1024px) 460px, 100vw"
+        alt="A software developer at his desk, arms crossed, code on the screens behind him."
+        loading="lazy"
+        decoding="async"
+        style="object-position:50% 30%"
+      />
+      <figcaption class="hiw-scorecard">
+        <span class="flex items-center justify-between gap-3 border-b border-border-default pb-2.5">
+          <b class="text-[14px] font-semibold text-text-primary">Scorecard</b>
+          <span class="text-[11.5px] text-text-tertiary">Example</span>
+        </span>
+        {SCORES.map((row) => (
+          <span class="hiw-score-row">
+            <span>
+              <span class="block text-[13.5px] font-medium text-text-primary">{row.skill}</span>
+              <span class="block text-[11px] text-text-tertiary">{row.weight}</span>
+            </span>
+            <span class="hiw-score-bar" aria-hidden="true"><i style={`--v:${row.v}`}></i></span>
+            <span class="text-[15px] font-semibold text-text-accent">{row.score}</span>
+          </span>
+        ))}
+        <span class="block border-t border-border-default pt-2 text-[11.5px] leading-[1.4] text-text-tertiary">
+          Evidence on every rating
+        </span>
+      </figcaption>
+    </figure>
+  </div>
+</section>

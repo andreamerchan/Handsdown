@@ -1,7 +1,6 @@
 /*
- * /how-it-works: the process, start to finish (components/how-it-works/Process.astro).
- * Static on purpose: content first, no scroll-driven motion. The chapter index marks
- * where you are (scripts/how-it-works/process-nav.ts).
+ * /how-it-works: Steps, Vetting, Quality, AfterStart (components/how-it-works/).
+ * Static on purpose: short copy, clear headlines, visuals carry the detail.
  */
 
 .hiw-kicker {
@@ -10,194 +9,160 @@
   line-height: 1.2;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--color-text-tertiary);
+  color: var(--color-text-accent);
 }
-
-/* ---------------------------------------------------------------- chapter index */
-
-.hiw-index {
-  position: sticky;
-  top: 74px;
-  z-index: 10;
-  margin: 0 -24px;
-  padding: 8px 24px;
-  background: color-mix(in srgb, var(--color-background-base) 90%, transparent);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-border-default);
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.hiw-index ol { display: flex; gap: 4px; }
-.hiw-index a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 40px;
-  padding: 0 12px;
-  border-radius: 999px;
-  white-space: nowrap;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-text-tertiary);
-  transition: color 0.15s var(--ease-standard), background 0.15s var(--ease-standard);
-}
-.hiw-index a:hover { color: var(--color-text-primary); }
-.hiw-index a:focus-visible { outline: none; box-shadow: var(--shadow-ring); }
-.hiw-index a[aria-current] { color: var(--color-text-primary); background: var(--color-background-neutral); }
-.hiw-index-n { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-accent); }
-@media (min-width: 1024px) {
-  .hiw-index {
-    top: 120px;
-    align-self: start;
-    margin: 0;
-    padding: 0;
-    background: none;
-    backdrop-filter: none;
-    border: 0;
-    overflow: visible;
-  }
-  .hiw-index ol { flex-direction: column; gap: 2px; border-left: 1px solid var(--color-border-default); }
-  .hiw-index a { margin-left: -1px; padding: 0 14px; border-radius: 0; border-left: 2px solid transparent; }
-  .hiw-index a[aria-current] { background: none; border-left-color: var(--color-text-accent); }
-}
-
-/* ---------------------------------------------------------------- chapters */
-
-.hiw-chapter { padding: 56px 0; border-bottom: 1px solid var(--color-border-default); scroll-margin-top: 140px; }
-.hiw-chapter:first-child { padding-top: 40px; }
-.hiw-chapter:last-child { border-bottom: 0; padding-bottom: 0; }
-@media (min-width: 1024px) {
-  .hiw-chapter { padding: 72px 0; scroll-margin-top: 100px; }
-  .hiw-chapter:first-child { padding-top: 0; }
-}
-.hiw-chapter-title {
+.hiw-kicker-inverse { color: var(--color-indigo-300); }
+.hiw-h2 {
   margin-top: 12px;
-  max-width: 680px;
-  font-size: clamp(26px, 2.8vw, 36px);
-  line-height: 1.2;
+  font-size: clamp(32px, 3.8vw, 48px);
+  line-height: 1.15;
   font-weight: 500;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.04em;
   text-wrap: balance;
-  color: var(--color-text-primary);
+  color: var(--hiw-h2, var(--color-text-primary));
 }
-.hiw-chapter-intro { margin-top: 12px; max-width: 640px; font-size: 17px; line-height: 1.6; color: var(--color-text-secondary); }
-.hiw-yours {
-  margin-top: 28px;
-  padding: 12px 16px;
-  border-radius: 10px;
-  background: var(--color-background-neutral);
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--color-text-secondary);
-}
-.hiw-yours b { font-weight: 600; color: var(--color-text-primary); }
+.hiw-lead { margin-top: 14px; max-width: 520px; font-size: 18px; line-height: 1.5; color: var(--hiw-lead, var(--color-text-secondary)); }
+#vetting { --hiw-h2: var(--color-text-inverse-primary); --hiw-lead: var(--color-text-inverse-secondary); }
 
-/* Boxes and cards */
-.hiw-box {
-  padding: 20px 22px;
-  border-radius: 14px;
-  border: 1px solid var(--color-border-default);
-  background: var(--color-background-raised);
-}
-.hiw-card {
-  padding: 16px 18px 12px;
-  border-radius: 12px;
-  border: 1px solid var(--color-border-default);
-  background: var(--color-background-raised);
-  box-shadow: 0 1px 2px #0f172a0a, 0 18px 40px -22px #0f172a38;
-}
-/* The spec is a document: the one warm paper surface on the site. */
-.hiw-doc {
-  padding: 18px 22px 8px;
-  border-radius: 14px;
-  border: 1px solid #ebe4d6;
-  background: #fbf8f2;
-}
-.hiw-doc-row { display: grid; gap: 2px; padding: 12px 0; border-bottom: 1px solid #ebe4d6; }
-.hiw-doc-row:last-child { border-bottom: 0; }
-.hiw-doc-row dt { font-size: 15px; font-weight: 600; color: var(--color-text-primary); }
-.hiw-doc-row dd { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--color-text-secondary); }
-@media (min-width: 640px) { .hiw-doc-row { grid-template-columns: 190px minmax(0, 1fr); gap: 16px; } }
+/* ---------------------------------------------------------------- steps */
 
-.hiw-tick-line { display: flex; gap: 10px; font-size: 15px; line-height: 1.5; color: var(--color-text-primary); }
-.hiw-tick {
-  flex: none;
-  margin-top: 2px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
+.hiw-steps { display: grid; gap: 28px; }
+@media (min-width: 640px) { .hiw-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1024px) { .hiw-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0; } }
+.hiw-step { display: grid; align-content: start; padding-right: 24px; }
+.hiw-step-head { display: flex; align-items: center; gap: 12px; }
+.hiw-step-n {
   display: grid;
   place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--color-background-brand-subtle);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-accent);
+}
+.hiw-step-line { flex: 1; height: 1px; background: var(--color-slate-300); }
+.hiw-step:last-child .hiw-step-line { display: none; }
+@media (max-width: 1023.98px) { .hiw-step-line { display: none; } }
+.hiw-step-label {
+  margin-top: 18px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text-tertiary);
+}
+.hiw-step-title { margin-top: 6px; font-size: 21px; line-height: 1.25; font-weight: 600; letter-spacing: -0.02em; color: var(--color-text-primary); }
+.hiw-step-body { margin-top: 6px; max-width: 250px; font-size: 15px; line-height: 1.5; color: var(--color-text-secondary); }
+
+/* ---------------------------------------------------------------- vetting */
+
+.hiw-funnel { display: grid; justify-items: center; gap: 8px; }
+.hiw-funnel-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: var(--w);
+  min-height: 46px;
+  padding: 0 16px;
+  border-radius: 10px;
+  background: rgb(255 255 255 / 0.06);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--color-text-inverse-primary);
+  white-space: nowrap;
+}
+.hiw-funnel-bar i { font-style: normal; font-family: var(--font-mono); font-size: 12px; color: var(--color-indigo-300); }
+.hiw-funnel-bar:first-child { color: var(--color-text-inverse-secondary); }
+.hiw-funnel-end { background: var(--color-indigo-500); box-shadow: 0 16px 40px -16px rgb(110 123 255 / 0.7); font-weight: 600; }
+.hiw-vet { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 12px; }
+.hiw-vet-n { font-family: var(--font-mono); font-size: 13px; line-height: 1.9; color: var(--color-indigo-300); }
+
+/* ---------------------------------------------------------------- photo cards */
+
+.hiw-photo-card { position: relative; margin: 0; padding-bottom: 28px; }
+.hiw-photo-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3.4;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+/* Quality: scorecard over the photo */
+.hiw-tick {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
   color: var(--color-text-success);
   background: var(--color-background-success-subtle);
 }
-
-/* Numbered steps */
-.hiw-numbered { display: grid; gap: 14px; counter-reset: hiw; max-width: 680px; }
-.hiw-numbered li {
-  position: relative;
-  padding-left: 40px;
-  counter-increment: hiw;
-  font-size: 16px;
-  line-height: 1.55;
-  color: var(--color-text-primary);
-}
-.hiw-numbered li::before {
-  content: counter(hiw);
+.hiw-scorecard {
   position: absolute;
-  left: 0;
-  top: 1px;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
+  left: -20px;
+  bottom: 0;
+  display: grid;
+  gap: 2px;
+  width: min(300px, 82%);
+  padding: 14px 16px 10px;
+  border-radius: 14px;
+  border: 1px solid var(--color-border-default);
+  background: var(--color-background-raised);
+  box-shadow: 0 1px 2px #0f172a0a, 0 24px 48px -22px #0f172a55;
+}
+@media (max-width: 1023.98px) { .hiw-scorecard { left: 16px; } }
+.hiw-score-row { display: grid; grid-template-columns: 112px minmax(0, 1fr) 28px; align-items: center; gap: 10px; padding: 7px 0; }
+.hiw-score-bar { height: 5px; border-radius: 3px; background: var(--color-background-neutral); overflow: hidden; }
+.hiw-score-bar i { display: block; height: 100%; width: calc(var(--v) * 100%); border-radius: inherit; background: var(--color-text-accent); }
+
+/* After the start: check-in chips over the photo */
+.hiw-days {
+  position: absolute;
+  right: -16px;
+  bottom: 0;
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 14px;
+  border: 1px solid var(--color-border-default);
+  background: var(--color-background-raised);
+  box-shadow: 0 1px 2px #0f172a0a, 0 24px 48px -22px #0f172a55;
+}
+@media (max-width: 1023.98px) { .hiw-days { right: 16px; } }
+.hiw-days span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: var(--color-background-success-subtle);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-success);
+}
+.hiw-days i { font-style: normal; font-size: 11px; }
+.hiw-after { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 12px; }
+.hiw-after-n {
   display: grid;
   place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
   border: 1px solid var(--color-slate-300);
   font-family: var(--font-mono);
-  font-size: 11.5px;
+  font-size: 12px;
   color: var(--color-text-accent);
 }
 
-/* The five checks */
-.hiw-checks { display: grid; border-top: 1px solid var(--color-border-default); }
-.hiw-checks-head { display: none; }
-.hiw-check { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 8px 12px; padding: 20px 0; border-bottom: 1px solid var(--color-border-default); }
-.hiw-check-n { font-family: var(--font-mono); font-size: 13px; line-height: 1.75; color: var(--color-text-accent); }
-.hiw-check-bar {
-  grid-column: 2;
-  padding: 10px 12px;
-  border-radius: 8px;
-  background: var(--color-background-brand-subtle);
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--color-text-primary);
-}
-@media (min-width: 900px) {
-  .hiw-checks-head,
-  .hiw-check { display: grid; grid-template-columns: 44px minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px; }
-  .hiw-checks-head {
-    padding: 0 0 10px;
-    border-bottom: 1px solid var(--color-border-default);
-    font-family: var(--font-mono);
-    font-size: 11.5px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--color-text-tertiary);
-  }
-  .hiw-checks { border-top: 0; }
-  .hiw-check-bar { grid-column: auto; align-self: start; margin-top: 2px; }
-}
-
-/* Scorecard */
-.hiw-scorecard { display: grid; gap: 20px; align-items: center; }
-@media (min-width: 768px) { .hiw-scorecard { grid-template-columns: minmax(0, 1fr) 340px; gap: 40px; } }
-.hiw-score-table { width: 100%; border-collapse: collapse; margin: 4px 0 6px; }
-.hiw-score-table th,
-.hiw-score-table td { padding: 9px 0; border-bottom: 1px solid var(--color-border-default); text-align: left; }
-.hiw-score-table tr:last-child :is(th, td) { border-bottom: 0; }
-.hiw-score-table th { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
-.hiw-score-table th small { display: block; margin-top: 2px; font-size: 11.5px; font-weight: 400; color: var(--color-text-tertiary); }
-.hiw-score-table td { text-align: right; font-size: 17px; font-weight: 500; color: var(--color-text-accent); }
-
 /* Home: the link from the "How we work" section to this page. */
 .www-hwws-more { margin-top: 28px; padding-bottom: 48px; }
+/* Phones: the list below already names the five checks; skip the funnel to keep it short. */
+@media (max-width: 639.98px) { .hiw-funnel { display: none; } }

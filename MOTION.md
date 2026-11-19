@@ -96,17 +96,18 @@ user-test plan: "How we work — scroll UX audit and test plan" (Claude Doc).
 Checks: `tools/ux/`. Values: `tokens.scroll.stepWeights`, `stepText`,
 `stepSettleMs`, `sceneStartsAt`, `specRange`.
 
-## /how-it-works page (Nov 19: content first)
+## /how-it-works page (Nov 19: sections, short copy)
 
-The page explains the process once, start to finish, with no scroll-driven motion. Home keeps the animated four-step summary; the page is where the detail lives. Content comes from `src/data/how-it-works.ts` (backed by PRDs 01, 05, 06, 08); edit that file, not the components.
+Home keeps the animated four-step summary; the page explains the process in short, visual sections. Content comes from `src/data/how-it-works.ts` (backed by PRDs 01, 05, 06, 08); edit that file, not the components. No scroll-driven motion.
 
-| Part | Component | What it explains |
+| Section | Component | Shows |
 | --- | --- | --- |
 | Hero | `Hero.astro` | Unchanged |
-| The process | `Process.astro` | Chapter index (sticky; marks where you are) and five chapters: Describe (what the spec defines, how it's checked), Align (what happens before the search), Match (the five checks: how each works and what it takes to pass; the scorecard you see), Hire (shortlist, decision, start), After the start (partner, 30/60/90 check-ins, scoring that learns). Each ends with "Your part". |
-| FAQ | `Faq.astro` | Three questions the chapters don't answer |
+| The process | `Steps.astro` | The four steps (same labels as Home), one line each |
+| Vetting | `Vetting.astro` | Dark band: a funnel from "Candidates found" through the five checks to "Your shortlist", and one line per check |
+| Quality assurance | `Quality.astro` | Four guarantees of the process, with a specialist photo and an example scorecard |
+| After the start | `AfterStart.astro` | Team photo with Day 30 / 60 / 90 check-ins, and three ways we keep following quality |
+| FAQ | `Faq.astro` | Three questions |
 | Closing CTA | `ClosingCta.astro` | Unchanged (reveal animation removed) |
-
-Removed from the page (repeated the same information, or were animation-led): the pinned steps, the five-check tiles, the deliverable cards, the who-does-what table, the after-start timeline, the specialist photo strips and the statement.
 
 Preview both pages: `node tools/preview/build.mjs index how-it-works`.
