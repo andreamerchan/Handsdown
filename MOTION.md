@@ -96,21 +96,17 @@ user-test plan: "How we work — scroll UX audit and test plan" (Claude Doc).
 Checks: `tools/ux/`. Values: `tokens.scroll.stepWeights`, `stepText`,
 `stepSettleMs`, `sceneStartsAt`, `specRange`.
 
-## /how-it-works page (Nov 17)
+## /how-it-works page (Nov 19: content first)
 
-Home tells the four steps in one card each; the dedicated page uses the same steps, labels and headlines, then unpacks them in short, visual sections. Copy is kept to a few words per line. Everything reads from `src/data/how-it-works.ts`; edit that file, not the components.
+The page explains the process once, start to finish, with no scroll-driven motion. Home keeps the animated four-step summary; the page is where the detail lives. Content comes from `src/data/how-it-works.ts` (backed by PRDs 01, 05, 06, 08); edit that file, not the components.
 
-| Section | Component | What it shows |
+| Part | Component | What it explains |
 | --- | --- | --- |
-| The four steps | `Stages.astro` | Pinned: the scroll plays one step at a time, points tick in one by one, a 4-part progress bar (Describe / Align / Match / Hire) fills and jumps to a step. Reduced motion or short screens: a plain list. |
-| Five checks | `Checks.astro` | Five tiles: check name + what it shows (dark band) |
-| What you get | `Deliverables.astro` | One card per step: Role Spec, approved role, scorecard, specialist |
-| Who does what | `Roles.astro` | One line per side, per step |
-| After they start | `AfterStart.astro` | Shortlist → Start → Day 30 / 60 / 90 |
-| Specialist strips | `SpecialistStrips.astro` | Pinned: the scroll hands width, colour and caption from strip to strip; 3-part progress bar |
-| FAQ | `Faq.astro` | Five questions, one-line answers |
+| Hero | `Hero.astro` | Unchanged |
+| The process | `Process.astro` | Chapter index (sticky; marks where you are) and five chapters: Describe (what the spec defines, how it's checked), Align (what happens before the search), Match (the five checks: how each works and what it takes to pass; the scorecard you see), Hire (shortlist, decision, start), After the start (partner, 30/60/90 check-ins, scoring that learns). Each ends with "Your part". |
+| FAQ | `Faq.astro` | Three questions the chapters don't answer |
+| Closing CTA | `ClosingCta.astro` | Unchanged (reveal animation removed) |
 
-- **Motion**: step numbers light up, lists tick in order, scorecard bars fill, the timeline draws: once each, when reached. Reduced motion: everything finished.
-- **Home**: step 1 no longer repeats step 3's copy; step 2 says the search starts once you approve the role (what "Align" means on the step bar); a link at the end points to the page.
+Removed from the page (repeated the same information, or were animation-led): the pinned steps, the five-check tiles, the deliverable cards, the who-does-what table, the after-start timeline, the specialist photo strips and the statement.
 
 Preview both pages: `node tools/preview/build.mjs index how-it-works`.

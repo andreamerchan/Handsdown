@@ -1,9 +1,7 @@
 /*
- * /how-it-works: the four steps and the short sections that unpack them.
- * Markup: components/how-it-works/{Stages,Checks,Deliverables,Roles,AfterStart}.astro
- * Motion: scripts/how-it-works/stages.ts sets data-state="in" on [data-seq] / [data-get]
- *         once they're in view. The hidden starting states only apply under
- *         html[data-motion="full"], so reduced motion (and no JS) shows everything finished.
+ * /how-it-works: the process, start to finish (components/how-it-works/Process.astro).
+ * Static on purpose: content first, no scroll-driven motion. The chapter index marks
+ * where you are (scripts/how-it-works/process-nav.ts).
  */
 
 .hiw-kicker {
@@ -14,370 +12,192 @@
   text-transform: uppercase;
   color: var(--color-text-tertiary);
 }
-.hiw-kicker-inverse { color: var(--color-text-inverse-tertiary); }
 
-/* Ticked list item, used in steps and cards. */
-.hiw-part {
+/* ---------------------------------------------------------------- chapter index */
+
+.hiw-index {
+  position: sticky;
+  top: 74px;
+  z-index: 10;
+  margin: 0 -24px;
+  padding: 8px 24px;
+  background: color-mix(in srgb, var(--color-background-base) 90%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border-default);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.hiw-index ol { display: flex; gap: 4px; }
+.hiw-index a {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   min-height: 40px;
-  padding: 6px 0;
-  border-bottom: 1px solid var(--color-border-default);
-  font-size: 15px;
-  line-height: 1.35;
+  padding: 0 12px;
+  border-radius: 999px;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--color-text-tertiary);
+  transition: color 0.15s var(--ease-standard), background 0.15s var(--ease-standard);
+}
+.hiw-index a:hover { color: var(--color-text-primary); }
+.hiw-index a:focus-visible { outline: none; box-shadow: var(--shadow-ring); }
+.hiw-index a[aria-current] { color: var(--color-text-primary); background: var(--color-background-neutral); }
+.hiw-index-n { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-accent); }
+@media (min-width: 1024px) {
+  .hiw-index {
+    top: 120px;
+    align-self: start;
+    margin: 0;
+    padding: 0;
+    background: none;
+    backdrop-filter: none;
+    border: 0;
+    overflow: visible;
+  }
+  .hiw-index ol { flex-direction: column; gap: 2px; border-left: 1px solid var(--color-border-default); }
+  .hiw-index a { margin-left: -1px; padding: 0 14px; border-radius: 0; border-left: 2px solid transparent; }
+  .hiw-index a[aria-current] { background: none; border-left-color: var(--color-text-accent); }
+}
+
+/* ---------------------------------------------------------------- chapters */
+
+.hiw-chapter { padding: 56px 0; border-bottom: 1px solid var(--color-border-default); scroll-margin-top: 140px; }
+.hiw-chapter:first-child { padding-top: 40px; }
+.hiw-chapter:last-child { border-bottom: 0; padding-bottom: 0; }
+@media (min-width: 1024px) {
+  .hiw-chapter { padding: 72px 0; scroll-margin-top: 100px; }
+  .hiw-chapter:first-child { padding-top: 0; }
+}
+.hiw-chapter-title {
+  margin-top: 12px;
+  max-width: 680px;
+  font-size: clamp(26px, 2.8vw, 36px);
+  line-height: 1.2;
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
   color: var(--color-text-primary);
 }
-.hiw-part:last-child { border-bottom: 0; }
+.hiw-chapter-intro { margin-top: 12px; max-width: 640px; font-size: 17px; line-height: 1.6; color: var(--color-text-secondary); }
+.hiw-yours {
+  margin-top: 28px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  background: var(--color-background-neutral);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+}
+.hiw-yours b { font-weight: 600; color: var(--color-text-primary); }
+
+/* Boxes and cards */
+.hiw-box {
+  padding: 20px 22px;
+  border-radius: 14px;
+  border: 1px solid var(--color-border-default);
+  background: var(--color-background-raised);
+}
+.hiw-card {
+  padding: 16px 18px 12px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border-default);
+  background: var(--color-background-raised);
+  box-shadow: 0 1px 2px #0f172a0a, 0 18px 40px -22px #0f172a38;
+}
+/* The spec is a document: the one warm paper surface on the site. */
+.hiw-doc {
+  padding: 18px 22px 8px;
+  border-radius: 14px;
+  border: 1px solid #ebe4d6;
+  background: #fbf8f2;
+}
+.hiw-doc-row { display: grid; gap: 2px; padding: 12px 0; border-bottom: 1px solid #ebe4d6; }
+.hiw-doc-row:last-child { border-bottom: 0; }
+.hiw-doc-row dt { font-size: 15px; font-weight: 600; color: var(--color-text-primary); }
+.hiw-doc-row dd { margin: 0; font-size: 14.5px; line-height: 1.5; color: var(--color-text-secondary); }
+@media (min-width: 640px) { .hiw-doc-row { grid-template-columns: 190px minmax(0, 1fr); gap: 16px; } }
+
+.hiw-tick-line { display: flex; gap: 10px; font-size: 15px; line-height: 1.5; color: var(--color-text-primary); }
 .hiw-tick {
   flex: none;
+  margin-top: 2px;
   width: 20px;
   height: 20px;
   border-radius: 50%;
   display: grid;
   place-items: center;
-  font-size: 11px;
   color: var(--color-text-success);
   background: var(--color-background-success-subtle);
 }
-.hiw-part[data-gate="optional"] { color: var(--color-text-secondary); }
-.hiw-part[data-gate="optional"] .hiw-tick { color: var(--color-text-tertiary); background: var(--color-background-neutral); }
-.hiw-part[data-gate="next"] { font-weight: 600; }
-.hiw-part[data-gate="next"] .hiw-tick { color: var(--color-text-accent); background: var(--color-background-brand-subtle); }
-.hiw-tag {
-  border-radius: 999px;
-  padding: 0 8px;
-  font-size: 11px;
-  line-height: 20px;
-  font-weight: 600;
-  color: var(--color-text-tertiary);
-  background: var(--color-background-neutral);
-}
 
-/* ---------------------------------------------------------------- the four steps */
-
-.hiw-steps { display: grid; border-top: 1px solid var(--color-border-default); }
-.hiw-step {
-  display: grid;
-  gap: 16px 24px;
-  padding: 36px 0;
-  border-bottom: 1px solid var(--color-border-default);
-  scroll-margin-top: 96px;
-}
-.hiw-step-n {
-  font-size: 40px;
-  line-height: 1;
-  font-weight: 500;
-  letter-spacing: -0.05em;
-  color: var(--color-text-accent);
-  transition: color 0.6s var(--ease-brand-out);
-}
-.hiw-points .hiw-part { border: 0; min-height: 34px; padding: 3px 0; }
-@media (min-width: 768px) {
-  .hiw-step { grid-template-columns: 96px minmax(0, 1.2fr) minmax(0, 0.8fr); gap: 40px; align-items: start; padding: 48px 0; }
-  .hiw-step-n { font-size: 72px; }
-}
-
-/* Pinned: the scroll plays the steps one at a time (stages.ts sets --vis, --dir,
- * data-on on points, --fill on bar parts). */
-.hiw-bar { display: none; }
-.hiw-steps-track[data-mode="pinned"] { height: calc(100svh - 74px + 4 * 70svh); }
-.hiw-steps-track[data-mode="pinned"] .hiw-steps-stage {
-  position: sticky;
-  top: 74px;
-  height: calc(100svh - 74px);
-  display: flex;
-  flex-direction: column;
-}
-.hiw-steps-track[data-mode="pinned"] .hiw-steps {
+/* Numbered steps */
+.hiw-numbered { display: grid; gap: 14px; counter-reset: hiw; max-width: 680px; }
+.hiw-numbered li {
   position: relative;
-  flex: 1;
-  width: 100%;
-  border: 0;
-}
-.hiw-steps-track[data-mode="pinned"] .hiw-step {
-  position: absolute;
-  inset: 0;
-  align-content: center;
-  border: 0;
-  padding: 0;
-  opacity: var(--vis, 0);
-  translate: 0 calc((1 - var(--vis, 0)) * 48px * var(--dir, 1));
-  pointer-events: none;
-  will-change: opacity, translate;
-}
-.hiw-steps-track[data-mode="pinned"] .hiw-step[data-current] { pointer-events: auto; }
-.hiw-steps-track[data-mode="pinned"] .hiw-step-n {
-  font-size: clamp(72px, 12vw, 168px);
-  color: var(--color-text-accent);
-  transition: none;
-}
-.hiw-steps-track[data-mode="pinned"] .hiw-step h3 { font-size: clamp(28px, 3.4vw, 44px); }
-.hiw-steps-track[data-mode="pinned"] .hiw-points .hiw-part { font-size: 17px; min-height: 40px; }
-@media (min-width: 768px) {
-  .hiw-steps-track[data-mode="pinned"] .hiw-step {
-    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-    grid-template-rows: auto auto;
-    column-gap: 56px;
-    row-gap: 28px;
-    align-items: end;
-  }
-  .hiw-steps-track[data-mode="pinned"] .hiw-step-n { grid-row: span 2; align-self: center; justify-self: end; }
-  .hiw-steps-track[data-mode="pinned"] .hiw-points { align-self: start; }
-}
-/* Points tick in with the scroll, one by one (reversible). */
-html[data-motion="full"] .hiw-steps-track[data-mode="pinned"] .hiw-part {
-  opacity: 0;
-  translate: 0 10px;
-  transition: opacity 0.35s var(--ease-brand-out), translate 0.35s var(--ease-brand-out);
-}
-html[data-motion="full"] .hiw-steps-track[data-mode="pinned"] .hiw-part .hiw-tick {
-  scale: 0.4;
-  opacity: 0;
-  transition: scale 0.35s var(--ease-brand-out) 0.1s, opacity 0.25s var(--ease-standard) 0.1s;
-}
-html[data-motion="full"] .hiw-steps-track[data-mode="pinned"] .hiw-part[data-on] { opacity: 1; translate: none; }
-html[data-motion="full"] .hiw-steps-track[data-mode="pinned"] .hiw-part[data-on] .hiw-tick { scale: 1; opacity: 1; }
-
-/* Progress bar: one part per step, filled with the scroll; click to jump. */
-.hiw-steps-track[data-mode="pinned"] .hiw-bar {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 8px;
-  width: 100%;
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 0 0 28px;
-}
-.hiw-bar button {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  align-items: baseline;
-  gap: 4px 8px;
-  width: 100%;
-  min-height: 44px;
-  text-align: left;
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--color-text-tertiary);
-  transition: color 0.2s var(--ease-standard);
-}
-.hiw-bar button:hover { color: var(--color-text-primary); }
-.hiw-bar button:focus-visible { outline: none; box-shadow: var(--shadow-ring); border-radius: 6px; }
-.hiw-bar-n { font-family: var(--font-mono); font-size: 11.5px; color: var(--color-text-accent); }
-.hiw-bar i { grid-column: 1 / -1; height: 3px; border-radius: 2px; background: var(--color-slate-200); overflow: hidden; }
-.hiw-bar b {
-  display: block;
-  height: 100%;
-  background: var(--color-text-accent);
-  transform-origin: left;
-  transform: scaleX(var(--fill, 0));
-}
-.hiw-bar li[data-current] button,
-.hiw-bar li[data-done] button { color: var(--color-text-primary); }
-.hiw-bar li[data-current] button { font-weight: 600; }
-@media (max-width: 479px) {
-  .hiw-bar button { grid-template-columns: 1fr; font-size: 12.5px; }
-  .hiw-bar-n { display: none; }
-}
-
-/* ---------------------------------------------------------------- five checks */
-
-.hiw-check-grid { display: grid; gap: 10px; }
-.hiw-check-tile {
-  padding: 18px 20px;
-  border-radius: 14px;
-  background: rgb(255 255 255 / 0.04);
-  border: 1px solid rgb(255 255 255 / 0.1);
-}
-.hiw-check-n { font-family: var(--font-mono); font-size: 13px; color: var(--color-indigo-300); }
-@media (min-width: 1024px) { .hiw-check-tile { padding: 22px 22px 24px; } }
-@media (min-width: 640px) { .hiw-check-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (min-width: 1024px) { .hiw-check-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
-
-/* ---------------------------------------------------------------- what you get */
-
-.hiw-get-card {
-  border: 1px solid var(--color-border-default);
-  background: var(--color-background-raised);
-  border-radius: 14px;
-  padding: 18px 18px 10px;
-  box-shadow: 0 1px 2px #0f172a0a, 0 18px 40px -22px #0f172a38;
-}
-/* The Role Spec is a document: the one warm paper surface on the site. */
-[data-step="describe"] .hiw-get-card { background: #fbf8f2; border-color: #ebe4d6; }
-[data-step="describe"] :is(.hiw-part, b) { border-color: #ebe4d6; }
-
-.hiw-score-row {
-  display: grid;
-  grid-template-columns: 52px minmax(0, 1fr);
-  align-items: center;
-  gap: 12px;
-  min-height: 40px;
-  border-bottom: 1px solid var(--color-border-default);
-}
-.hiw-score-row:last-child { border-bottom: 0; }
-.hiw-score-bar { position: relative; height: 6px; border-radius: 3px; background: var(--color-background-neutral); overflow: hidden; }
-.hiw-score-bar i {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: var(--color-text-accent);
-  transform-origin: left;
-  transform: scaleX(var(--v));
-}
-
-/* ---------------------------------------------------------------- who does what */
-
-.hiw-roles { width: 100%; border-collapse: collapse; text-align: left; }
-.hiw-roles th,
-.hiw-roles td { padding: 18px 12px 18px 0; border-bottom: 1px solid var(--color-border-default); vertical-align: top; }
-.hiw-roles thead th { padding-top: 0; padding-bottom: 12px; font-weight: 400; }
-.hiw-roles tbody th { width: 30%; font-size: 17px; font-weight: 500; letter-spacing: -0.02em; color: var(--color-text-primary); }
-.hiw-roles td { width: 35%; font-size: 16px; color: var(--color-text-primary); }
-.hiw-roles td[data-side="us"] { color: var(--color-text-accent); font-weight: 500; }
-@media (max-width: 479px) {
-  .hiw-roles tbody th { width: 28%; font-size: 15px; }
-  .hiw-roles td { font-size: 14.5px; }
-}
-
-/* ---------------------------------------------------------------- after the start */
-
-.hiw-path { position: relative; display: grid; gap: 4px; width: max-content; margin-inline: auto; }
-.hiw-path::before {
-  content: "";
-  position: absolute;
-  left: 5px;
-  top: 16px;
-  bottom: 16px;
-  width: 1px;
-  background: var(--color-slate-300);
-  transform-origin: top;
-}
-.hiw-path-stop {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  min-height: 34px;
-  font-size: 15px;
+  padding-left: 40px;
+  counter-increment: hiw;
+  font-size: 16px;
+  line-height: 1.55;
   color: var(--color-text-primary);
 }
-.hiw-path-dot {
-  position: relative;
-  z-index: 1;
-  flex: none;
-  width: 11px;
-  height: 11px;
+.hiw-numbered li::before {
+  content: counter(hiw);
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
-  border: 2px solid var(--color-text-accent);
-  background: var(--color-background-base);
-}
-.hiw-path-stop[data-kind="start"] { font-weight: 600; }
-.hiw-path-stop[data-kind="start"] .hiw-path-dot { background: var(--color-text-accent); }
-.hiw-path-stop[data-kind="check"] { color: var(--color-text-secondary); }
-.hiw-path-stop[data-kind="check"] .hiw-path-dot { border-color: var(--color-text-success); }
-@media (min-width: 768px) {
-  /* Left to right: the path is a timeline. */
-  .hiw-path { width: auto; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0; }
-  .hiw-path::before { left: calc(100% / 12); right: calc(100% / 12); top: 5px; bottom: auto; width: auto; height: 1px; transform-origin: left; }
-  .hiw-path-stop { flex-direction: column; gap: 14px; text-align: center; }
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--color-slate-300);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--color-text-accent);
 }
 
-/* ---------------------------------------------------------------- motion (full only) */
+/* The five checks */
+.hiw-checks { display: grid; border-top: 1px solid var(--color-border-default); }
+.hiw-checks-head { display: none; }
+.hiw-check { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: 8px 12px; padding: 20px 0; border-bottom: 1px solid var(--color-border-default); }
+.hiw-check-n { font-family: var(--font-mono); font-size: 13px; line-height: 1.75; color: var(--color-text-accent); }
+.hiw-check-bar {
+  grid-column: 2;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: var(--color-background-brand-subtle);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-primary);
+}
+@media (min-width: 900px) {
+  .hiw-checks-head,
+  .hiw-check { display: grid; grid-template-columns: 44px minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px; }
+  .hiw-checks-head {
+    padding: 0 0 10px;
+    border-bottom: 1px solid var(--color-border-default);
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-tertiary);
+  }
+  .hiw-checks { border-top: 0; }
+  .hiw-check-bar { grid-column: auto; align-self: start; margin-top: 2px; }
+}
 
-html[data-motion="full"] .hiw-part,
-html[data-motion="full"] .hiw-check-tile,
-html[data-motion="full"] .hiw-score-row,
-html[data-motion="full"] .hiw-path-stop {
-  opacity: 0;
-  translate: 0 10px;
-  transition:
-    opacity 0.5s var(--ease-brand-out) calc(var(--k, 0) * 100ms + 80ms),
-    translate 0.5s var(--ease-brand-out) calc(var(--k, 0) * 100ms + 80ms);
-}
-html[data-motion="full"] .hiw-tick {
-  scale: 0.4;
-  opacity: 0;
-  transition:
-    scale 0.4s var(--ease-brand-out) calc(var(--k, 0) * 100ms + 240ms),
-    opacity 0.3s var(--ease-standard) calc(var(--k, 0) * 100ms + 240ms);
-}
-html[data-motion="full"] .hiw-score-bar i {
-  transform: scaleX(0);
-  transition: transform 0.8s var(--ease-brand-out) calc(var(--k, 0) * 100ms + 240ms);
-}
-html[data-motion="full"] .hiw-path::before {
-  transform: scaleY(0);
-  transition: transform 1.2s var(--ease-brand-out);
-}
-@media (min-width: 768px) {
-  html[data-motion="full"] .hiw-path::before { transform: scaleX(0); }
-}
-html[data-motion="full"] [data-state="in"] :is(.hiw-part, .hiw-score-row),
-html[data-motion="full"] [data-state="in"] > :is(.hiw-check-tile, .hiw-path-stop) {
-  opacity: 1;
-  translate: none;
-}
-html[data-motion="full"] [data-state="in"] .hiw-tick { scale: 1; opacity: 1; }
-html[data-motion="full"] [data-state="in"] .hiw-score-bar i { transform: scaleX(var(--v)); }
-html[data-motion="full"] .hiw-path[data-state="in"]::before { transform: none; }
-html[data-motion="full"] .hiw-step:not([data-state="in"]) .hiw-step-n { color: var(--color-slate-200); }
+/* Scorecard */
+.hiw-scorecard { display: grid; gap: 20px; align-items: center; }
+@media (min-width: 768px) { .hiw-scorecard { grid-template-columns: minmax(0, 1fr) 340px; gap: 40px; } }
+.hiw-score-table { width: 100%; border-collapse: collapse; margin: 4px 0 6px; }
+.hiw-score-table th,
+.hiw-score-table td { padding: 9px 0; border-bottom: 1px solid var(--color-border-default); text-align: left; }
+.hiw-score-table tr:last-child :is(th, td) { border-bottom: 0; }
+.hiw-score-table th { font-size: 14px; font-weight: 500; color: var(--color-text-primary); }
+.hiw-score-table th small { display: block; margin-top: 2px; font-size: 11.5px; font-weight: 400; color: var(--color-text-tertiary); }
+.hiw-score-table td { text-align: right; font-size: 17px; font-weight: 500; color: var(--color-text-accent); }
 
 /* Home: the link from the "How we work" section to this page. */
 .www-hwws-more { margin-top: 28px; padding-bottom: 48px; }
-
-/* ---------------------------------------------------------------- specialist strips
- * Pinned (desktop): the scroll drives the strips continuously (--open per strip, 0..1),
- * so the width/colour/caption transitions are off and follow the scroll instead.
- * The three-part bar at the top shows progress (--fill per part, 0..1).
- */
-.www-strips:not([data-layout="pinned"]) .www-strips-stage { position: relative; }
-.www-strips[data-layout="pinned"] .www-strips-row { transition: none; }
-.www-strips[data-layout="pinned"] .www-strip-photo {
-  transition: none;
-  filter: grayscale(calc(1 - var(--open, 0))) brightness(calc(0.85 + 0.15 * var(--open, 0)));
-}
-.www-strips[data-layout="pinned"] .www-strip-words {
-  transition: none;
-  opacity: calc(0.3 + 0.7 * var(--open, 0));
-  scale: calc(0.8 + 0.2 * var(--open, 0));
-}
-
-.www-strips-progress { display: none; }
-.www-strips[data-layout="pinned"] .www-strips-progress {
-  position: absolute;
-  z-index: 2;
-  top: 20px;
-  left: 50%;
-  translate: -50% 0;
-  display: flex;
-  gap: 6px;
-  padding: 6px;
-  border-radius: 999px;
-  background: rgb(15 23 42 / 0.55);
-  backdrop-filter: blur(10px);
-}
-.www-strips-progress button {
-  display: grid;
-  gap: 6px;
-  min-width: 108px;
-  padding: 7px 14px 9px;
-  border-radius: 999px;
-  text-align: left;
-  font-size: 12.5px;
-  font-weight: 500;
-  color: rgb(255 255 255 / 0.6);
-  transition: color 0.2s var(--ease-standard), background 0.2s var(--ease-standard);
-}
-.www-strips-progress button:hover { color: #fff; }
-.www-strips-progress button:focus-visible { outline: none; box-shadow: var(--shadow-ring); }
-.www-strips-progress li[data-current] button { color: #fff; background: rgb(255 255 255 / 0.08); }
-.www-strips-progress i { display: block; height: 2px; border-radius: 1px; background: rgb(255 255 255 / 0.2); overflow: hidden; }
-.www-strips-progress b {
-  display: block;
-  height: 100%;
-  background: #fff;
-  transform-origin: left;
-  transform: scaleX(var(--fill, 0));
-}
