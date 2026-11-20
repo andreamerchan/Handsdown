@@ -1,26 +1,143 @@
 ---
 // The process: the four steps, same labels as the Home step bar.
+//
+// Pinned (enough height, no reduced motion): a horizontal timeline of the four numbered
+// steps fills with the scroll and shows where you are; the step text slides along it, and
+// the illustration on the other side morphs from one step to the next (the request becomes
+// the spec, the map finds the candidate, the candidate goes through the checks and tops the
+// shortlist). Click a step to jump to it. Script: scripts/how-it-works/process.ts.
+// Otherwise: the four steps as a plain row.
 import { STEPS } from "../../data/how-it-works";
+const n = (i: number) => String(i + 1).padStart(2, "0");
 ---
 
-<section id="process" aria-labelledby="hiw-steps-title" class="px-6 pt-12 pb-20 md:pt-20 md:pb-28">
-  <div class="mx-auto max-w-[1120px]">
-    <div class="mx-auto max-w-[640px] text-center">
-      <p class="hiw-kicker">The process</p>
-      <h2 id="hiw-steps-title" class="hiw-h2">Four steps to <span class="text-gradient-conversation">the right hire.</span></h2>
+<section id="process" aria-labelledby="hiw-steps-title" class="hiw-process">
+  <div class="hiw-p-track" data-process-track>
+    <div class="hiw-p-stage">
+      <div class="hiw-p-head mx-auto max-w-[1120px] px-6">
+        <p class="hiw-kicker">The process</p>
+        <h2 id="hiw-steps-title" class="hiw-h2">Four steps to <span class="text-gradient-conversation">the right hire.</span></h2>
+      </div>
+
+      <!-- Static: the four steps in a row (reduced motion, short screens, no JS). -->
+      <ol class="hiw-steps mx-auto max-w-[1120px] px-6">
+        {STEPS.map((step, i) => (
+          <li class="hiw-step">
+            <span class="hiw-step-head">
+              <span class="hiw-step-n">{n(i)}</span>
+              <span class="hiw-step-line" aria-hidden="true"></span>
+            </span>
+            <span class="hiw-step-label">{step.label}</span>
+            <b class="hiw-step-title">{step.title}</b>
+            <span class="hiw-step-body">{step.body}</span>
+          </li>
+        ))}
+      </ol>
+
+      <!-- Pinned: timeline + sliding text + morphing illustration. -->
+      <div class="hiw-p-scene mx-auto max-w-[1120px] px-6">
+        <ol class="hiw-p-timeline">
+          <li class="hiw-p-rail"><i></i></li>
+          {STEPS.map((step, i) => (
+            <li class="hiw-p-node" data-node={i} style={`--x:${(i / (STEPS.length - 1)) * 100}%`}>
+              <button type="button" data-step-go={i}>
+                <span class="hiw-p-dot">{n(i)}</span>
+                <span class="hiw-p-node-label">{step.label}</span>
+              </button>
+            </li>
+          ))}
+        </ol>
+        <div class="hiw-p-body">
+          <div class="hiw-p-texts">
+            {STEPS.map((step, i) => (
+              <div class="hiw-p-text" data-text={i}>
+                <p class="hiw-p-text-n">Step {i + 1} · {step.label}</p>
+                <p class="hiw-p-text-title">{step.title}</p>
+                <p class="hiw-p-text-body">{step.body}</p>
+              </div>
+            ))}
+          </div>
+          <div class="hiw-p-visual">
+        <div class="hx-viz" aria-hidden="true">
+          <div class="hx-box">
+            <!-- 1 · Describe: the request -->
+            <p class="hx-el hx-bubble" data-el="bubble">“We need a <mark data-hl="0">senior data scientist</mark> for <mark data-hl="1">machine learning</mark> work, on <mark data-hl="2">US hours</mark>.”</p>
+            <span class="hx-el hx-link" data-el="link"></span>
+
+            <!-- 2 · Align: the map (behind the cards) -->
+            <div class="hx-el hx-map" data-el="map">
+              <canvas class="hx-dots"></canvas>
+              <span class="hx-pin" data-pin="0" style="left:49.17%;top:33.88%"></span>
+              <span class="hx-pin" data-pin="1" style="left:69.04%;top:46.22%"></span>
+              <span class="hx-pin" data-pin="2" style="left:66.56%;top:60.70%"></span>
+              <span class="hx-pin" data-pin="3" style="left:81.94%;top:80.66%"></span>
+              <span class="hx-marker" data-el="marker" style="left:56.98%;top:72.67%">E</span>
+            </div>
+
+            <!-- 1 → 2 · the spec (docks in the corner once approved) -->
+            <div class="hx-el hx-card hx-spec" data-el="spec">
+              <div class="hx-spec-head">
+                <b>Your role, defined</b>
+                <span class="hx-swap">
+                  <span class="hx-pill hx-pill-brand" data-el="free">Free</span>
+                  <span class="hx-pill hx-pill-ok" data-el="approved"><svg viewBox="0 0 10 10"><path d="M1.8 5.3 4 7.4 8.2 2.8"/></svg>Approved</span>
+                </span>
+              </div>
+              <dl>
+                <div class="hx-row" data-row="0"><dt>Role</dt><dd>Senior Data Scientist</dd><dd class="hx-badge"><span class="hx-wait"></span><span class="hx-done"><svg viewBox="0 0 10 10"><path d="M1.8 5.3 4 7.4 8.2 2.8"/></svg>Clear</span></dd></div>
+                <div class="hx-row" data-row="1"><dt>Skills</dt><dd>Python · Machine Learning</dd><dd class="hx-badge"><span class="hx-wait"></span><span class="hx-done"><svg viewBox="0 0 10 10"><path d="M1.8 5.3 4 7.4 8.2 2.8"/></svg>Weighted</span></dd></div>
+                <div class="hx-row" data-row="2"><dt>Hours</dt><dd>US overlap</dd><dd class="hx-badge"><span class="hx-wait"></span><span class="hx-done"><svg viewBox="0 0 10 10"><path d="M1.8 5.3 4 7.4 8.2 2.8"/></svg>Confirmed</span></dd></div>
+                <div class="hx-row" data-row="3"><dt>Tested by</dt><dd>Work sample · Structured interview</dd><dd class="hx-badge"><span class="hx-wait"></span><span class="hx-done"><svg viewBox="0 0 10 10"><path d="M1.8 5.3 4 7.4 8.2 2.8"/></svg>Proven</span></dd></div>
+              </dl>
+            </div>
+
+            <!-- 3 · Match: the five checks (fold into the candidate's card in step 4) -->
+            <div class="hx-el hx-score" data-el="score">
+              <ol>
+                <li class="hx-check" data-check="0"><span class="hx-mark"></span><span><b>Skills screen</b><span class="hx-line">Scored against your spec</span></span><span class="hx-result">4.5</span></li>
+                <li class="hx-check" data-check="1"><span class="hx-mark"></span><span><b>Structured interview</b><span class="hx-line">Same questions, fixed rating scale</span></span><span class="hx-result">4.3</span></li>
+                <li class="hx-check" data-check="2"><span class="hx-mark"></span><span><b>Work sample</b><span class="hx-line">Real task, AI tools allowed</span></span><span class="hx-result">4.5</span></li>
+                <li class="hx-check" data-check="3"><span class="hx-mark"></span><span><b>Fit check</b><span class="hx-line">Work style and goals vs. your team</span></span><span class="hx-result">Strong</span></li>
+                <li class="hx-check" data-check="4"><span class="hx-mark"></span><span><b>Fairness check</b><span class="hx-line">Scoring audited for bias before ranking</span></span><span class="hx-result">Passed</span></li>
+              </ol>
+            </div>
+
+            <!-- 4 · Hire: the other two on the shortlist -->
+            <div class="hx-el hx-cv" data-el="cvB"><span class="hx-avatar">B</span><span><b>Candidate B</b><small>Scored against your role</small></span><span class="hx-bars"><i></i><i></i><i></i><i></i></span></div>
+            <div class="hx-el hx-cv" data-el="cvC"><span class="hx-avatar">C</span><span><b>Candidate C</b><small>Scored against your role</small></span><span class="hx-bars"><i></i><i></i><i></i><i></i></span></div>
+
+            <!-- 2 → 3 → 4 · the candidate: matched, checked, top of the shortlist -->
+            <div class="hx-el hx-cand" data-el="cand">
+              <span class="hx-avatar hx-avatar-top">E</span>
+              <span class="hx-cand-text">
+                <b>Edson</b>
+                <span class="hx-swap hx-sub">
+                  <small data-el="subMatched">Senior Data Scientist · São Paulo</small>
+                  <small data-el="subScored">Scored against your role</small>
+                </span>
+              </span>
+              <span class="hx-swap hx-cand-end">
+                <span class="hx-pill hx-pill-ok hx-pill-lg" data-el="matched">Matched</span>
+                <span class="hx-pill hx-pill-wait hx-pill-lg" data-el="checking"><span class="hx-spin"></span>Checking</span>
+                <span class="hx-pill hx-pill-ok hx-pill-lg" data-el="passed"><svg viewBox="0 0 10 10"><path d="M1.8 5.3 4 7.4 8.2 2.8"/></svg>Passed</span>
+                <span class="hx-bars hx-bars-top" data-el="bars"><i></i><i></i><i></i><i></i></span>
+              </span>
+            </div>
+
+            <span class="hx-el hx-link hx-link-short" data-el="link2"></span>
+            <p class="hx-el hx-decide" data-el="decide">You interview. You decide.</p>
+            <ul class="hx-el hx-days" data-el="days">
+              <li data-day="0">Day 30</li><li data-day="1">Day 60</li><li data-day="2">Day 90</li>
+            </ul>
+          </div>
+        </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <ol class="hiw-steps mt-12 md:mt-16">
-      {STEPS.map((step, i) => (
-        <li class="hiw-step">
-          <span class="hiw-step-head">
-            <span class="hiw-step-n">{String(i + 1).padStart(2, "0")}</span>
-            <span class="hiw-step-line" aria-hidden="true"></span>
-          </span>
-          <span class="hiw-step-label">{step.label}</span>
-          <b class="hiw-step-title">{step.title}</b>
-          <span class="hiw-step-body">{step.body}</span>
-        </li>
-      ))}
-    </ol>
   </div>
 </section>
+
+<script>
+  import "../../scripts/how-it-works/process.ts";
+</script>

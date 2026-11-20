@@ -98,12 +98,12 @@ Checks: `tools/ux/`. Values: `tokens.scroll.stepWeights`, `stepText`,
 
 ## /how-it-works page (Nov 19: sections, short copy)
 
-Home keeps the animated four-step summary; the page explains the process in short, visual sections. Content comes from `src/data/how-it-works.ts` (backed by PRDs 01, 05, 06, 08); edit that file, not the components. No scroll-driven motion.
+Home keeps the animated four-step summary; the page explains the process in short, visual sections. Content comes from `src/data/how-it-works.ts` (backed by PRDs 01, 05, 06, 08); edit that file, not the components. Only "The process" is scroll-driven; the rest is static.
 
 | Section | Component | Shows |
 | --- | --- | --- |
 | Hero | `Hero.astro` | Unchanged |
-| The process | `Steps.astro` | The four steps (same labels as Home), one line each |
+| The process | `Steps.astro` + `scripts/how-it-works/process.ts` | Pinned scene: a horizontal timeline of the four numbered steps fills with the scroll (the progress bar; nodes jump to a step), the step text slides along it, and the illustration beside it morphs from step to step (request → spec → map → five checks → shortlist and check-ins). Reduced motion or short screens: the four steps in a row. |
 | Vetting | `Vetting.astro` | Dark band: a funnel from "Candidates found" through the five checks to "Your shortlist", and one line per check |
 | Quality assurance | `Quality.astro` | Four guarantees of the process, with a specialist photo and an example scorecard |
 | After the start | `AfterStart.astro` | Team photo with Day 30 / 60 / 90 check-ins, and three ways we keep following quality |
