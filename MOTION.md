@@ -98,13 +98,13 @@ Checks: `tools/ux/`. Values: `tokens.scroll.stepWeights`, `stepText`,
 
 ## /how-it-works page (Nov 19: sections, short copy)
 
-Home keeps the animated four-step summary; the page explains the process in short, visual sections. Content comes from `src/data/how-it-works.ts` (backed by PRDs 01, 05, 06, 08); edit that file, not the components. Only "The process" is scroll-driven; the rest is static.
+Home keeps the animated four-step summary; the page explains the process in short, visual sections. Content comes from `src/data/how-it-works.ts` (backed by PRDs 01, 05, 06, 08); edit that file, not the components. Two scroll-driven moments: "The process" (indicator + illustration) and the Vetting statement (text reveal); the rest is static.
 
 | Section | Component | Shows |
 | --- | --- | --- |
 | Hero | `Hero.astro` | Unchanged |
-| The process | `Steps.astro` + `scripts/how-it-works/process.ts` | Pinned scene: a horizontal timeline of the four numbered steps fills with the scroll (the progress bar; nodes jump to a step), the step text slides along it, and the illustration beside it morphs from step to step (request → spec → map → five checks → shortlist and check-ins). Reduced motion or short screens: the four steps in a row. |
-| Vetting | `Vetting.astro` | Dark band: a funnel from "Candidates found" through the five checks to "Your shortlist", and one line per check |
+| The process | `Steps.astro` + `scripts/how-it-works/process.ts` | Pinned scene in three columns: a sticky step indicator (the step number rolls to the next, a thin line fills with the scroll, labels jump to a step; on phones: number + four segments), the step text rising in, and the illustration morphing from step to step (request → spec → map → five checks → shortlist and check-ins). Reduced motion or short screens: the four steps in a row. |
+| Vetting | `Vetting.astro` + `scripts/how-it-works/reveal.ts` | Dark band: one statement revealed word by word with the scroll (faint → full, complete by mid-screen), then the funnel through the five checks and one line per check |
 | Quality assurance | `Quality.astro` | Four guarantees of the process, with a specialist photo and an example scorecard |
 | After the start | `AfterStart.astro` | Team photo with Day 30 / 60 / 90 check-ins, and three ways we keep following quality |
 | FAQ | `Faq.astro` | Three questions |

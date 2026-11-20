@@ -1,8 +1,8 @@
 ---
 // The process: the four steps, same labels as the Home step bar.
 //
-// Pinned (enough height, no reduced motion): a horizontal timeline of the four numbered
-// steps fills with the scroll and shows where you are; the step text slides along it, and
+// Pinned (enough height, no reduced motion): a sticky step indicator (a rolling step number
+// and a thin line that fills with the scroll) shows where you are; the step text rises in, and
 // the illustration on the other side morphs from one step to the next (the request becomes
 // the spec, the map finds the candidate, the candidate goes through the checks and tops the
 // shortlist). Click a step to jump to it. Script: scripts/how-it-works/process.ts.
@@ -14,7 +14,7 @@ const n = (i: number) => String(i + 1).padStart(2, "0");
 <section id="process" aria-labelledby="hiw-steps-title" class="hiw-process">
   <div class="hiw-p-track" data-process-track>
     <div class="hiw-p-stage">
-      <div class="hiw-p-head mx-auto max-w-[1120px] px-6">
+      <div class="hiw-p-head mx-auto max-w-[1180px] px-6">
         <p class="hiw-kicker">The process</p>
         <h2 id="hiw-steps-title" class="hiw-h2">Four steps to <span class="text-gradient-conversation">the right hire.</span></h2>
       </div>
@@ -34,20 +34,27 @@ const n = (i: number) => String(i + 1).padStart(2, "0");
         ))}
       </ol>
 
-      <!-- Pinned: timeline + sliding text + morphing illustration. -->
-      <div class="hiw-p-scene mx-auto max-w-[1120px] px-6">
-        <ol class="hiw-p-timeline">
-          <li class="hiw-p-rail"><i></i></li>
-          {STEPS.map((step, i) => (
-            <li class="hiw-p-node" data-node={i} style={`--x:${(i / (STEPS.length - 1)) * 100}%`}>
-              <button type="button" data-step-go={i}>
-                <span class="hiw-p-dot">{n(i)}</span>
-                <span class="hiw-p-node-label">{step.label}</span>
-              </button>
-            </li>
-          ))}
-        </ol>
+      <!-- Pinned: sticky step indicator + sliding text + morphing illustration. -->
+      <div class="hiw-p-scene mx-auto max-w-[1180px] px-6">
         <div class="hiw-p-body">
+          <nav class="hiw-p-index" aria-label="Steps">
+            <p class="hiw-p-count" aria-hidden="true">
+              <span class="hiw-p-roll"><span class="hiw-p-roll-strip">{STEPS.map((_, i) => <span>{n(i)}</span>)}</span></span>
+              <span class="hiw-p-of">/ {n(STEPS.length - 1)}</span>
+            </p>
+            <ol class="hiw-p-list">
+              <li class="hiw-p-line" aria-hidden="true"><i></i></li>
+              {STEPS.map((step, i) => (
+                <li class="hiw-p-item" data-node={i}>
+                  <button type="button" data-step-go={i}>
+                    <span class="hiw-p-tick" aria-hidden="true"></span>
+                    {step.label}
+                  </button>
+                </li>
+              ))}
+            </ol>
+            <span class="hiw-p-bar" aria-hidden="true">{STEPS.map(() => <i><b></b></i>)}</span>
+          </nav>
           <div class="hiw-p-texts">
             {STEPS.map((step, i) => (
               <div class="hiw-p-text" data-text={i}>

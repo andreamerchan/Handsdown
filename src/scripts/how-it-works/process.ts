@@ -2,9 +2,9 @@
 //
 // Pinned when the screen is tall enough and motion is allowed (data-mode="pinned").
 // The scroll position t runs 0..4 (one unit per step) and drives everything:
-//   timeline   the rail fills from step to step; each numbered node lights up as it's reached
-//              (this is the progress bar; nodes jump to their step)
-//   text       the current step's text slides along the timeline: out to the left, in from the right
+//   indicator  sticky: the step number rolls to the next one and a thin line fills with the scroll
+//              (this is the progress bar; each label jumps to its step)
+//   text       the current step's text rises in from below and leaves upwards, like the number
 //   graphics   one illustration morphs between steps (Smart-Animate style): the request becomes
 //              the spec, the spec docks once approved, the map finds the candidate, the
 //              candidate's card carries through the five checks and tops the shortlist
@@ -38,7 +38,9 @@ function setUp(track: HTMLElement, stage: HTMLElement, viz: HTMLElement) {
   const all = (sel: string) => [...viz.querySelectorAll<HTMLElement>(sel)];
   const texts = [...track.querySelectorAll<HTMLElement>("[data-text]")];
   const nodes = [...track.querySelectorAll<HTMLElement>("[data-node]")];
-  const rail = track.querySelector<HTMLElement>(".hiw-p-rail i");
+  const line = track.querySelector<HTMLElement>(".hiw-p-line i");
+  const roll = track.querySelector<HTMLElement>(".hiw-p-roll-strip");
+  const segments = [...track.querySelectorAll<HTMLElement>(".hiw-p-bar b")];
 
   const clamp = (x: number, a = 0, b = 1) => Math.min(b, Math.max(a, x));
   const ramp = (t: number, a: number, b: number) => clamp((t - a) / (b - a));
@@ -203,22 +205,29 @@ function setUp(track: HTMLElement, stage: HTMLElement, viz: HTMLElement) {
 
   /* ------------------------------------------------------------ timeline and text */
   function renderSteps(t: number) {
-    // Rail: from node 1 (middle of step 1) to node 4 (middle of step 4).
+    // Line: from the first label (middle of step 1) to the last (middle of step 4).
     const fill = clamp((t - 0.5) / (STEPS - 1));
-    rail?.style.setProperty("--fill", fill.toFixed(4));
+    line?.style.setProperty("--fill", fill.toFixed(4));
     const current = Math.min(STEPS - 1, Math.floor(t));
+    // Number: rolls with the hand-over between steps, rests on each step in between.
+    let rolled = current;
+    const local = t - current;
+    if (current < STEPS - 1 && local > 1 - FADE) rolled += ease(ramp(local, 1 - FADE, 1 + FADE));
+    if (current > 0 && local < FADE) rolled -= 1 - ease(ramp(local, -FADE, FADE));
+    roll?.style.setProperty("--roll", rolled.toFixed(4));
+    // Phones: four segments, each filling during its own step.
+    segments.forEach((seg, i) => seg.style.setProperty("--fill", clamp(t - i).toFixed(4)));
     nodes.forEach((node, i) => {
-      const reached = fill >= i / (STEPS - 1) - 0.001;
-      node.toggleAttribute("data-reached", reached);
+      node.toggleAttribute("data-reached", i < current);
       node.toggleAttribute("data-current", i === current);
     });
     texts.forEach((text, i) => {
       const center = i + 0.5;
       let vis = clamp((0.5 - Math.abs(t - center)) / FADE);
       if ((i === 0 && t < center) || (i === STEPS - 1 && t > center)) vis = 1;
-      const dir = t < center ? 1 : -1; // arriving from the right, leaving to the left
+      const dir = t < center ? 1 : -1; // arriving from below, leaving upwards
       text.style.opacity = vis.toFixed(3);
-      text.style.transform = `translateX(${((1 - ease(vis)) * 56 * dir).toFixed(1)}px)`;
+      text.style.transform = `translateY(${((1 - ease(vis)) * 28 * dir).toFixed(1)}px)`;
       text.style.visibility = vis < 0.005 ? "hidden" : "visible";
       text.toggleAttribute("data-current", i === current);
     });

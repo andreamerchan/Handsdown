@@ -323,7 +323,7 @@
  * anything else (no JS, reduced motion, short screens) shows the static row of steps.
  */
 .hiw-process { padding: 48px 0 0; }
-.hiw-p-head { text-align: center; }
+.hiw-p-head { width: 100%; text-align: left; }
 .hiw-p-scene { display: none; }
 .hiw-p-track:not([data-mode="pinned"]) { padding-bottom: 80px; }
 .hiw-p-track:not([data-mode="pinned"]) .hiw-steps { margin-top: 48px; }
@@ -352,84 +352,91 @@
   width: 100%;
 }
 
-/* Timeline: the progress bar. */
-.hiw-p-timeline { position: relative; margin: 28px 22px 0; height: 74px; }
-.hiw-p-rail {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 21px;
-  height: 2px;
-  border-radius: 1px;
-  background: var(--color-slate-200);
+/* Sticky step indicator (the progress bar): rolling number + thin line with the step labels.
+ * Phones: number + four segments. */
+.hiw-p-index { display: flex; align-items: center; gap: 16px; }
+.hiw-p-count { display: flex; align-items: baseline; gap: 6px; margin: 0; }
+.hiw-p-roll { display: block; height: 1em; overflow: hidden; font-size: 34px; line-height: 1; font-weight: 500; letter-spacing: -0.04em; color: var(--color-text-accent); }
+.hiw-p-roll-strip { display: grid; transform: translateY(calc(var(--roll, 0) * -1em)); will-change: transform; }
+.hiw-p-roll-strip span { height: 1em; }
+.hiw-p-of { font-family: var(--font-mono); font-size: 12px; color: var(--color-text-tertiary); }
+.hiw-p-list { display: none; }
+.hiw-p-bar { display: flex; flex: 1; gap: 6px; }
+.hiw-p-bar i { flex: 1; height: 3px; border-radius: 2px; background: var(--color-slate-200); overflow: hidden; }
+.hiw-p-bar b { display: block; height: 100%; background: var(--color-indigo-500); transform-origin: left; transform: scaleX(var(--fill, 0)); }
+
+@media (min-width: 900px) {
+  .hiw-p-index { flex-direction: column; align-items: flex-start; gap: 28px; align-self: center; }
+  .hiw-p-roll { font-size: clamp(56px, 5.4vw, 76px); }
+  .hiw-p-bar { display: none; }
+  .hiw-p-list { position: relative; display: grid; gap: 4px; padding-left: 20px; }
+  .hiw-p-line { position: absolute; left: 4px; top: 14px; bottom: 14px; width: 2px; border-radius: 1px; background: var(--color-slate-200); }
+  .hiw-p-line i { position: absolute; inset: 0; border-radius: inherit; background: var(--color-indigo-500); transform-origin: top; transform: scaleY(var(--fill, 0)); }
+  .hiw-p-item button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 32px;
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--color-text-tertiary);
+    transition: color 0.3s var(--ease-standard);
+  }
+  .hiw-p-item button:hover { color: var(--color-text-primary); }
+  .hiw-p-item button:focus-visible { outline: none; box-shadow: var(--shadow-ring); border-radius: 4px; }
+  .hiw-p-tick {
+    position: absolute;
+    left: -20px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-background-base);
+    border: 2px solid var(--color-slate-300);
+    transition: border-color 0.3s, background-color 0.3s, scale 0.4s var(--ease-brand-out);
+  }
+  .hiw-p-item[data-reached] button { color: var(--color-text-secondary); }
+  .hiw-p-item[data-reached] .hiw-p-tick { border-color: var(--color-indigo-500); background: var(--color-indigo-500); }
+  .hiw-p-item[data-current] button { color: var(--color-text-primary); font-weight: 600; }
+  .hiw-p-item[data-current] .hiw-p-tick { border-color: var(--color-indigo-500); scale: 1.3; }
 }
-.hiw-p-rail i {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--color-indigo-400), var(--color-indigo-600));
-  transform-origin: left;
-  transform: scaleX(var(--fill, 0));
-}
-.hiw-p-node { position: absolute; left: var(--x); top: 0; translate: -50% 0; }
-.hiw-p-node button { display: grid; justify-items: center; gap: 8px; min-width: 64px; }
-.hiw-p-node button:focus-visible { outline: none; }
-.hiw-p-node button:focus-visible .hiw-p-dot { box-shadow: var(--shadow-ring); }
-.hiw-p-dot {
-  display: grid;
-  place-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--color-background-base);
-  border: 2px solid var(--color-slate-300);
-  font-family: var(--font-mono);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--color-text-tertiary);
-  transition: background-color 0.35s var(--ease-brand-out), border-color 0.35s var(--ease-brand-out), color 0.35s, scale 0.45s var(--ease-brand-out), box-shadow 0.45s;
-}
-.hiw-p-node[data-reached] .hiw-p-dot { border-color: var(--color-indigo-500); color: var(--color-text-accent); }
-.hiw-p-node[data-current] .hiw-p-dot {
-  background: var(--color-indigo-500);
-  border-color: var(--color-indigo-500);
-  color: #fff;
-  scale: 1.12;
-  box-shadow: 0 10px 24px -10px rgb(110 123 255 / 0.8), 0 0 0 6px rgb(110 123 255 / 0.12);
-}
-.hiw-p-node-label { font-size: 13.5px; font-weight: 500; color: var(--color-text-tertiary); transition: color 0.3s; white-space: nowrap; }
-.hiw-p-node[data-reached] .hiw-p-node-label { color: var(--color-text-secondary); }
-.hiw-p-node[data-current] .hiw-p-node-label { color: var(--color-text-primary); font-weight: 600; }
-.hiw-p-node button:hover .hiw-p-node-label { color: var(--color-text-primary); }
 
 /* Text and graphics */
 .hiw-p-body {
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
-  gap: 16px;
-  margin-top: 18px;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 18px;
+  margin-top: 22px;
 }
-.hiw-p-texts { position: relative; order: 2; min-height: 132px; }
-.hiw-p-visual { order: 1; min-height: 0; }
+.hiw-p-texts { position: relative; order: 3; min-height: 128px; }
+.hiw-p-visual { order: 2; min-height: 0; }
 .hiw-p-text { position: absolute; inset: 0; will-change: transform, opacity; }
-.hiw-p-text-n { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-accent); }
-.hiw-p-text-title { margin-top: 8px; font-size: clamp(26px, 3.4vw, 46px); line-height: 1.12; font-weight: 500; letter-spacing: -0.04em; text-wrap: balance; color: var(--color-text-primary); }
-.hiw-p-text-body { margin-top: 10px; max-width: 420px; font-size: 16.5px; line-height: 1.5; color: var(--color-text-secondary); }
+.hiw-p-text-n { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--color-text-tertiary); }
+.hiw-p-text-title { margin-top: 10px; font-size: clamp(26px, 3.2vw, 42px); line-height: 1.12; font-weight: 500; letter-spacing: -0.04em; text-wrap: balance; color: var(--color-text-primary); }
+.hiw-p-text-body { margin-top: 12px; max-width: 380px; font-size: 16.5px; line-height: 1.55; color: var(--color-text-secondary); }
 @media (min-width: 900px) {
-  .hiw-p-body { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); grid-template-rows: none; gap: 56px; align-items: center; margin-top: 8px; }
-  .hiw-p-texts { order: 0; min-height: 260px; }
+  .hiw-p-body {
+    grid-template-columns: 150px minmax(0, 0.85fr) minmax(0, 1.15fr);
+    grid-template-rows: none;
+    gap: 48px;
+    align-items: center;
+    margin-top: 12px;
+  }
+  .hiw-p-index, .hiw-p-texts, .hiw-p-visual { order: 0; }
+  .hiw-p-texts { min-height: 240px; }
   .hiw-p-text { inset: auto 0; top: 50%; translate: 0 -50%; }
   .hiw-p-text-body { font-size: 18px; }
-  .hiw-p-visual { order: 0; height: 100%; }
+  .hiw-p-visual { height: 100%; }
 }
-@media (max-width: 479px) {
-  .hiw-p-timeline { margin: 18px 24px 0; height: 64px; }
-  .hiw-p-dot { width: 36px; height: 36px; font-size: 12px; }
-  .hiw-p-rail { top: 17px; }
-  .hiw-p-node-label { font-size: 12px; }
-}
+@media (min-width: 1200px) { .hiw-p-body { grid-template-columns: 180px minmax(0, 0.85fr) minmax(0, 1.15fr); gap: 64px; } }
+
+/* ---------------------------------------------------------------- statement (scroll text reveal)
+ * scripts/how-it-works/reveal.ts: each word goes from faint to full as the line passes the
+ * middle of the screen. Faint is still readable; reduced motion shows it all at once. */
+.hiw-reveal { max-width: 900px; font-size: clamp(30px, 4.2vw, 56px); line-height: 1.14; font-weight: 500; letter-spacing: -0.04em; color: var(--color-text-inverse-primary); }
+html[data-motion="full"] .hiw-reveal[data-reveal-on] .hiw-w { opacity: calc(0.22 + 0.78 * var(--w, 0)); }
+.hiw-reveal em { font-style: normal; color: var(--color-indigo-300); }
 
 /* ---------------------------------------------------------------- vetting */
 

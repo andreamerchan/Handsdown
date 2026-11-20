@@ -1,30 +1,31 @@
 ---
-// Vetting: the five checks, with a funnel showing the path to your shortlist.
+// Vetting: one statement that reveals with the scroll (scripts/how-it-works/reveal.ts),
+// then the funnel to your shortlist and one line per check.
 import { CHECKS } from "../../data/how-it-works";
 ---
 
-<section id="vetting" aria-labelledby="hiw-vetting-title" class="bg-background-inverted px-6 py-20 md:py-28">
-  <div class="mx-auto grid max-w-[1120px] items-center gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
-    <div class="hiw-funnel" aria-hidden="true">
-      <span class="hiw-funnel-bar" style="--w:100%">Candidates found</span>
-      {CHECKS.map((c, k) => (
-        <span class="hiw-funnel-bar" style={`--w:${92 - k * 9}%`}><i>{String(k + 1).padStart(2, "0")}</i>{c.name}</span>
-      ))}
-      <span class="hiw-funnel-bar hiw-funnel-end" style="--w:44%">Your shortlist</span>
-    </div>
-    <div>
-      <p class="hiw-kicker hiw-kicker-inverse">Vetting</p>
-      <h2 id="hiw-vetting-title" class="hiw-h2">
-        Five checks. <span class="text-gradient-heading">One scale for everyone.</span>
-      </h2>
-      <p class="hiw-lead">Nobody reaches your shortlist on a CV alone.</p>
-      <ol class="mt-8 grid gap-5">
+<section id="vetting" aria-labelledby="hiw-vetting-title" class="bg-background-inverted px-6 py-24 md:py-32">
+  <div class="mx-auto max-w-[1180px]">
+    <p class="hiw-kicker hiw-kicker-inverse">Vetting</p>
+    <h2 id="hiw-vetting-title" class="hiw-reveal mt-4" data-reveal-text>
+      Nobody reaches your shortlist on a CV alone. Every candidate goes through <em>five checks, on one scale,</em> with evidence behind every score.
+    </h2>
+
+    <div class="mt-16 grid items-center gap-12 md:mt-20 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-20">
+      <div class="hiw-funnel" aria-hidden="true">
+        <span class="hiw-funnel-bar" style="--w:100%">Candidates found</span>
+        {CHECKS.map((c, k) => (
+          <span class="hiw-funnel-bar" style={`--w:${92 - k * 9}%`}><i>{String(k + 1).padStart(2, "0")}</i>{c.name}</span>
+        ))}
+        <span class="hiw-funnel-bar hiw-funnel-end" style="--w:44%">Your shortlist</span>
+      </div>
+      <ol class="grid gap-6">
         {CHECKS.map((c, k) => (
           <li class="hiw-vet">
             <span class="hiw-vet-n">{String(k + 1).padStart(2, "0")}</span>
             <span>
-              <b class="block text-[16.5px] font-semibold text-text-inverse-primary">{c.name}</b>
-              <span class="mt-0.5 block text-[15px] leading-[1.45] text-text-inverse-secondary">{c.line}</span>
+              <b class="block text-[17px] font-semibold text-text-inverse-primary">{c.name}</b>
+              <span class="mt-1 block text-[15.5px] leading-[1.5] text-text-inverse-secondary">{c.line}</span>
             </span>
           </li>
         ))}
@@ -32,3 +33,7 @@ import { CHECKS } from "../../data/how-it-works";
     </div>
   </div>
 </section>
+
+<script>
+  import "../../scripts/how-it-works/reveal.ts";
+</script>
