@@ -114,6 +114,20 @@ const breadcrumbList = {
         }
       </style>
     </noscript>
+    <script is:inline>
+      // "Describe your role": Jess's panel, then the full chat widget (public/_hd, prototype).
+      // Loaded in order; the loader starts without its own launcher button.
+      for (const [src, attrs] of [
+        ["/_hd/jess-panel.js", {}],
+        ["/_hd/widget/loader.js", { "data-launcher": "none", "data-agent": "www-smart-match-widget", "data-agent-name": "Jess", "data-api-base": "/v1/agents" }],
+      ]) {
+        const tag = document.createElement("script");
+        tag.src = src;
+        tag.async = false;
+        for (const [k, v] of Object.entries(attrs)) tag.setAttribute(k, v);
+        document.body.appendChild(tag);
+      }
+    </script>
     <script>
       import "../scripts/site/reveal.ts";
       import "../scripts/site/prompts.ts";

@@ -181,6 +181,9 @@ const current = (id: NavId) => (active === id ? "page" : undefined);
       <a
         class="inline-flex items-center justify-center gap-2 rounded-full transition duration-120 ease-standard hover:-translate-y-px active:translate-y-px focus-visible:shadow-ring focus-visible:outline-none disabled:pointer-events-none disabled:bg-background-disabled disabled:text-text-disabled disabled:shadow-none motion-reduce:transition-none motion-reduce:hover:translate-y-0 border border-slate-800 bg-background-inverted text-text-inverse-primary shadow-dark-btn hover:bg-background-inverted-hover h-11 px-6 text-[14px] font-medium tracking-[-0.04em] whitespace-nowrap px-5 sm:px-9 group-data-[tone=dark]/header:border-transparent group-data-[tone=dark]/header:bg-background-raised group-data-[tone=dark]/header:text-text-primary group-data-[tone=dark]/header:hover:bg-background-neutral-hover"
         href={promptDestination}
+        data-jess
+        aria-haspopup="dialog"
+        aria-expanded="false"
       >
         Describe your role
       </a>

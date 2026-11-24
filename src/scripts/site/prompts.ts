@@ -1,5 +1,5 @@
 // "Describe your role" prompts (hero inputs, closing sections).
-//  - Submitting sends the visitor to the request form with their text carried over.
+//  - Submitting hands the text to Jess's panel (or, without her, goes to the request form).
 //  - Suggestion chips listed under a prompt fill its input.
 import { hireMenu, promptDestination } from "../../data/site";
 
@@ -50,6 +50,16 @@ for (const form of document.querySelectorAll("form")) {
     const text = input.value.trim();
     // Search-style prompts (the ones with an id) ask for some text first.
     if (!text && input.id) return showEmptyError(form, input);
+    // Jess (public/_hd/jess-panel.js) takes the text into her panel when she is on the page.
+    if ((window as { __hdJess?: boolean }).__hdJess) {
+      const requestId = `hd_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
+      window.dispatchEvent(
+        new CustomEvent("blureffect:open-agent-journey", {
+          detail: { initialMessage: text, requestId, presentation: "immersive" },
+        }),
+      );
+      return;
+    }
     location.href = text
       ? `${promptDestination}?role=${encodeURIComponent(text)}`
       : promptDestination;

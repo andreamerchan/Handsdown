@@ -226,7 +226,7 @@ function walk(dir) {
   );
 }
 function relativize(s) {
-  return s.replace(/(["'(\s,])\/(brand|fonts|media|favicon\.svg)/g, "$1$2");
+  return s.replace(/(["'(\s,])\/(brand|fonts|media|_hd|favicon\.svg)/g, "$1$2");
 }
 
 // Copy only the public assets the pages reference.
@@ -237,6 +237,7 @@ for (const rel of usedAssets) {
   fs.mkdirSync(path.dirname(path.join(OUT, rel)), { recursive: true });
   fs.copyFileSync(src, path.join(OUT, rel));
 }
+if (fs.existsSync(path.join(ROOT, "public/_hd"))) fs.cpSync(path.join(ROOT, "public/_hd"), path.join(OUT, "_hd"), { recursive: true });
 if (fs.existsSync(path.join(ROOT, "public/media"))) fs.cpSync(path.join(ROOT, "public/media"), path.join(OUT, "media"), { recursive: true });
 fs.copyFileSync(path.join(ROOT, "public/favicon.svg"), path.join(OUT, "favicon.svg"));
 console.log(`preview: ${usedAssets.size} assets`);
