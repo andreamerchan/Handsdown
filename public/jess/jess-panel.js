@@ -1,7 +1,7 @@
 // The "Describe your role" conversation (handsdown prototype, from handsdown-home-con-chat.html).
 // Clicking any "Describe your role" button ([data-jess]) opens Jess's panel: she introduces
 // herself, takes the role and two quick answers, and offers the full conversation (the chat
-// widget in _hd/widget/, opened full screen through its loader). Prompt fields hand their text
+// widget in jess/widget/, opened full screen through its loader). Prompt fields hand their text
 // to her the same way (site/prompts.ts dispatches blureffect:open-agent-journey).
 // PROTOTYPE: a compact way into the conversation from the navbar's "Describe your role" button.
 // The build sends that click straight to the full-screen chat. Here it opens a small panel under
@@ -18,7 +18,7 @@
 (() => {
   const SELF = document.currentScript;
   window.__hdJess = true;
-  const A = '_hd/widget/assets/';
+  const A = 'jess/widget/assets/';
   const VIDEO = { greet: A + 'avatar-greeting-CKvUuCn3.mp4', idle: A + 'avatar-idle-a-DxCPPLKK.mp4', speak: A + 'avatar-speaking-loop-BvjhnHFE.mp4', poster: A + 'poster-ZcDQn2JZ.jpg' };
   // data-mode="talent" (apply.html): Jess talks to applicants, not to companies hiring. She answers
   // their questions about applying; nothing turns into a role brief or opens the hiring chat.

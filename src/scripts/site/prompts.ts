@@ -50,7 +50,7 @@ for (const form of document.querySelectorAll("form")) {
     const text = input.value.trim();
     // Search-style prompts (the ones with an id) ask for some text first.
     if (!text && input.id) return showEmptyError(form, input);
-    // Jess (public/_hd/jess-panel.js) takes the text into her panel when she is on the page.
+    // Jess (public/jess/jess-panel.js) takes the text into her panel when she is on the page.
     if ((window as { __hdJess?: boolean }).__hdJess) {
       const requestId = `hd_${Date.now().toString(36)}_${Math.random().toString(36).slice(2, 10)}`;
       window.dispatchEvent(
