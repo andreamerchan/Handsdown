@@ -168,6 +168,8 @@
   .hd-jp.on { visibility: visible; translate: 0 0; transition: translate .36s cubic-bezier(.4, 0, .2, 1), width .36s cubic-bezier(.4, 0, .2, 1); }
   .hd-jp *, .hd-jp *::before, .hd-jp *::after { box-sizing: border-box; }
   .hd-jp button { font: inherit; color: inherit; }
+  .hd-jp a { text-decoration: none; }
+  .hd-jp h3, .hd-jp h4, .hd-jp p, .hd-jp ul { letter-spacing: normal; }
   .hd-jp button:focus-visible, .hd-jp a:focus-visible, .hd-jp input:focus-visible, .hd-jp select:focus-visible { outline: 2px solid #6e7bff; outline-offset: 2px; }
   /* top bar: the two actions people reach for (book, expand) stay visible; the rest is in the menu */
   .hd-jp-bar { display: flex; align-items: center; gap: 4px; flex: none; }
@@ -284,8 +286,8 @@
   /* saved conversations: a view over the thread */
   .hd-jp-saved { position: absolute; z-index: 2; inset: 0; display: flex; flex-direction: column; padding: 14px 18px 16px; background: var(--color-background-raised, #fff); }
   .hd-jp-saved[hidden] { display: none; }
-  .hd-jp-saved header { display: flex; align-items: center; gap: 6px; flex: none; }
-  .hd-jp-saved header h3 { flex: 1; margin: 0; font-size: 15px; font-weight: 600; }
+  .hd-jp-saved .hd-jp-sh { display: flex; align-items: center; gap: 6px; flex: none; }
+  .hd-jp-saved .hd-jp-sh h3 { flex: 1; margin: 0; font-size: 15px; font-weight: 600; }
   .hd-jp-saved ul { flex: 1; min-height: 0; overflow-y: auto; margin: 12px 0; padding: 0; list-style: none; display: grid; gap: 6px; align-content: start; }
   .hd-jp-saved li { display: flex; align-items: center; gap: 4px; padding: 4px 4px 4px 0; border-radius: 12px; box-shadow: inset 0 0 0 1px rgb(15 23 42 / .08); }
   .hd-jp-saved li.cur { box-shadow: inset 0 0 0 1.5px rgb(110 123 255 / .55); }
@@ -295,7 +297,7 @@
   .hd-jp-saved li small { color: #64748b; font-size: 12px; }
   .hd-jp-saved li em { font-style: normal; color: #5e6ad2; font-weight: 600; }
   .hd-jp-saved .empty { padding: 24px 4px; color: #64748b; text-align: center; }
-  .hd-jp-saved footer { flex: none; display: flex; justify-content: center; }
+  .hd-jp-saved .hd-jp-sf { flex: none; display: flex; justify-content: center; }
   /* confirmation sheet and undo toast */
   .hd-jp-sheet { position: absolute; z-index: 4; inset: 0; display: grid; align-items: end; padding: 12px; background: rgb(15 23 42 / .28); }
   .hd-jp-sheet[hidden] { display: none; }
@@ -391,7 +393,7 @@
         <div class="hd-jp-who"><b>Jess <span>AI</span></b><small><span class="hd-jp-bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="hd-jp-status">Your talent partner at handsdown</span></small></div>
       </div>
       <div class="hd-jp-main">
-        <section class="hd-jp-req" aria-label="Hiring request" hidden></section>
+        <div class="hd-jp-req" role="region" aria-label="Hiring request" hidden></div>
         <div class="hd-jp-log" aria-live="polite"></div>
         <div class="hd-jp-chips" hidden></div>
         <form class="hd-jp-form" novalidate><input type="text" autocomplete="off" enterkeyhint="send" maxlength="400" aria-label="${TALENT ? 'Ask Jess a question' : 'Message Jess'}">
@@ -968,10 +970,10 @@
   function showChat() { if (!panel || view === 'chat') return; view = 'chat'; els.saved.hidden = true; }
   function renderSaved() {
     const list = sorted().filter(hasContent);
-    els.saved.innerHTML = `<header><button type="button" class="hd-jp-ic" data-sv="back" aria-label="Back to the conversation">${ICON.back}</button><h3>Saved conversations</h3><button type="button" class="hd-jp-ic" data-act="close" aria-label="Close">${ICON.x}</button></header>
+    els.saved.innerHTML = `<div class="hd-jp-sh"><button type="button" class="hd-jp-ic" data-sv="back" aria-label="Back to the conversation">${ICON.back}</button><h3>Saved conversations</h3><button type="button" class="hd-jp-ic" data-act="close" aria-label="Close">${ICON.x}</button></div>
       ${list.length ? `<ul>${list.map((c) => `<li class="${c.id === db.activeId ? 'cur' : ''}"><button type="button" data-sv="open" data-id="${c.id}"><b>${esc(convTitle(c))}</b><small>${c.id === db.activeId ? '<em>Open now</em> · ' : ''}${esc(convStatus(c))} · ${ago(c.updated)}</small></button><button type="button" class="hd-jp-ic" data-sv="del" data-id="${c.id}" aria-label="Delete ${esc(convTitle(c))}" title="Delete">${ICON.trash}</button></li>`).join('')}</ul>`
         : '<p class="empty">No saved conversations yet. Describe a role to start one.</p>'}
-      <footer><button type="button" class="hd-jp-lnk" data-sv="new">+ New search</button></footer>`;
+      <div class="hd-jp-sf"><button type="button" class="hd-jp-lnk" data-sv="new">+ New search</button></div>`;
   }
   function onSaved(a, id) {
     if (a === 'back') { showChat(); return els.input.focus({ preventScroll: true }); }
